@@ -165,7 +165,7 @@ section:last-of-type { border-bottom: none; }
 
 /* ── Site header (above nav) ── */
 .site-hdr {
-  background: var(--accent-dk);
+  background: #124090;
   color: #fff;
   padding: 22px max(24px, env(safe-area-inset-left, 0px));
 }
@@ -444,6 +444,22 @@ p:last-child { margin-bottom: 0; }
 .dot-red   { background: #d14040; }
 .dot-blue  { background: var(--accent); }
 .dot-grey  { background: var(--text3); }
+
+/* ── Caloric anchor badge on renal-aware label ── */
+.anchor-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: var(--accent-lt);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
 .signal-text { font-size: 13px; color: var(--text2); line-height: 1.5; }
 .signal-text strong { color: var(--text); }
 
@@ -456,6 +472,32 @@ p:last-child { margin-bottom: 0; }
   font-size: 13px;
   color: var(--amber);
   font-weight: 500;
+}
+
+/* ── Dot legend ── */
+.dot-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  padding: 10px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: var(--text2);
+}
+.dot-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+.dot-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 /* ── Architecture ── */
@@ -684,6 +726,174 @@ footer {
   font-style: italic;
   margin-top: 8px;
 }
+
+/* ── Animated Case Explorer ── */
+.anim-case-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3px;
+  width: fit-content;
+  margin-bottom: 24px;
+}
+.anim-case-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  cursor: pointer;
+  transition: background .15s, color .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.anim-case-btn.active {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: 0 1px 3px rgba(0,0,0,.12);
+}
+
+.anim-stage {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 4px;
+}
+
+.anim-canvas-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  padding: 12px 16px 0;
+}
+
+.anim-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.anim-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+}
+.anim-play-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .12s;
+}
+.anim-play-btn:hover { background: var(--accent-lt); }
+.anim-progress-wrap {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.anim-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  width: 0%;
+  transition: width .1s linear;
+}
+.anim-phase-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--text3);
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}
+
+.anim-explanation {
+  padding: 14px 16px 18px;
+  border-top: 1px solid var(--border);
+  overflow-x: auto;
+}
+.anim-phase-panels {
+  display: flex;
+  gap: 0;
+  min-width: 540px;
+}
+.anim-panel {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  padding: 12px 10px 10px;
+  border-left: 1px solid var(--border);
+  position: relative;
+}
+.anim-panel:first-child { border-left: none; }
+.anim-panel.active { display: flex; flex-direction: column; }
+.anim-panel.past {
+  opacity: 0.42;
+}
+.anim-panel.current {
+  opacity: 1;
+}
+.anim-panel.current::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 0;
+}
+.anim-panel-heading {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+.anim-panel-body {
+  font-size: 11px;
+  color: var(--text2);
+  line-height: 1.5;
+  flex: 1;
+}
+.anim-insight {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.anim-insight.green { background: #e6f7ee; color: #22a861; border: 1px solid #22a861; }
+.anim-insight.red   { background: var(--red-lt); color: var(--red); border: 1px solid var(--red); }
+.anim-insight.amber { background: var(--amber-lt); color: var(--amber); border: 1px solid var(--amber); }
+.anim-insight.grey  { background: var(--surface2); color: var(--text3); border: 1px solid var(--border); }
+.anim-insight.teal  { background: var(--teal-lt); color: var(--teal); border: 1px solid var(--teal); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .anim-insight.green { background: #0a2e1a; }
+}
+:root[data-theme="dark"] .anim-insight.green { background: #0a2e1a; }
 </style>
 
 <!-- SITE HEADER -->
@@ -818,298 +1028,120 @@ footer {
     <h2><span class="sec-num">2</span>Synthetic Patient-Case Explorer</h2>
 
     <p>
-      The following cases are entirely synthetic. They are designed to illustrate how different
-      combinations of nutritional exposure, electrolyte trajectories, and renal context can
-      produce different interpretations. No real patient data, model predictions, or clinical
+      In MIMIC-IV, 38.4% of ICU stays with incident electrolyte deficiency showed that deficiency
+      before EN or PN was initiated, with a median gap of 35.8 hours. Standard surveillance,
+      anchored to EN/PN orders, would miss every one of these patients. The two synthetic cases
+      below show why anchor choice and renal context together determine what a surveillance system
+      can know, and what it will miss. Watch the timeline unfold.
+    </p>
+    <p class="note" style="margin-top:8px">
+      All cases are entirely synthetic. No real patient data, model predictions, or clinical
       decisions are depicted.
     </p>
 
     <!-- Case selector -->
-    <div class="case-tabs mt16" id="caseTabs">
-      <button class="case-tab active" data-case="concordant">Case A: Concordant signals</button>
-      <button class="case-tab" data-case="conflicting">Case B: Conflicting signals</button>
-      <button class="case-tab" data-case="indeterminate">Case C: Indeterminate</button>
+    <div class="anim-case-tabs mt16" id="animCaseTabs">
+      <button class="anim-case-btn active" data-acase="A">Case A: Standard anchor misses it</button>
+      <button class="anim-case-btn" data-acase="B">Case B: Same surface, different story</button>
     </div>
 
-    <!-- Toggle -->
-    <div class="toggle-bar">
-      <button class="toggle-btn active" id="btnStandard">Standard view</button>
-      <button class="toggle-btn" id="btnRenal">Renal-aware integrated view</button>
-    </div>
-
-    <!-- ===== CASE A: CONCORDANT ===== -->
-    <div id="case-concordant" class="case-panel">
-
-      <!-- Timeline SVG -->
-      <div class="timeline-wrap">
-        <svg class="timeline-svg" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" aria-label="Synthetic case A timeline">
-          <!-- Axis line -->
-          <line x1="60" y1="120" x2="660" y2="120" stroke="#9ba3be" stroke-width="1.5"/>
-          <!-- Hour labels -->
-          <text x="60"  y="140" text-anchor="middle" font-size="10" fill="#9ba3be">0h</text>
-          <text x="200" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">12h</text>
-          <text x="340" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">24h</text>
-          <text x="480" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">36h</text>
-          <text x="620" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">48h</text>
-          <!-- Tick marks -->
-          <line x1="60"  y1="120" x2="60"  y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="200" y1="120" x2="200" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="340" y1="120" x2="340" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="480" y1="120" x2="480" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="620" y1="120" x2="620" y2="128" stroke="#9ba3be" stroke-width="1"/>
-
-          <!-- IV Dextrose bar (0h to ~36h) -->
-          <rect x="60" y="18" width="420" height="14" rx="3" fill="#5e9de8" opacity=".85"/>
-          <text x="55" y="29" text-anchor="end" font-size="11" fill="#9ba3be">Dextrose</text>
-          <text x="270" y="29" text-anchor="middle" font-size="10" fill="#fff">IV dextrose exposure</text>
-
-          <!-- Normal Phos (solid dots) at 0h and 6h -->
-          <circle cx="60"  cy="68" r="5" fill="#22a861"/>
-          <circle cx="130" cy="65" r="5" fill="#22a861"/>
-          <!-- Low Phos starting at ~12h (x=200) -->
-          <circle cx="200" cy="94" r="5" fill="#d14040"/>
-          <circle cx="340" cy="99" r="5" fill="#d14040"/>
-          <circle cx="480" cy="97" r="5" fill="#d14040"/>
-          <!-- Phos line -->
-          <polyline points="60,68 130,65 200,94 340,99 480,97" fill="none" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="4,2"/>
-          <text x="55" y="70" text-anchor="end" font-size="11" fill="#9ba3be">Phos</text>
-          <line x1="200" y1="85" x2="200" y2="120" stroke="#d14040" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="200" y="83" text-anchor="middle" font-size="9" fill="#d14040">first low (~12h)</text>
-
-          <!-- EN start at 48h (x=620) -->
-          <line x1="620" y1="15" x2="620" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
-          <text x="620" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start (~48h)</text>
-
-          <!-- Creatinine (flat = normal) -->
-          <polyline points="60,108 200,108 340,108 480,108 620,108" fill="none" stroke="#c0c6d8" stroke-width="1.5" stroke-dasharray="4,2"/>
-          <text x="55" y="110" text-anchor="end" font-size="11" fill="#c0c6d8">Cr</text>
-        </svg>
+    <!-- ===== ANIMATED CASE A ===== -->
+    <div id="anim-case-A" class="anim-stage">
+      <div class="anim-canvas-wrap">
+        <!-- SVG drawn by JS into this -->
+        <svg id="svgA" class="anim-svg" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" aria-label="Case A animated timeline"></svg>
       </div>
-      <p class="note">Synthetic timeline. Intervals are diagrammatic only. Cr = serum creatinine.</p>
-
-      <!-- Standard view -->
-      <div class="view-panel active" id="std-concordant">
-        <div class="interpretation-box standard">
-          <div class="ibox-label">Standard view: nutrition and electrolyte window</div>
-          <div class="signal-row">
-            <div class="signal-dot dot-green"></div>
-            <div class="signal-text"><strong>Electrolyte deficiency present:</strong> Hypophosphatemia identified on serial labs.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-amber"></div>
-            <div class="signal-text"><strong>Temporal proximity to nutrition:</strong> Deficiency first observed at approximately 12 hours; EN not initiated until approximately 48 hours. Deficiency precedes EN by approximately 36 hours.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-grey"></div>
-            <div class="signal-text"><strong>Interpretation:</strong> Electrolyte abnormality preceding nutrition initiation; consider possible refeeding-associated disturbance.</div>
-          </div>
+      <div class="anim-controls">
+        <button class="anim-play-btn" id="playA" title="Play / Pause">▶</button>
+        <div class="anim-progress-wrap">
+          <div class="anim-progress-bar" id="progA"></div>
         </div>
+        <div class="anim-phase-label" id="phaseA">Admission</div>
       </div>
-
-      <!-- Renal-aware view -->
-      <div class="view-panel" id="rna-concordant">
-        <div class="interpretation-box renal">
-          <div class="ibox-label">Renal-aware integrated view</div>
-          <div class="signal-row">
-            <div class="signal-dot dot-blue"></div>
-            <div class="signal-text"><strong>Nutritional exposure timing:</strong> IV dextrose began at admission, 36 hours before EN. Caloric anchor precedes standard monitoring window.</div>
+      <div class="anim-explanation">
+        <div class="anim-phase-panels" id="panelsA">
+          <div class="anim-panel active" data-phase="0">
+            <div class="anim-panel-heading">Admission (0h): IV dextrose begins</div>
+            <div class="anim-panel-body">The patient is admitted to the ICU. Formal nutrition has not been ordered. IV dextrose infusion begins immediately and will continue for the first 36 hours. Phosphate is normal at admission. Standard surveillance has not yet opened its monitoring window.</div>
+            <span class="anim-insight grey">Standard anchor: waiting for EN/PN order</span>
           </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-red"></div>
-            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Phosphate decline begins approximately 12 hours after dextrose initiation and approximately 36 hours before EN start. Trajectory is consistent with early nutritional depletion, though temporal association does not establish causation.</div>
+          <div class="anim-panel" data-phase="1">
+            <div class="anim-panel-heading">12h: Phosphate drops below normal</div>
+            <div class="anim-panel-body">The first follow-up electrolyte draw shows hypophosphatemia. The patient's phosphate has crossed the deficiency threshold. The event is real and measurable in the data. Standard surveillance, anchored to EN/PN initiation, has not flagged anything. EN has not been ordered yet.</div>
+            <span class="anim-insight grey">Standard window: still closed. Deficiency already present.</span>
           </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-green"></div>
-            <div class="signal-text"><strong>Renal context:</strong> Creatinine stable and within normal range throughout. No creatinine-based evidence of AKI. Stable creatinine does not exclude all renal contributions to electrolyte handling, but no elevated renal-risk signal is present in this case.</div>
+          <div class="anim-panel" data-phase="2">
+            <div class="anim-panel-heading">36h: Dextrose stops. Deficiency persists.</div>
+            <div class="anim-panel-body">Dextrose infusion ends. Phosphate has been low for 24 hours and remains depressed. EN is still not ordered. Standard surveillance has been open for zero of these 36 hours. The patient is 36 hours into a deficiency that the monitoring system cannot see.</div>
+            <span class="anim-insight grey">Standard anchor still at 48h. Nothing flagged.</span>
           </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-green"></div>
-            <div class="signal-text"><strong>Evidence convergence:</strong> Nutrition timing, electrolyte trajectory, and renal context are concordant. Attribution to early nutritional depletion is plausible; no competing renal explanation is identified in the available structured data.</div>
+          <div class="anim-panel" data-phase="3">
+            <div class="anim-panel-heading">48h: EN finally ordered. Window opens.</div>
+            <div class="anim-panel-body">Enteral nutrition is initiated. Standard surveillance now opens its monitoring window. But the deficiency has been present for 36 hours already. The system will flag post-EN labs correctly, but the 36-hour pre-nutrition gap is invisible in the standard framework. In MIMIC-IV, 38.4% of eligible patients had exactly this pattern.</div>
+            <span class="anim-insight grey">Standard view: first alert fires here. Deficiency was present 36h ago.</span>
+          </div>
+          <div class="anim-panel" data-phase="4">
+            <div class="anim-panel-heading">Renal-aware view: caloric anchor at 0h</div>
+            <div class="anim-panel-body">Switching to the proposed renal-aware framework: the anchor moves to IV dextrose initiation at 0h. The monitoring window opens at admission. The 12h phosphate drop falls squarely inside the proposed surveillance window. Creatinine is flat throughout, with no AKI signal, supporting a nutritional rather than renal explanation for the deficiency.</div>
+            <span class="anim-insight teal">Caloric anchor active: dextrose 0h</span>
+            &nbsp;
+            <span class="anim-insight green">Creatinine stable: nutritional attribution supported</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== CASE B: CONFLICTING ===== -->
-    <div id="case-conflicting" class="case-panel" hidden>
-
-      <div class="timeline-wrap">
-        <svg class="timeline-svg" viewBox="0 0 700 165" xmlns="http://www.w3.org/2000/svg" aria-label="Synthetic case B timeline">
-          <line x1="60" y1="120" x2="660" y2="120" stroke="#9ba3be" stroke-width="1.5"/>
-          <text x="60"  y="140" text-anchor="middle" font-size="10" fill="#9ba3be">0h</text>
-          <text x="200" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">12h</text>
-          <text x="340" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">24h</text>
-          <text x="480" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">36h</text>
-          <text x="620" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">48h</text>
-          <line x1="60"  y1="120" x2="60"  y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="200" y1="120" x2="200" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="340" y1="120" x2="340" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="480" y1="120" x2="480" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="620" y1="120" x2="620" y2="128" stroke="#9ba3be" stroke-width="1"/>
-
-          <!-- IV Dextrose -->
-          <rect x="60" y="18" width="160" height="14" rx="3" fill="#5e9de8" opacity=".85"/>
-          <text x="55" y="29" text-anchor="end" font-size="11" fill="#9ba3be">Dextrose</text>
-          <text x="140" y="29" text-anchor="middle" font-size="10" fill="#fff">IV dextrose</text>
-
-          <!-- Phos trajectory (rises in AKI then falls) -->
-          <circle cx="60"  cy="78" r="5" fill="#22a861"/>
-          <circle cx="130" cy="62" r="5" fill="#e5a43a"/>
-          <circle cx="200" cy="58" r="5" fill="#d14040"/>
-          <circle cx="280" cy="74" r="5" fill="#d14040"/>
-          <circle cx="360" cy="88" r="5" fill="#22a861"/>
-          <polyline points="60,78 130,62 200,58 280,74 360,88" fill="none" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="4,2"/>
-          <text x="55" y="80" text-anchor="end" font-size="11" fill="#9ba3be">Phos</text>
-
-          <!-- Creatinine (rising = AKI) -->
-          <circle cx="60"  cy="110" r="4" fill="#22a861"/>
-          <circle cx="200" cy="98"  r="4" fill="#e5a43a"/>
-          <circle cx="340" cy="80"  r="4" fill="#d14040"/>
-          <circle cx="480" cy="85"  r="4" fill="#d14040"/>
-          <polyline points="60,110 200,98 340,80 480,85" fill="none" stroke="#e5a43a" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <text x="55" y="112" text-anchor="end" font-size="11" fill="#e5a43a">Cr</text>
-          <text x="400" y="75" font-size="10" fill="#d14040">↑ AKI</text>
-
-          <!-- EN start -->
-          <line x1="460" y1="15" x2="460" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
-          <text x="460" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start</text>
-        </svg>
+    <!-- ===== ANIMATED CASE B ===== -->
+    <div id="anim-case-B" class="anim-stage" hidden>
+      <div class="anim-canvas-wrap">
+        <svg id="svgB" class="anim-svg" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" aria-label="Case B animated timeline"></svg>
       </div>
-      <p class="note">Synthetic timeline. Rising creatinine indicates concurrent acute kidney injury in this illustrative scenario.</p>
-
-      <div class="view-panel active" id="std-conflicting">
-        <div class="interpretation-box standard">
-          <div class="ibox-label">Standard view: nutrition and electrolyte window</div>
-          <div class="signal-row">
-            <div class="signal-dot dot-red"></div>
-            <div class="signal-text"><strong>Electrolyte deficiency present:</strong> Hypophosphatemia identified on labs prior to EN initiation.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-amber"></div>
-            <div class="signal-text"><strong>Temporal proximity to nutrition:</strong> Deficiency precedes EN start. Standard surveillance window not yet open.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-grey"></div>
-            <div class="signal-text"><strong>Interpretation:</strong> Electrolyte abnormality prior to nutrition initiation; consider possible refeeding-associated disturbance.</div>
-          </div>
+      <div class="anim-controls">
+        <button class="anim-play-btn" id="playB" title="Play / Pause">▶</button>
+        <div class="anim-progress-wrap">
+          <div class="anim-progress-bar" id="progB"></div>
         </div>
+        <div class="anim-phase-label" id="phaseB">Admission</div>
       </div>
-
-      <div class="view-panel" id="rna-conflicting">
-        <div class="interpretation-box renal">
-          <div class="ibox-label">Renal-aware integrated view</div>
-          <div class="signal-row">
-            <div class="signal-dot dot-blue"></div>
-            <div class="signal-text"><strong>Nutritional exposure timing:</strong> Brief IV dextrose exposure in early admission; EN begins much later. Limited early caloric load.</div>
+      <div class="anim-explanation">
+        <div class="anim-phase-panels" id="panelsB">
+          <div class="anim-panel active" data-phase="0">
+            <div class="anim-panel-heading">Admission (0h): Identical surface to Case A</div>
+            <div class="anim-panel-body">The patient is admitted to the ICU. IV dextrose begins. Phosphate is normal at admission. From the standard view, this case is indistinguishable from Case A. The standard anchor is waiting for an EN order. No flags yet.</div>
+            <span class="anim-insight grey">Standard view: same as Case A so far</span>
           </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-amber"></div>
-            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Phosphate initially rises above normal range before subsequently declining. The initial elevation is atypical for nutritional depletion; it may reflect impaired renal excretion during early AKI before a later drop.</div>
+          <div class="anim-panel" data-phase="1">
+            <div class="anim-panel-heading">0–12h: Phosphate rises, then drops</div>
+            <div class="anim-panel-body">Something unexpected: phosphate first rises slightly before falling. In Case A it declined smoothly from the start. This atypical trajectory, an initial rise before the decline, is inconsistent with isolated nutritional depletion. Standard surveillance cannot distinguish this from Case A. Both show phosphate below normal by 12h.</div>
+            <span class="anim-insight grey">Standard view: cannot distinguish this trajectory from Case A</span>
           </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-red"></div>
-            <div class="signal-text"><strong>Renal context:</strong> Concurrent creatinine rise consistent with developing AKI. Phosphate retention from impaired renal excretion is a competing explanation for the initial abnormal values.</div>
+          <div class="anim-panel" data-phase="2">
+            <div class="anim-panel-heading">Renal layer revealed: creatinine is rising</div>
+            <div class="anim-panel-body">Now the critical difference: creatinine is rising in parallel with the phosphate fluctuation. This is an AKI signal. Impaired renal clearance can cause both phosphate retention (early) and redistribution (later), producing exactly this atypical trajectory. The same picture that looked like nutritional depletion now has a competing renal explanation.</div>
+            <span class="anim-insight red">AKI signal: creatinine rising</span>
           </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-amber"></div>
-            <div class="signal-text"><strong>Evidence conflicts:</strong> Electrolyte trajectory and renal context are not concordant with a straightforward nutritional explanation. Attribution is uncertain; competing explanations should remain explicit.</div>
+          <div class="anim-panel" data-phase="3">
+            <div class="anim-panel-heading">Reinterpreting the phosphate trajectory</div>
+            <div class="anim-panel-body">With renal context visible, the phosphate picture changes meaning. The initial phosphate rise is consistent with AKI-driven retention. The subsequent fall is consistent with redistribution as AKI progresses. Nutritional depletion may still be contributing, but renal handling has reframed the trajectory entirely. Attribution is now uncertain.</div>
+            <span class="anim-insight amber">Attribution uncertain: nutritional and renal contributions overlap</span>
           </div>
-          <div class="uncertainty-flag">
-            ⚠ Integrated assessment: Insufficient evidence to attribute deficiency to nutritional depletion alone. AKI trajectory provides a plausible competing explanation. Case warrants clinical review before attribution.
+          <div class="anim-panel" data-phase="4">
+            <div class="anim-panel-heading">Standard view cannot tell these cases apart</div>
+            <div class="anim-panel-body">This is the problem Aim 3 is designed to solve. Two patients with nearly identical standard-view pictures require fundamentally different clinical responses, but only one surveillance framework can see the difference. The renal-aware system flags Case B for clinician review rather than forcing a nutritional label. Distinguishing them at scale, in real data, is the pilot's central contribution.</div>
+            <span class="anim-insight red">Case B requires review. Standard surveillance would treat it as Case A.</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== CASE C: INDETERMINATE ===== -->
-    <div id="case-indeterminate" class="case-panel" hidden>
-
-      <div class="timeline-wrap">
-        <svg class="timeline-svg" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" aria-label="Synthetic case C timeline">
-          <line x1="60" y1="120" x2="660" y2="120" stroke="#9ba3be" stroke-width="1.5"/>
-          <text x="60"  y="140" text-anchor="middle" font-size="10" fill="#9ba3be">0h</text>
-          <text x="200" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">12h</text>
-          <text x="340" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">24h</text>
-          <text x="480" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">36h</text>
-          <text x="620" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">48h</text>
-          <line x1="60"  y1="120" x2="60"  y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="200" y1="120" x2="200" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="340" y1="120" x2="340" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="480" y1="120" x2="480" y2="128" stroke="#9ba3be" stroke-width="1"/>
-          <line x1="620" y1="120" x2="620" y2="128" stroke="#9ba3be" stroke-width="1"/>
-
-          <!-- Large dextrose exposure -->
-          <rect x="60" y="18" width="540" height="14" rx="3" fill="#5e9de8" opacity=".85"/>
-          <text x="55" y="29" text-anchor="end" font-size="11" fill="#9ba3be">Dextrose</text>
-          <text x="330" y="29" text-anchor="middle" font-size="10" fill="#fff">prolonged IV dextrose exposure</text>
-
-          <!-- Sparse labs: normal at 0h, first low at 48h (post-EN) -->
-          <circle cx="60"  cy="72" r="5" fill="#22a861"/>
-          <circle cx="620" cy="98" r="5" fill="#d14040"/>
-          <line x1="60" y1="72" x2="620" y2="98" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="6,4"/>
-          <text x="55" y="74" text-anchor="end" font-size="11" fill="#9ba3be">Phos</text>
-          <text x="300" y="82" text-anchor="middle" font-size="9" fill="#c0c6d8">no labs in gap</text>
-
-          <!-- Missing creatinine -->
-          <circle cx="60" cy="110" r="4" fill="#22a861"/>
-          <text x="55" y="112" text-anchor="end" font-size="11" fill="#c0c6d8">Cr</text>
-          <text x="300" y="110" text-anchor="middle" font-size="9" fill="#c0c6d8">creatinine not re-checked</text>
-
-          <!-- EN at 36h -->
-          <line x1="480" y1="15" x2="480" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
-          <text x="480" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start (~36h)</text>
-        </svg>
-      </div>
-      <p class="note">Synthetic timeline. Sparse lab frequency and missing creatinine re-check create an indeterminate evidence scenario.</p>
-
-      <div class="view-panel active" id="std-indeterminate">
-        <div class="interpretation-box standard">
-          <div class="ibox-label">Standard view: nutrition and electrolyte window</div>
-          <div class="signal-row">
-            <div class="signal-dot dot-red"></div>
-            <div class="signal-text"><strong>Electrolyte deficiency present:</strong> Hypophosphatemia identified on first post-EN lab draw.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-green"></div>
-            <div class="signal-text"><strong>Temporal proximity to nutrition:</strong> Deficiency appears within standard monitoring window after EN start.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-grey"></div>
-            <div class="signal-text"><strong>Interpretation:</strong> Electrolyte abnormality in the refeeding monitoring window; possible refeeding-associated disturbance.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="view-panel" id="rna-indeterminate">
-        <div class="interpretation-box renal">
-          <div class="ibox-label">Renal-aware integrated view</div>
-          <div class="signal-row">
-            <div class="signal-dot dot-blue"></div>
-            <div class="signal-text"><strong>Nutritional exposure timing:</strong> Prolonged IV dextrose throughout. Caloric anchor begins at admission, 36+ hours before EN.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-amber"></div>
-            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Large laboratory gap between admission and first post-EN draw. Timing of phosphate decline relative to dextrose or EN initiation cannot be established from available data.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-grey"></div>
-            <div class="signal-text"><strong>Renal context:</strong> Creatinine not re-checked after admission baseline. Renal function at time of deficiency unknown; AKI cannot be excluded or confirmed.</div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-dot dot-amber"></div>
-            <div class="signal-text"><strong>Evidence insufficiency:</strong> Available structured data are insufficient to support confident attribution. Case should be flagged for clinical review rather than auto-classified.</div>
-          </div>
-          <div class="uncertainty-flag">
-            ⚠ Integrated assessment: Evidence is indeterminate. Sparse lab frequency and missing renal function data prevent attribution. System flags for clinician review.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p class="note mt20">
+    <p class="note mt12">
       All cases are synthetic constructs for design illustration. They do not represent individual patients,
       model outputs, or clinical recommendations.
     </p>
+
+    <div class="note" style="margin-top:24px; padding:16px 20px; background:var(--accent-lt); border-left:3px solid var(--accent); border-radius:var(--radius);">
+      The architecture proposed in this pilot is designed to make this reasoning explicit, auditable, and scalable — identifying the 38.4% before they become clinical events, flagging the ambiguous cases for clinician review rather than forcing attribution, and characterizing the data conditions under which confident interpretation is and is not possible.
+    </div>
   </section>
 
 
@@ -1493,18 +1525,19 @@ footer {
 
 <script>
 (function () {
+
   /* ── Theme toggle ── */
   const root = document.documentElement;
-  const btn = document.getElementById('themeToggle');
+  const themeBtn = document.getElementById('themeToggle');
   let dark = false;
   try { dark = localStorage.getItem('bmihai-theme') === 'dark'; } catch(e) {}
   function applyTheme() {
     root.dataset.theme = dark ? 'dark' : 'light';
-    btn.textContent = dark ? '☀ Light' : '◑ Theme';
+    themeBtn.textContent = dark ? '☀ Light' : '◑ Theme';
     try { localStorage.setItem('bmihai-theme', dark ? 'dark' : 'light'); } catch(e) {}
   }
   applyTheme();
-  btn.addEventListener('click', function() { dark = !dark; applyTheme(); });
+  themeBtn.addEventListener('click', function() { dark = !dark; applyTheme(); });
 
   /* ── Active nav link on scroll ── */
   const sections = document.querySelectorAll('section[id], div.hero');
@@ -1521,48 +1554,382 @@ footer {
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
-  /* ── Case tabs ── */
-  const caseTabs = document.querySelectorAll('.case-tab');
-  caseTabs.forEach(tab => {
+  /* ── Case tab switcher ── */
+  const animTabs = document.querySelectorAll('.anim-case-btn');
+  animTabs.forEach(tab => {
     tab.addEventListener('click', function() {
-      caseTabs.forEach(t => t.classList.remove('active'));
+      animTabs.forEach(t => t.classList.remove('active'));
       this.classList.add('active');
-      const target = this.dataset.case;
-      document.querySelectorAll('.case-panel').forEach(p => {
-        p.hidden = p.id !== 'case-' + target;
-      });
-      // After switching cases, reapply current view
-      const isRenal = document.getElementById('btnRenal').classList.contains('active');
-      syncView(target, isRenal);
+      const which = this.dataset.acase;
+      document.getElementById('anim-case-A').hidden = (which !== 'A');
+      document.getElementById('anim-case-B').hidden = (which !== 'B');
+      if (which === 'A') { animA.reset(); }
+      if (which === 'B') { animB.reset(); }
     });
   });
 
-  function syncView(caseKey, isRenal) {
-    const prefix = isRenal ? 'rna-' : 'std-';
-    ['concordant', 'conflicting', 'indeterminate'].forEach(c => {
-      const std = document.getElementById('std-' + c);
-      const rna = document.getElementById('rna-' + c);
-      if (std) std.classList.toggle('active', !isRenal);
-      if (rna) rna.classList.toggle('active', isRenal);
+  /* ═══════════════════════════════════════════════════
+     SVG HELPERS
+  ═══════════════════════════════════════════════════ */
+  const NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs) {
+    const e = document.createElementNS(NS, tag);
+    for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v);
+    return e;
+  }
+  function txt(content, attrs) {
+    const e = el('text', attrs);
+    e.textContent = content;
+    return e;
+  }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  /* ── Get computed CSS token colors ── */
+  function cssVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+
+  /* ═══════════════════════════════════════════════════
+     ANIMATION ENGINE
+     Phases: array of {label, draw, duration}
+     draw(svg, progress) renders svg for this phase's progress [0..1]
+  ═══════════════════════════════════════════════════ */
+  function makeAnimator(svgEl, playBtnEl, progBarEl, phaseLabelEl, panelsEl, phases) {
+    const PHASE_DUR = 2200;
+    let currentPhase = 0;
+    let startTime = null;
+    let rafId = null;
+    let playing = false;
+
+    function drawStatic(svg) {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const W = 700, axisY = 158, x0 = 60, x48 = 620;
+      const step = (x48 - x0) / 4;
+
+      const C_AXIS = '#9ba3be';
+      const C_DEX  = '#5e9de8';
+
+      svg.appendChild(el('line', {x1:x0,y1:axisY,x2:x48+40,y2:axisY,stroke:C_AXIS,'stroke-width':1.5}));
+      [[0,'0h'],[1,'12h'],[2,'24h'],[3,'36h'],[4,'48h']].forEach(([i,label]) => {
+        const x = x0 + i*step;
+        svg.appendChild(el('line',{x1:x,y1:axisY,x2:x,y2:axisY+9,stroke:C_AXIS,'stroke-width':1}));
+        svg.appendChild(txt(label,{x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
+      });
+      svg.appendChild(txt('Phos',{x:x0-5,y:82,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+      return {W, axisY, x0, x48, step, C_AXIS, C_DEX};
+    }
+
+    function setPhase(p) {
+      currentPhase = p;
+      const panels = panelsEl.querySelectorAll('.anim-panel');
+      panels.forEach((panel, i) => {
+        panel.classList.remove('active', 'past', 'current');
+        if (i < p) {
+          panel.classList.add('active', 'past');
+        } else if (i === p) {
+          panel.classList.add('active', 'current');
+        }
+      });
+      phaseLabelEl.textContent = phases[p].label;
+      progBarEl.style.width = ((p + 1) / phases.length * 100) + '%';
+    }
+
+    function tick(ts) {
+      if (!startTime) startTime = ts;
+      const elapsed = ts - startTime;
+      const progress = Math.min(elapsed / PHASE_DUR, 1);
+      phases[currentPhase].draw(svgEl, progress);
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        const next = currentPhase + 1;
+        if (next < phases.length) {
+          setPhase(next);
+          startTime = null;
+          rafId = requestAnimationFrame(tick);
+        } else {
+          playing = false;
+          playBtnEl.textContent = '↺';
+          progBarEl.style.width = '100%';
+        }
+      }
+    }
+
+    function play() {
+      if (!playing) {
+        playing = true;
+        playBtnEl.textContent = '⏸';
+        startTime = null;
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+    function pause() {
+      if (playing) {
+        playing = false;
+        playBtnEl.textContent = '▶';
+        cancelAnimationFrame(rafId);
+      }
+    }
+
+    function reset() {
+      pause();
+      currentPhase = 0;
+      startTime = null;
+      setPhase(0);
+      progBarEl.style.width = ((1 / phases.length) * 100) + '%';
+      playBtnEl.textContent = '▶';
+      phases[0].draw(svgEl, 1);
+    }
+
+    playBtnEl.addEventListener('click', function() {
+      if (playBtnEl.textContent === '↺') {
+        reset();
+      } else if (playing) {
+        pause();
+      } else {
+        if (currentPhase >= phases.length - 1 && progBarEl.style.width === '100%') {
+          reset();
+        } else {
+          play();
+        }
+      }
     });
+
+    phases[0].draw(svgEl, 1);
+    setPhase(0);
+    progBarEl.style.width = ((1 / phases.length) * 100) + '%';
+    return { play, pause, reset };
   }
 
-  /* ── View toggle ── */
-  const btnStd = document.getElementById('btnStandard');
-  const btnRna = document.getElementById('btnRenal');
+  /* ═══════════════════════════════════════════════════
+     CASE A PHASES
+     Story: dextrose starts → phos drops at 12h (standard misses) →
+            dextrose ends → EN starts at 48h (standard anchor fires) →
+            caloric anchor + stable creatinine reveal the better story
+  ═══════════════════════════════════════════════════ */
+  const phaseLabelsA = ['Admission', '12h: Phos drops', '36h: Dextrose ends', '48h: EN starts', 'Renal-aware view'];
 
-  function setView(isRenal) {
-    btnStd.classList.toggle('active', !isRenal);
-    btnRna.classList.toggle('active', isRenal);
-    const activeTab = document.querySelector('.case-tab.active');
-    const caseKey = activeTab ? activeTab.dataset.case : 'concordant';
-    syncView(caseKey, isRenal);
+  function drawBase(svg, progDex, progPhos, showEN, showCr, showCaloricAnchor, easing) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const x0=60, x48=620, axisY=158;
+    const step=(x48-x0)/4;
+    const C_AXIS='#9ba3be', C_DEX='#5e9de8', C_EN='#0e7c6e';
+    const C_GREEN='#22a861', C_RED='#d14040', C_CR='#9ba3be';
+
+    svg.appendChild(el('line',{x1:x0,y1:axisY,x2:x48+40,y2:axisY,stroke:C_AXIS,'stroke-width':1.5}));
+    [[0,'0h'],[1,'12h'],[2,'24h'],[3,'36h'],[4,'48h']].forEach(([i,label]) => {
+      const x=x0+i*step;
+      svg.appendChild(el('line',{x1:x,y1:axisY,x2:x,y2:axisY+9,stroke:C_AXIS,'stroke-width':1}));
+      svg.appendChild(txt(label,{x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
+    });
+
+    const dexEnd = lerp(x0, x0+step*3, Math.min(progDex,1));
+    if (progDex > 0) {
+      svg.appendChild(el('rect',{x:x0,y:14,width:dexEnd-x0,height:14,rx:3,fill:C_DEX,opacity:.85}));
+      svg.appendChild(txt('Dextrose',{x:x0-5,y:25,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+      if (progDex >= 1) {
+        svg.appendChild(txt('IV dextrose (0–36h)',{x:x0+70,y:25,'text-anchor':'start','font-size':'10',fill:'#fff'}));
+      }
+    }
+
+    svg.appendChild(txt('Phos',{x:x0-5,y:82,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+
+    const phosPoints = [
+      [x0,    62, C_GREEN],
+      [x0+step*0.8, 58, C_GREEN],
+      [x0+step,  92, C_RED],
+      [x0+step*2, 99, C_RED],
+      [x0+step*3, 97, C_RED],
+    ];
+
+    if (progPhos > 0) {
+      const numPts = Math.max(2, Math.round(progPhos * phosPoints.length));
+      const visible = phosPoints.slice(0, numPts);
+      if (visible.length >= 2) {
+        const pts = visible.map(p=>p[0]+','+p[1]).join(' ');
+        svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:C_AXIS,'stroke-width':1.5,'stroke-dasharray':'4,2'}));
+      }
+      visible.forEach(([cx,cy,col]) => {
+        svg.appendChild(el('circle',{cx,cy,r:5,fill:col}));
+      });
+      if (progPhos >= 0.55) {
+        const fx=x0+step, fy=85;
+        svg.appendChild(el('line',{x1:fx,y1:92,x2:fx,y2:axisY,stroke:C_RED,'stroke-width':1,'stroke-dasharray':'3,3'}));
+        svg.appendChild(txt('first low (12h)',{x:fx,y:fy,'text-anchor':'middle','font-size':'9',fill:C_RED}));
+      }
+    }
+
+    if (showEN) {
+      const enX = x0+step*4;
+      svg.appendChild(el('line',{x1:enX,y1:10,x2:enX,y2:axisY,stroke:C_EN,'stroke-width':2,'stroke-dasharray':'5,3'}));
+      svg.appendChild(txt('EN start (48h)',{x:enX,y:8,'text-anchor':'middle','font-size':'10',fill:C_EN}));
+    }
+
+    if (showCaloricAnchor) {
+      const aX = x0;
+      svg.appendChild(el('line',{x1:aX,y1:10,x2:aX,y2:axisY,stroke:'#0e7c6e','stroke-width':2.5,'stroke-dasharray':'none'}));
+      svg.appendChild(txt('Caloric anchor (0h)',{x:aX+4,y:8,'text-anchor':'start','font-size':'10',fill:'#0e7c6e','font-weight':'700'}));
+    }
+
+    if (showCr) {
+      const crY = 128;
+      svg.appendChild(txt('Cr',{x:x0-5,y:crY+2,'text-anchor':'end','font-size':'11',fill:C_CR}));
+      const crPts = [[x0,crY],[x0+step,crY],[x0+step*2,crY],[x0+step*3,crY],[x0+step*4,crY]];
+      const cpts = crPts.map(p=>p[0]+','+p[1]).join(' ');
+      svg.appendChild(el('polyline',{points:cpts,fill:'none',stroke:C_CR,'stroke-width':1.5,'stroke-dasharray':'4,2',opacity:.7}));
+      crPts.forEach(([cx,cy]) => svg.appendChild(el('circle',{cx,cy,r:4,fill:C_GREEN})));
+      svg.appendChild(txt('stable (no AKI)',{x:x0+step*2,y:crY-8,'text-anchor':'middle','font-size':'9',fill:C_GREEN}));
+    }
   }
 
-  btnStd.addEventListener('click', function() { setView(false); });
-  btnRna.addEventListener('click', function() { setView(true); });
+  const phasesA = [
+    {
+      label: 'Admission',
+      draw(svg, t) { drawBase(svg, t*0.05, t*0.15, false, false, false, t); }
+    },
+    {
+      label: '12h: Phos drops',
+      draw(svg, t) { drawBase(svg, 0.05+t*0.25, 0.15+t*0.45, false, false, false, t); }
+    },
+    {
+      label: '36h: Dextrose ends',
+      draw(svg, t) { drawBase(svg, 0.3+t*0.7, 0.6+t*0.2, false, false, false, t); }
+    },
+    {
+      label: '48h: EN starts',
+      draw(svg, t) { drawBase(svg, 1, 0.8+t*0.2, t >= 0.6, false, false, t); }
+    },
+    {
+      label: 'Renal-aware view',
+      draw(svg, t) { drawBase(svg, 1, 1, true, t >= 0.3, t >= 0.3, t); }
+    },
+  ];
 
-  // Init
-  setView(false);
+  const animA = makeAnimator(
+    document.getElementById('svgA'),
+    document.getElementById('playA'),
+    document.getElementById('progA'),
+    document.getElementById('phaseA'),
+    document.getElementById('panelsA'),
+    phasesA
+  );
+
+  /* ═══════════════════════════════════════════════════
+     CASE B PHASES
+     Story: same opening → atypical phos trajectory →
+            renal layer revealed (Cr rising = AKI) →
+            phos reinterpreted → standard view cannot tell cases apart
+  ═══════════════════════════════════════════════════ */
+
+  function drawBaseB(svg, progDex, progPhos, showCr, showCrLabel, showAtypLabel, showStdNote) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const x0=60, x48=620, axisY=158;
+    const step=(x48-x0)/4;
+    const C_AXIS='#9ba3be', C_DEX='#5e9de8', C_EN='#0e7c6e';
+    const C_GREEN='#22a861', C_RED='#d14040', C_AMB='#e5a43a';
+    const C_CR='#e5a43a';
+
+    svg.appendChild(el('line',{x1:x0,y1:axisY,x2:x48+40,y2:axisY,stroke:C_AXIS,'stroke-width':1.5}));
+    [[0,'0h'],[1,'12h'],[2,'24h'],[3,'36h'],[4,'48h']].forEach(([i,label]) => {
+      const x=x0+i*step;
+      svg.appendChild(el('line',{x1:x,y1:axisY,x2:x,y2:axisY+9,stroke:C_AXIS,'stroke-width':1}));
+      svg.appendChild(txt(label,{x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
+    });
+
+    if (progDex > 0) {
+      const dexEnd = lerp(x0, x0+step, Math.min(progDex,1));
+      svg.appendChild(el('rect',{x:x0,y:14,width:dexEnd-x0,height:14,rx:3,fill:C_DEX,opacity:.85}));
+      svg.appendChild(txt('Dextrose',{x:x0-5,y:25,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+      if (progDex >= 1) {
+        svg.appendChild(txt('IV dextrose (0–12h)',{x:x0+5,y:25,'text-anchor':'start','font-size':'10',fill:'#fff'}));
+      }
+    }
+
+    svg.appendChild(txt('Phos',{x:x0-5,y:82,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+
+    const phosPoints = [
+      [x0,    78, C_GREEN],
+      [x0+step*0.6, 58, C_AMB],
+      [x0+step,  62, C_RED],
+      [x0+step*1.6, 82, C_AMB],
+      [x0+step*2.5, 92, C_GREEN],
+    ];
+
+    if (progPhos > 0) {
+      const numPts = Math.max(2, Math.round(progPhos * phosPoints.length));
+      const visible = phosPoints.slice(0, numPts);
+      if (visible.length >= 2) {
+        const pts = visible.map(p=>p[0]+','+p[1]).join(' ');
+        svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:C_AXIS,'stroke-width':1.5,'stroke-dasharray':'4,2'}));
+      }
+      visible.forEach(([cx,cy,col]) => {
+        svg.appendChild(el('circle',{cx,cy,r:5,fill:col}));
+      });
+    }
+
+    if (showAtypLabel) {
+      svg.appendChild(txt('atypical: rises then falls',{x:x0+step*1.2,y:45,'text-anchor':'middle','font-size':'9',fill:C_AMB,'font-weight':'600'}));
+    }
+
+    if (showCr) {
+      const crPts = [
+        [x0,        128],
+        [x0+step,   118],
+        [x0+step*2, 102],
+        [x0+step*3, 107],
+      ];
+      svg.appendChild(txt('Cr',{x:x0-5,y:130,'text-anchor':'end','font-size':'11',fill:showCrLabel?C_CR:C_AXIS}));
+      if (crPts.length >= 2) {
+        const pts = crPts.map(p=>p[0]+','+p[1]).join(' ');
+        svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:C_CR,'stroke-width':1.8,'stroke-dasharray':'3,2'}));
+      }
+      const crCols = [C_GREEN, C_AMB, C_RED, C_RED];
+      crPts.forEach(([cx,cy],i) => svg.appendChild(el('circle',{cx,cy,r:4,fill:crCols[i]})));
+      if (showCrLabel) {
+        svg.appendChild(txt('↑ AKI signal',{x:x0+step*2.3,y:98,'text-anchor':'middle','font-size':'9.5',fill:C_RED,'font-weight':'700'}));
+      }
+    }
+
+    if (showStdNote) {
+      const noteY = 30;
+      const rx=x0+step*2.5;
+      const rectW = 230;
+      svg.appendChild(el('rect',{x:rx,y:noteY,width:rectW,height:24,rx:4,fill:'none',stroke:'#737a94','stroke-dasharray':'3,3'}));
+      svg.appendChild(txt('Standard view: identical to Case A',{x:rx+rectW/2,y:noteY+15,'text-anchor':'middle','font-size':'10',fill:'#737a94'}));
+    }
+  }
+
+  const phasesB = [
+    {
+      label: 'Admission',
+      draw(svg, t) { drawBaseB(svg, t*0.2, t*0.2, false, false, false, false); }
+    },
+    {
+      label: '12h: Atypical phos',
+      draw(svg, t) { drawBaseB(svg, 0.2+t*0.8, 0.2+t*0.8, false, false, t>=0.5, false); }
+    },
+    {
+      label: 'Cr rising: AKI',
+      draw(svg, t) { drawBaseB(svg, 1, 1, t>=0.1, t>=0.4, true, false); }
+    },
+    {
+      label: 'Reinterpret phos',
+      draw(svg, t) { drawBaseB(svg, 1, 1, true, true, true, false); }
+    },
+    {
+      label: 'vs. Standard view',
+      draw(svg, t) { drawBaseB(svg, 1, 1, true, true, true, t>=0.35); }
+    },
+  ];
+
+  const animB = makeAnimator(
+    document.getElementById('svgB'),
+    document.getElementById('playB'),
+    document.getElementById('progB'),
+    document.getElementById('phaseB'),
+    document.getElementById('panelsB'),
+    phasesB
+  );
+
 })();
 </script>
