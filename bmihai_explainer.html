@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
 
 <style>
+/* ── Scroll ── */
+html { scroll-behavior: smooth; }
+
 /* ── Tokens ── */
 :root {
   --bg:       #f7f8fa;
@@ -156,36 +159,41 @@ main { max-width: 860px; margin: 0 auto; }
 section {
   padding-block: 52px;
   border-bottom: 1px solid var(--border);
+  scroll-margin-top: var(--nav-h);
 }
 section:last-of-type { border-bottom: none; }
 
+/* ── Site header (above nav) ── */
+.site-hdr {
+  background: var(--accent-dk);
+  color: #fff;
+  padding: 22px max(24px, env(safe-area-inset-left, 0px));
+}
+.site-hdr h1 {
+  margin: 0;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(20px, 3.6vw, 30px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+.site-hdr p {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: rgba(255,255,255,.65);
+}
+
 /* ── Hero ── */
 .hero {
-  padding-block: 48px 40px;
+  padding-block: 36px 32px;
   border-bottom: 1px solid var(--border);
-}
-.hero-eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-.hero h1 {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: clamp(22px, 4vw, 32px);
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--text);
-  text-wrap: balance;
-  margin-bottom: 14px;
 }
 .hero-sub {
   font-size: 15px;
   color: var(--text2);
   max-width: 640px;
-  margin-bottom: 20px;
+  margin: 0;
 }
 .hero-badges {
   display: flex;
@@ -678,6 +686,12 @@ footer {
 }
 </style>
 
+<!-- SITE HEADER -->
+<header class="site-hdr" id="top">
+  <h1>Renal-Aware Health AI for Critical Care Nutrition Surveillance</h1>
+  <p>BMIHAI Pilot Research Concept &nbsp;·&nbsp; November 2026</p>
+</header>
+
 <!-- NAV -->
 <nav id="sitenav">
   <a class="nav-brand" href="#top">BMIHAI Pilot</a>
@@ -693,23 +707,15 @@ footer {
   </div>
 </nav>
 
-<main id="top">
+<main>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-eyebrow">BMIHAI Pilot Research Concept &nbsp;·&nbsp; November 2026</div>
-    <h1>Renal-Aware Health AI for<br>Critical Care Nutrition Surveillance</h1>
     <p class="hero-sub">
       An interactive working reference illustrating how nutrition timing, serial electrolyte trajectories,
       and renal context might be evaluated together in the ICU. Uses synthetic cases only.
       Each section is labeled by its evidence type.
     </p>
-    <div class="hero-badges">
-      <span class="badge evidence">🔬 Established evidence</span>
-      <span class="badge demo">🔵 Illustrative demonstration</span>
-      <span class="badge proposed">🔶 Proposed method</span>
-      <span class="badge open">❓ Open design question</span>
-    </div>
   </div>
 
 
@@ -780,12 +786,14 @@ footer {
         <div class="flow-body">
           <h3>Documentation gaps compound the problem</h3>
           <p>
-            AKI is both under-recognized and under-documented in clinical records. In a
-            separate surgical ICU cohort, approximately 74.3% of creatinine-defined AKI events
-            lacked any AKI mention in the discharge summary. A surveillance system that relies
-            on coded diagnoses or clinician-authored problem lists to identify renal context
-            may therefore be systematically blind to one of the most important confounders in
-            electrolyte interpretation.
+            AKI is substantially under-documented in structured clinical records. In a
+            separate surgical ICU cohort, approximately 74.3% of patients meeting strict
+            creatinine-based AKI criteria had no mention of AKI in the discharge summary.
+            This documents a discordance between laboratory trajectories and narrative records;
+            it does not establish that treating clinicians failed to recognize AKI at the bedside.
+            A surveillance system that relies on coded diagnoses or discharge summaries to
+            identify renal context may therefore be missing a critical input for electrolyte
+            interpretation.
           </p>
         </div>
         <div class="flow-connector"></div>
@@ -850,31 +858,31 @@ footer {
           <line x1="480" y1="120" x2="480" y2="128" stroke="#9ba3be" stroke-width="1"/>
           <line x1="620" y1="120" x2="620" y2="128" stroke="#9ba3be" stroke-width="1"/>
 
-          <!-- IV Dextrose bar -->
-          <rect x="60" y="18" width="350" height="14" rx="3" fill="#5e9de8" opacity=".85"/>
+          <!-- IV Dextrose bar (0h to ~36h) -->
+          <rect x="60" y="18" width="420" height="14" rx="3" fill="#5e9de8" opacity=".85"/>
           <text x="55" y="29" text-anchor="end" font-size="11" fill="#9ba3be">Dextrose</text>
-          <text x="250" y="29" text-anchor="middle" font-size="10" fill="#fff">IV dextrose exposure</text>
+          <text x="270" y="29" text-anchor="middle" font-size="10" fill="#fff">IV dextrose exposure</text>
 
-          <!-- Normal Phos (solid dots) -->
+          <!-- Normal Phos (solid dots) at 0h and 6h -->
           <circle cx="60"  cy="68" r="5" fill="#22a861"/>
-          <circle cx="130" cy="64" r="5" fill="#22a861"/>
-          <!-- Low Phos -->
-          <circle cx="195" cy="95" r="5" fill="#d14040"/>
-          <circle cx="260" cy="100" r="5" fill="#d14040"/>
-          <circle cx="340" cy="97"  r="5" fill="#d14040"/>
+          <circle cx="130" cy="65" r="5" fill="#22a861"/>
+          <!-- Low Phos starting at ~12h (x=200) -->
+          <circle cx="200" cy="94" r="5" fill="#d14040"/>
+          <circle cx="340" cy="99" r="5" fill="#d14040"/>
+          <circle cx="480" cy="97" r="5" fill="#d14040"/>
           <!-- Phos line -->
-          <polyline points="60,68 130,64 195,95 260,100 340,97" fill="none" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <polyline points="60,68 130,65 200,94 340,99 480,97" fill="none" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="4,2"/>
           <text x="55" y="70" text-anchor="end" font-size="11" fill="#9ba3be">Phos</text>
-          <line x1="195" y1="86" x2="195" y2="120" stroke="#d14040" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="195" y="84" text-anchor="middle" font-size="9" fill="#d14040">first low</text>
+          <line x1="200" y1="85" x2="200" y2="120" stroke="#d14040" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="200" y="83" text-anchor="middle" font-size="9" fill="#d14040">first low (~12h)</text>
 
-          <!-- EN start -->
-          <line x1="480" y1="15" x2="480" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
-          <text x="480" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start</text>
+          <!-- EN start at 48h (x=620) -->
+          <line x1="620" y1="15" x2="620" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
+          <text x="620" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start (~48h)</text>
 
           <!-- Creatinine (flat = normal) -->
-          <polyline points="60,106 200,106 340,106 480,106 620,106" fill="none" stroke="#c0c6d8" stroke-width="1.5" stroke-dasharray="4,2"/>
-          <text x="55" y="108" text-anchor="end" font-size="11" fill="#c0c6d8">Cr</text>
+          <polyline points="60,108 200,108 340,108 480,108 620,108" fill="none" stroke="#c0c6d8" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="55" y="110" text-anchor="end" font-size="11" fill="#c0c6d8">Cr</text>
         </svg>
       </div>
       <p class="note">Synthetic timeline. Intervals are diagrammatic only. Cr = serum creatinine.</p>
@@ -889,11 +897,11 @@ footer {
           </div>
           <div class="signal-row">
             <div class="signal-dot dot-amber"></div>
-            <div class="signal-text"><strong>Temporal proximity to nutrition:</strong> Deficiency precedes formal EN initiation by approximately 36 hours.</div>
+            <div class="signal-text"><strong>Temporal proximity to nutrition:</strong> Deficiency first observed at approximately 12 hours; EN not initiated until approximately 48 hours. Deficiency precedes EN by approximately 36 hours.</div>
           </div>
           <div class="signal-row">
             <div class="signal-dot dot-grey"></div>
-            <div class="signal-text"><strong>Interpretation:</strong> Electrolyte abnormality near nutrition initiation; consider possible refeeding-associated disturbance.</div>
+            <div class="signal-text"><strong>Interpretation:</strong> Electrolyte abnormality preceding nutrition initiation; consider possible refeeding-associated disturbance.</div>
           </div>
         </div>
       </div>
@@ -908,15 +916,15 @@ footer {
           </div>
           <div class="signal-row">
             <div class="signal-dot dot-red"></div>
-            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Phosphate decline begins ~13 hours after dextrose initiation and 35+ hours before EN start. Trajectory consistent with early nutritional depletion.</div>
+            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Phosphate decline begins approximately 12 hours after dextrose initiation and approximately 36 hours before EN start. Trajectory is consistent with early nutritional depletion, though temporal association does not establish causation.</div>
           </div>
           <div class="signal-row">
             <div class="signal-dot dot-green"></div>
-            <div class="signal-text"><strong>Renal context:</strong> Creatinine stable and within normal range throughout. No evidence of AKI. Renal handling of phosphate likely unimpaired.</div>
+            <div class="signal-text"><strong>Renal context:</strong> Creatinine stable and within normal range throughout. No creatinine-based evidence of AKI. Stable creatinine does not exclude all renal contributions to electrolyte handling, but no elevated renal-risk signal is present in this case.</div>
           </div>
           <div class="signal-row">
             <div class="signal-dot dot-green"></div>
-            <div class="signal-text"><strong>Evidence convergence:</strong> Nutrition timing, electrolyte trajectory, and renal context are concordant. Attribution to early nutritional depletion is plausible and no competing explanation identified.</div>
+            <div class="signal-text"><strong>Evidence convergence:</strong> Nutrition timing, electrolyte trajectory, and renal context are concordant. Attribution to early nutritional depletion is plausible; no competing renal explanation is identified in the available structured data.</div>
           </div>
         </div>
       </div>
@@ -996,7 +1004,7 @@ footer {
           </div>
           <div class="signal-row">
             <div class="signal-dot dot-amber"></div>
-            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Phosphate initially declines, then partially recovers as nutrition is withheld. Pattern atypical for isolated nutritional depletion.</div>
+            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Phosphate initially rises above normal range before subsequently declining. The initial elevation is atypical for nutritional depletion; it may reflect impaired renal excretion during early AKI before a later drop.</div>
           </div>
           <div class="signal-row">
             <div class="signal-dot dot-red"></div>
@@ -1035,21 +1043,21 @@ footer {
           <text x="55" y="29" text-anchor="end" font-size="11" fill="#9ba3be">Dextrose</text>
           <text x="330" y="29" text-anchor="middle" font-size="10" fill="#fff">prolonged IV dextrose exposure</text>
 
-          <!-- Sparse labs -->
+          <!-- Sparse labs: normal at 0h, first low at 48h (post-EN) -->
           <circle cx="60"  cy="72" r="5" fill="#22a861"/>
-          <circle cx="480" cy="98" r="5" fill="#d14040"/>
-          <line x1="60" y1="72" x2="480" y2="98" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <circle cx="620" cy="98" r="5" fill="#d14040"/>
+          <line x1="60" y1="72" x2="620" y2="98" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="6,4"/>
           <text x="55" y="74" text-anchor="end" font-size="11" fill="#9ba3be">Phos</text>
-          <text x="270" y="85" text-anchor="middle" font-size="9" fill="#c0c6d8">no labs in gap</text>
+          <text x="300" y="82" text-anchor="middle" font-size="9" fill="#c0c6d8">no labs in gap</text>
 
           <!-- Missing creatinine -->
           <circle cx="60" cy="110" r="4" fill="#22a861"/>
           <text x="55" y="112" text-anchor="end" font-size="11" fill="#c0c6d8">Cr</text>
           <text x="300" y="110" text-anchor="middle" font-size="9" fill="#c0c6d8">creatinine not re-checked</text>
 
-          <!-- EN -->
-          <line x1="580" y1="15" x2="580" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
-          <text x="580" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start</text>
+          <!-- EN at 36h -->
+          <line x1="480" y1="15" x2="480" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
+          <text x="480" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start (~36h)</text>
         </svg>
       </div>
       <p class="note">Synthetic timeline. Sparse lab frequency and missing creatinine re-check create an indeterminate evidence scenario.</p>
@@ -1273,13 +1281,16 @@ footer {
       <div class="stat-tile">
         <div class="stat-num">0.723</div>
         <div class="stat-desc">
-          AUC from an internally validated incident-deficiency prediction model (881 complete cases,
-          MIMIC-IV), compared to AUC 0.569 for a smaller reference model in the same cohort.
+          AUC from an internally validated model predicting a post-anchor relative electrolyte-decline
+          proxy (881 complete cases, MIMIC-IV), compared to AUC 0.569 for a smaller reference model
+          in the same cohort. Note: the proposed pilot will predict a distinct outcome, first incident
+          absolute electrolyte deficiency at a defined caloric-exposure landmark.
         </div>
-        <div class="stat-source">Paper 4 · MIMIC-IV</div>
+        <div class="stat-source">Paper 4 · MIMIC-IV · relative decline proxy endpoint</div>
         <div class="stat-limit">
-          <strong>Do not imply:</strong> External validation, bedside clinical benefit, or prediction
-          of a clinically adjudicated syndrome.
+          <strong>Do not imply:</strong> External validation, bedside clinical benefit, prediction
+          of a clinically adjudicated syndrome, or equivalence with the absolute-deficiency
+          endpoint proposed for the new model.
         </div>
       </div>
 
@@ -1317,8 +1328,8 @@ footer {
           </tr>
           <tr>
             <td class="workstream">Prediction</td>
-            <td>AUC 0.723 vs. 0.569 in 881 complete MIMIC-IV cases, internal validation only</td>
-            <td class="do-not">External validation, bedside benefit, or prediction of clinically adjudicated syndrome</td>
+            <td>AUC 0.723 vs. 0.569 in 881 complete MIMIC-IV cases, internal validation only; endpoint is a relative electrolyte-decline proxy, distinct from the absolute-deficiency endpoint proposed for the grant</td>
+            <td class="do-not">External validation, bedside benefit, prediction of clinically adjudicated syndrome, or equivalence with the proposed absolute-deficiency model</td>
           </tr>
           <tr>
             <td class="workstream">AKI documentation</td>
@@ -1350,27 +1361,34 @@ footer {
         <div>
           <h3>Incident electrolyte deficiency prediction model</h3>
           <p>
-            Develop and validate a model using structured EHR features available at or before
-            nutrition order initiation. Building on MIMIC-IV feature engineering (6,843 admissions,
-            54.2% RFS prevalence). Prediction time point defined prospectively; CRDW data
-            completeness for IV dextrose, serial electrolytes, and renal function assessed
-            as an explicit feasibility deliverable.
+            Develop and internally validate a prediction model using structured EHR features
+            available at prespecified clinical landmarks. The primary landmark is first qualifying
+            caloric exposure, including IV dextrose; a secondary landmark at formal nutrition-order
+            initiation includes only patients still free of the outcome at that point. Building
+            on MIMIC-IV feature engineering (6,843 admissions, 54.2% RFS prevalence).
+            CRDW data completeness and timestamp fidelity for administered dextrose, EN/PN,
+            serial electrolytes, and renal measures assessed first as an explicit feasibility
+            deliverable; modeling proceeds if data support it.
           </p>
-          <div class="aim-deliverable">Deliverable: Validated prediction model + CRDW feasibility assessment</div>
+          <div class="aim-deliverable">Deliverable: Validated prediction model (MIMIC-IV) + CRDW feasibility assessment</div>
         </div>
       </div>
 
       <div class="aim-card">
         <div class="aim-num">2</div>
         <div>
-          <h3>AKI surveillance and documentation gap characterization</h3>
+          <h3>CRDW electrolyte-timing characterization and renal-context assessment</h3>
           <p>
-            Characterize AKI incidence, trajectory, and discharge-summary documentation concordance
-            in the nutrition surveillance cohort. Compare creatinine-defined AKI events against
-            coded diagnoses and clinical notes. Assess whether renal context, including AKI
-            predictors from the literature, adds incremental signal to the prediction model.
+            Characterize the timing and predictors of first observed electrolyte deficiency
+            relative to initial caloric exposure and formal nutrition initiation in the Rutgers
+            CRDW, conditional on data availability from Aim 1. Assess whether the MIMIC-IV
+            finding of 38.4% pre-EN/PN deficiency generalizes to the Rutgers cohort using
+            aligned definitions. Report laboratory observation intervals and assess associations
+            with kidney function, AKI, CKD, and renal replacement therapy, without inferring
+            causation. Includes assessment of AKI discharge-summary documentation concordance
+            as a secondary characterization supporting the Aim 3 prototype.
           </p>
-          <div class="aim-deliverable">Deliverable: AKI documentation gap manuscript + model feature contribution analysis</div>
+          <div class="aim-deliverable">Deliverable: CRDW timing characterization report + transportability assessment for Aim 3</div>
         </div>
       </div>
 
