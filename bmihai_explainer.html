@@ -1,0 +1,1550 @@
+<title>Renal-Aware RFS Surveillance</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+/* ── Tokens ── */
+:root {
+  --bg:       #f7f8fa;
+  --surface:  #ffffff;
+  --surface2: #f0f2f6;
+  --border:   #dde1ea;
+  --text:     #1a1d26;
+  --text2:    #4a5068;
+  --text3:    #737a94;
+  --accent:   #1d5fa8;
+  --accent-lt:#e8f0fb;
+  --accent-dk:#124090;
+  --teal:     #0e7c6e;
+  --teal-lt:  #e4f5f2;
+  --amber:    #b06000;
+  --amber-lt: #fef3e2;
+  --red:      #a31515;
+  --red-lt:   #fceaea;
+  --nav-h:    56px;
+  --radius:   8px;
+  --shadow:   0 1px 4px rgba(0,0,0,.10), 0 4px 16px rgba(0,0,0,.06);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #0f1117;
+    --surface:  #181c26;
+    --surface2: #20253a;
+    --border:   #2c3248;
+    --text:     #e8eaf2;
+    --text2:    #9ba3be;
+    --text3:    #606887;
+    --accent:   #5e9de8;
+    --accent-lt:#182038;
+    --accent-dk:#8bbdf4;
+    --teal:     #3bbdaa;
+    --teal-lt:  #0d2a26;
+    --amber:    #e5a43a;
+    --amber-lt: #2a1e06;
+    --red:      #e57373;
+    --red-lt:   #2a0e0e;
+    --shadow:   0 1px 4px rgba(0,0,0,.40), 0 4px 20px rgba(0,0,0,.30);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:       #0f1117;
+  --surface:  #181c26;
+  --surface2: #20253a;
+  --border:   #2c3248;
+  --text:     #e8eaf2;
+  --text2:    #9ba3be;
+  --text3:    #606887;
+  --accent:   #5e9de8;
+  --accent-lt:#182038;
+  --accent-dk:#8bbdf4;
+  --teal:     #3bbdaa;
+  --teal-lt:  #0d2a26;
+  --amber:    #e5a43a;
+  --amber-lt: #2a1e06;
+  --red:      #e57373;
+  --red-lt:   #2a0e0e;
+  --shadow:   0 1px 4px rgba(0,0,0,.40), 0 4px 20px rgba(0,0,0,.30);
+  color-scheme: dark;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  padding-inline: 16px;
+}
+
+/* ── Nav ── */
+nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-inline: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-inline: -16px;
+  padding-inline: 16px;
+}
+nav::-webkit-scrollbar { display: none; }
+
+.nav-brand {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  margin-right: 20px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+.nav-links a {
+  display: block;
+  padding: 0 12px;
+  height: var(--nav-h);
+  line-height: var(--nav-h);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.nav-right {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: var(--text2);
+  cursor: pointer;
+}
+.theme-btn:hover { background: var(--surface2); }
+
+/* ── Layout ── */
+main { max-width: 860px; margin: 0 auto; }
+
+section {
+  padding-block: 52px;
+  border-bottom: 1px solid var(--border);
+}
+section:last-of-type { border-bottom: none; }
+
+/* ── Hero ── */
+.hero {
+  padding-block: 48px 40px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.hero h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+  text-wrap: balance;
+  margin-bottom: 14px;
+}
+.hero-sub {
+  font-size: 15px;
+  color: var(--text2);
+  max-width: 640px;
+  margin-bottom: 20px;
+}
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+.badge.evidence { background: var(--teal-lt); color: var(--teal); border-color: var(--teal); }
+.badge.demo { background: var(--accent-lt); color: var(--accent); border-color: var(--accent); }
+.badge.proposed { background: var(--amber-lt); color: var(--amber); border-color: var(--amber); }
+.badge.open { background: var(--red-lt); color: var(--red); border-color: var(--red); }
+
+/* ── Section headings ── */
+.sec-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+}
+.sec-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+  text-wrap: balance;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+p { color: var(--text2); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+
+/* ── Cards ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+}
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+@media (max-width: 580px) { .card-row { grid-template-columns: 1fr; } }
+
+/* ── Clinical problem – flow diagram ── */
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 24px;
+}
+.flow-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+}
+.flow-row + .flow-row { margin-top: 8px; }
+
+.flow-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 17px;
+  margin-top: 2px;
+}
+.flow-icon.blue { background: var(--accent-lt); }
+.flow-icon.teal { background: var(--teal-lt); }
+.flow-icon.amber { background: var(--amber-lt); }
+.flow-icon.red { background: var(--red-lt); }
+
+.flow-body { flex: 1; padding-bottom: 20px; }
+.flow-body h3 { margin-bottom: 4px; }
+.flow-connector {
+  position: absolute;
+  left: 17px;
+  top: 38px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.flow-row:last-child .flow-connector { display: none; }
+
+.callout-box {
+  background: var(--accent-lt);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-top: 20px;
+}
+.callout-box.teal { background: var(--teal-lt); border-color: var(--teal); }
+.callout-box .callout-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.callout-box.teal .callout-label { color: var(--teal); }
+.callout-box p { color: var(--text); font-size: 14px; margin: 0; }
+
+/* ── Toggle section ── */
+.toggle-bar {
+  display: flex;
+  gap: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+.toggle-btn {
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  cursor: pointer;
+  transition: background .15s, color .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.toggle-btn.active {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: 0 1px 3px rgba(0,0,0,.12);
+}
+
+.case-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.case-tab {
+  padding: 5px 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all .15s;
+}
+.case-tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.timeline-wrap {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.timeline-svg {
+  display: block;
+  min-width: 540px;
+  width: 100%;
+  height: auto;
+}
+
+.view-panel {
+  display: none;
+}
+.view-panel.active { display: block; }
+
+.interpretation-box {
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.interpretation-box .ibox-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.interpretation-box.standard .ibox-label { color: var(--text3); }
+.interpretation-box.renal .ibox-label { color: var(--teal); }
+
+.signal-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--surface2);
+}
+.signal-row:last-child { margin-bottom: 0; }
+.signal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.dot-green { background: #22a861; }
+.dot-amber { background: #e5a43a; }
+.dot-red   { background: #d14040; }
+.dot-blue  { background: var(--accent); }
+.dot-grey  { background: var(--text3); }
+.signal-text { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.signal-text strong { color: var(--text); }
+
+.uncertainty-flag {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--amber-lt);
+  border: 1px solid var(--amber);
+  font-size: 13px;
+  color: var(--amber);
+  font-weight: 500;
+}
+
+/* ── Architecture ── */
+.arch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) { .arch-grid { grid-template-columns: 1fr; } }
+
+.arch-module {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 16px;
+}
+.arch-module-icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.arch-module h3 { font-size: 14px; margin-bottom: 6px; }
+.arch-module p { font-size: 13px; }
+
+.arch-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text3);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.integration-box {
+  background: var(--accent-lt);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+}
+.integration-box h3 { font-size: 15px; color: var(--accent); margin-bottom: 10px; }
+.integration-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+@media (max-width: 500px) { .integration-features { grid-template-columns: 1fr; } }
+.int-feat {
+  background: var(--surface);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.int-feat strong { color: var(--text); display: block; font-size: 12px; margin-bottom: 2px; }
+
+.baseline-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+@media (max-width: 500px) { .baseline-compare { grid-template-columns: 1fr; } }
+.baseline-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background: var(--surface);
+}
+.baseline-card h3 { font-size: 13px; color: var(--text3); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .05em; }
+.baseline-card ul { padding-left: 16px; font-size: 13px; color: var(--text2); }
+.baseline-card ul li { margin-bottom: 5px; }
+
+/* ── Evidence ── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+@media (max-width: 520px) { .stat-grid { grid-template-columns: 1fr; } }
+
+.stat-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 18px 14px;
+  box-shadow: var(--shadow);
+}
+.stat-num {
+  font-size: clamp(26px, 5vw, 34px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.stat-tile.teal .stat-num { color: var(--teal); }
+.stat-tile.amber .stat-num { color: var(--amber); }
+.stat-tile.red .stat-num { color: var(--red); }
+.stat-desc { font-size: 13px; color: var(--text2); line-height: 1.45; margin-bottom: 8px; }
+.stat-source { font-size: 11px; color: var(--text3); font-style: italic; }
+.stat-limit {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: var(--surface2);
+  border-radius: 5px;
+  font-size: 12px;
+  color: var(--text3);
+}
+.stat-limit strong { color: var(--text2); }
+
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 20px;
+}
+.evidence-table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text3);
+  border-bottom: 2px solid var(--border);
+  padding: 8px 10px;
+}
+.evidence-table td {
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2);
+  vertical-align: top;
+}
+.evidence-table tr:last-child td { border-bottom: none; }
+.evidence-table .workstream { font-weight: 600; color: var(--text); font-size: 13px; }
+.do-not { color: var(--red); font-size: 12px; }
+
+/* ── Deliverables ── */
+.aim-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 20px;
+}
+.aim-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+  box-shadow: var(--shadow);
+}
+.aim-num {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+  padding-top: 2px;
+  min-width: 30px;
+}
+.aim-num.teal { color: var(--teal); }
+.aim-deliverable {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--teal-lt);
+  border-radius: 5px;
+  font-size: 12px;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.decision-list {
+  list-style: none;
+  margin-top: 20px;
+}
+.decision-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.decision-item:last-child { border-bottom: none; }
+.decision-q {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--red-lt);
+  border: 1px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--red);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.decision-text { font-size: 14px; color: var(--text2); line-height: 1.5; }
+.decision-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+/* ── Footer ── */
+footer {
+  padding-block: 32px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text3);
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Utility ── */
+.mt8  { margin-top: 8px; }
+.mt12 { margin-top: 12px; }
+.mt16 { margin-top: 16px; }
+.mt20 { margin-top: 20px; }
+.mt24 { margin-top: 24px; }
+.note {
+  font-size: 12px;
+  color: var(--text3);
+  font-style: italic;
+  margin-top: 8px;
+}
+</style>
+
+<!-- NAV -->
+<nav id="sitenav">
+  <a class="nav-brand" href="#top">BMIHAI Pilot</a>
+  <ul class="nav-links">
+    <li><a href="#clinical-problem">1. Clinical Problem</a></li>
+    <li><a href="#case-explorer">2. Case Explorer</a></li>
+    <li><a href="#architecture">3. Architecture</a></li>
+    <li><a href="#evidence">4. Evidence</a></li>
+    <li><a href="#deliverables">5. Deliverables</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle">◑ Theme</button>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">BMIHAI Pilot Research Concept &nbsp;·&nbsp; November 2026</div>
+    <h1>Renal-Aware Health AI for<br>Critical Care Nutrition Surveillance</h1>
+    <p class="hero-sub">
+      An interactive working reference illustrating how nutrition timing, serial electrolyte trajectories,
+      and renal context might be evaluated together in the ICU. Uses synthetic cases only.
+      Each section is labeled by its evidence type.
+    </p>
+    <div class="hero-badges">
+      <span class="badge evidence">🔬 Established evidence</span>
+      <span class="badge demo">🔵 Illustrative demonstration</span>
+      <span class="badge proposed">🔶 Proposed method</span>
+      <span class="badge open">❓ Open design question</span>
+    </div>
+  </div>
+
+
+  <!-- SECTION 1: CLINICAL PROBLEM -->
+  <section id="clinical-problem">
+    <div class="sec-label">Section 1</div>
+    <h2><span class="sec-num">1</span>The Clinical Problem</h2>
+
+    <p>
+      Refeeding syndrome (RFS) is a potentially life-threatening metabolic complication of nutritional
+      repletion after a period of caloric restriction. Its biochemical hallmark is acute
+      electrolyte depletion, particularly hypophosphatemia, hypokalemia, and hypomagnesemia,
+      occurring in the setting of carbohydrate reintroduction. In the ICU, however, the clinical picture
+      is routinely more complicated.
+    </p>
+
+    <div class="flow mt24">
+      <div class="flow-row">
+        <div class="flow-icon blue">🍽️</div>
+        <div class="flow-body">
+          <h3>When does the caloric clock start?</h3>
+          <p>
+            Standard RFS surveillance anchors electrolyte monitoring to formal nutrition orders:
+            enteral or parenteral nutrition initiation. But many ICU patients receive material
+            quantities of intravenous dextrose, dextrose-containing fluids, or propofol
+            (which carries 1.1 kcal/mL as a 10% lipid emulsion) well before a formal
+            nutrition order is placed. If the metabolic clock starts with IV dextrose exposure,
+            the conventional anchor systematically lags behind the actual physiological event.
+          </p>
+        </div>
+        <div class="flow-connector"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-icon teal">⏱️</div>
+        <div class="flow-body">
+          <h3>The timing gap</h3>
+          <p>
+            In preliminary MIMIC-IV work, the median interval from last known-normal electrolyte
+            to first observed low was 12.9 hours. Among patients who developed a qualifying
+            deficiency before formal nutrition began, the median interval from that first low
+            to EN/PN initiation was 35.8 hours. The conventional monitoring window, anchored
+            to the nutrition order, would have been open for zero of those 35.8 hours.
+          </p>
+        </div>
+        <div class="flow-connector"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-icon amber">🫘</div>
+        <div class="flow-body">
+          <h3>Kidney function changes the picture</h3>
+          <p>
+            Acute kidney injury (AKI) is common in the ICU and directly alters electrolyte
+            handling. Phosphate, potassium, and magnesium are renally excreted; AKI impairs
+            clearance and can simultaneously cause retention and abnormal distribution.
+            Electrolyte deficiencies in a patient with concurrent AKI may reflect nutritional
+            depletion, impaired renal handling, or both. These explanations are not mutually
+            exclusive, and distinguishing them requires integrating renal function trajectories,
+            not just electrolyte values.
+          </p>
+        </div>
+        <div class="flow-connector"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-icon red">📋</div>
+        <div class="flow-body">
+          <h3>Documentation gaps compound the problem</h3>
+          <p>
+            AKI is both under-recognized and under-documented in clinical records. In a
+            separate surgical ICU cohort, approximately 74.3% of creatinine-defined AKI events
+            lacked any AKI mention in the discharge summary. A surveillance system that relies
+            on coded diagnoses or clinician-authored problem lists to identify renal context
+            may therefore be systematically blind to one of the most important confounders in
+            electrolyte interpretation.
+          </p>
+        </div>
+        <div class="flow-connector"></div>
+      </div>
+    </div>
+
+    <div class="callout-box teal mt20">
+      <div class="callout-label">The core research question</div>
+      <p>
+        Can time-aligned consideration of nutritional exposure timing, serial electrolyte trajectories,
+        and longitudinal renal context improve agreement with independent clinical adjudication,
+        better recognition of alternative explanations, and more appropriate reporting of uncertainty
+        compared with conventional laboratory and timing-based surveillance alone?
+      </p>
+    </div>
+  </section>
+
+
+  <!-- SECTION 2: CASE EXPLORER -->
+  <section id="case-explorer">
+    <div class="sec-label">Section 2 &nbsp;·&nbsp; <span class="badge demo" style="font-size:10px">Illustrative demonstration</span></div>
+    <h2><span class="sec-num">2</span>Synthetic Patient-Case Explorer</h2>
+
+    <p>
+      The following cases are entirely synthetic. They are designed to illustrate how different
+      combinations of nutritional exposure, electrolyte trajectories, and renal context can
+      produce different interpretations. No real patient data, model predictions, or clinical
+      decisions are depicted.
+    </p>
+
+    <!-- Case selector -->
+    <div class="case-tabs mt16" id="caseTabs">
+      <button class="case-tab active" data-case="concordant">Case A: Concordant signals</button>
+      <button class="case-tab" data-case="conflicting">Case B: Conflicting signals</button>
+      <button class="case-tab" data-case="indeterminate">Case C: Indeterminate</button>
+    </div>
+
+    <!-- Toggle -->
+    <div class="toggle-bar">
+      <button class="toggle-btn active" id="btnStandard">Standard view</button>
+      <button class="toggle-btn" id="btnRenal">Renal-aware integrated view</button>
+    </div>
+
+    <!-- ===== CASE A: CONCORDANT ===== -->
+    <div id="case-concordant" class="case-panel">
+
+      <!-- Timeline SVG -->
+      <div class="timeline-wrap">
+        <svg class="timeline-svg" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" aria-label="Synthetic case A timeline">
+          <!-- Axis line -->
+          <line x1="60" y1="120" x2="660" y2="120" stroke="#9ba3be" stroke-width="1.5"/>
+          <!-- Hour labels -->
+          <text x="60"  y="140" text-anchor="middle" font-size="10" fill="#9ba3be">0h</text>
+          <text x="200" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">12h</text>
+          <text x="340" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">24h</text>
+          <text x="480" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">36h</text>
+          <text x="620" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">48h</text>
+          <!-- Tick marks -->
+          <line x1="60"  y1="120" x2="60"  y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="200" y1="120" x2="200" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="340" y1="120" x2="340" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="480" y1="120" x2="480" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="620" y1="120" x2="620" y2="128" stroke="#9ba3be" stroke-width="1"/>
+
+          <!-- IV Dextrose bar -->
+          <rect x="60" y="18" width="350" height="14" rx="3" fill="#5e9de8" opacity=".85"/>
+          <text x="55" y="29" text-anchor="end" font-size="11" fill="#9ba3be">Dextrose</text>
+          <text x="250" y="29" text-anchor="middle" font-size="10" fill="#fff">IV dextrose exposure</text>
+
+          <!-- Normal Phos (solid dots) -->
+          <circle cx="60"  cy="68" r="5" fill="#22a861"/>
+          <circle cx="130" cy="64" r="5" fill="#22a861"/>
+          <!-- Low Phos -->
+          <circle cx="195" cy="95" r="5" fill="#d14040"/>
+          <circle cx="260" cy="100" r="5" fill="#d14040"/>
+          <circle cx="340" cy="97"  r="5" fill="#d14040"/>
+          <!-- Phos line -->
+          <polyline points="60,68 130,64 195,95 260,100 340,97" fill="none" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="55" y="70" text-anchor="end" font-size="11" fill="#9ba3be">Phos</text>
+          <line x1="195" y1="86" x2="195" y2="120" stroke="#d14040" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="195" y="84" text-anchor="middle" font-size="9" fill="#d14040">first low</text>
+
+          <!-- EN start -->
+          <line x1="480" y1="15" x2="480" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
+          <text x="480" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start</text>
+
+          <!-- Creatinine (flat = normal) -->
+          <polyline points="60,106 200,106 340,106 480,106 620,106" fill="none" stroke="#c0c6d8" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="55" y="108" text-anchor="end" font-size="11" fill="#c0c6d8">Cr</text>
+        </svg>
+      </div>
+      <p class="note">Synthetic timeline. Intervals are diagrammatic only. Cr = serum creatinine.</p>
+
+      <!-- Standard view -->
+      <div class="view-panel active" id="std-concordant">
+        <div class="interpretation-box standard">
+          <div class="ibox-label">Standard view: nutrition and electrolyte window</div>
+          <div class="signal-row">
+            <div class="signal-dot dot-green"></div>
+            <div class="signal-text"><strong>Electrolyte deficiency present:</strong> Hypophosphatemia identified on serial labs.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-amber"></div>
+            <div class="signal-text"><strong>Temporal proximity to nutrition:</strong> Deficiency precedes formal EN initiation by approximately 36 hours.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-grey"></div>
+            <div class="signal-text"><strong>Interpretation:</strong> Electrolyte abnormality near nutrition initiation; consider possible refeeding-associated disturbance.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Renal-aware view -->
+      <div class="view-panel" id="rna-concordant">
+        <div class="interpretation-box renal">
+          <div class="ibox-label">Renal-aware integrated view</div>
+          <div class="signal-row">
+            <div class="signal-dot dot-blue"></div>
+            <div class="signal-text"><strong>Nutritional exposure timing:</strong> IV dextrose began at admission, 36 hours before EN. Caloric anchor precedes standard monitoring window.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-red"></div>
+            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Phosphate decline begins ~13 hours after dextrose initiation and 35+ hours before EN start. Trajectory consistent with early nutritional depletion.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-green"></div>
+            <div class="signal-text"><strong>Renal context:</strong> Creatinine stable and within normal range throughout. No evidence of AKI. Renal handling of phosphate likely unimpaired.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-green"></div>
+            <div class="signal-text"><strong>Evidence convergence:</strong> Nutrition timing, electrolyte trajectory, and renal context are concordant. Attribution to early nutritional depletion is plausible and no competing explanation identified.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CASE B: CONFLICTING ===== -->
+    <div id="case-conflicting" class="case-panel" hidden>
+
+      <div class="timeline-wrap">
+        <svg class="timeline-svg" viewBox="0 0 700 165" xmlns="http://www.w3.org/2000/svg" aria-label="Synthetic case B timeline">
+          <line x1="60" y1="120" x2="660" y2="120" stroke="#9ba3be" stroke-width="1.5"/>
+          <text x="60"  y="140" text-anchor="middle" font-size="10" fill="#9ba3be">0h</text>
+          <text x="200" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">12h</text>
+          <text x="340" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">24h</text>
+          <text x="480" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">36h</text>
+          <text x="620" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">48h</text>
+          <line x1="60"  y1="120" x2="60"  y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="200" y1="120" x2="200" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="340" y1="120" x2="340" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="480" y1="120" x2="480" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="620" y1="120" x2="620" y2="128" stroke="#9ba3be" stroke-width="1"/>
+
+          <!-- IV Dextrose -->
+          <rect x="60" y="18" width="160" height="14" rx="3" fill="#5e9de8" opacity=".85"/>
+          <text x="55" y="29" text-anchor="end" font-size="11" fill="#9ba3be">Dextrose</text>
+          <text x="140" y="29" text-anchor="middle" font-size="10" fill="#fff">IV dextrose</text>
+
+          <!-- Phos trajectory (rises in AKI then falls) -->
+          <circle cx="60"  cy="78" r="5" fill="#22a861"/>
+          <circle cx="130" cy="62" r="5" fill="#e5a43a"/>
+          <circle cx="200" cy="58" r="5" fill="#d14040"/>
+          <circle cx="280" cy="74" r="5" fill="#d14040"/>
+          <circle cx="360" cy="88" r="5" fill="#22a861"/>
+          <polyline points="60,78 130,62 200,58 280,74 360,88" fill="none" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="55" y="80" text-anchor="end" font-size="11" fill="#9ba3be">Phos</text>
+
+          <!-- Creatinine (rising = AKI) -->
+          <circle cx="60"  cy="110" r="4" fill="#22a861"/>
+          <circle cx="200" cy="98"  r="4" fill="#e5a43a"/>
+          <circle cx="340" cy="80"  r="4" fill="#d14040"/>
+          <circle cx="480" cy="85"  r="4" fill="#d14040"/>
+          <polyline points="60,110 200,98 340,80 480,85" fill="none" stroke="#e5a43a" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="55" y="112" text-anchor="end" font-size="11" fill="#e5a43a">Cr</text>
+          <text x="400" y="75" font-size="10" fill="#d14040">↑ AKI</text>
+
+          <!-- EN start -->
+          <line x1="460" y1="15" x2="460" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
+          <text x="460" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start</text>
+        </svg>
+      </div>
+      <p class="note">Synthetic timeline. Rising creatinine indicates concurrent acute kidney injury in this illustrative scenario.</p>
+
+      <div class="view-panel active" id="std-conflicting">
+        <div class="interpretation-box standard">
+          <div class="ibox-label">Standard view: nutrition and electrolyte window</div>
+          <div class="signal-row">
+            <div class="signal-dot dot-red"></div>
+            <div class="signal-text"><strong>Electrolyte deficiency present:</strong> Hypophosphatemia identified on labs prior to EN initiation.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-amber"></div>
+            <div class="signal-text"><strong>Temporal proximity to nutrition:</strong> Deficiency precedes EN start. Standard surveillance window not yet open.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-grey"></div>
+            <div class="signal-text"><strong>Interpretation:</strong> Electrolyte abnormality prior to nutrition initiation; consider possible refeeding-associated disturbance.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-panel" id="rna-conflicting">
+        <div class="interpretation-box renal">
+          <div class="ibox-label">Renal-aware integrated view</div>
+          <div class="signal-row">
+            <div class="signal-dot dot-blue"></div>
+            <div class="signal-text"><strong>Nutritional exposure timing:</strong> Brief IV dextrose exposure in early admission; EN begins much later. Limited early caloric load.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-amber"></div>
+            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Phosphate initially declines, then partially recovers as nutrition is withheld. Pattern atypical for isolated nutritional depletion.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-red"></div>
+            <div class="signal-text"><strong>Renal context:</strong> Concurrent creatinine rise consistent with developing AKI. Phosphate retention from impaired renal excretion is a competing explanation for the initial abnormal values.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-amber"></div>
+            <div class="signal-text"><strong>Evidence conflicts:</strong> Electrolyte trajectory and renal context are not concordant with a straightforward nutritional explanation. Attribution is uncertain; competing explanations should remain explicit.</div>
+          </div>
+          <div class="uncertainty-flag">
+            ⚠ Integrated assessment: Insufficient evidence to attribute deficiency to nutritional depletion alone. AKI trajectory provides a plausible competing explanation. Case warrants clinical review before attribution.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CASE C: INDETERMINATE ===== -->
+    <div id="case-indeterminate" class="case-panel" hidden>
+
+      <div class="timeline-wrap">
+        <svg class="timeline-svg" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" aria-label="Synthetic case C timeline">
+          <line x1="60" y1="120" x2="660" y2="120" stroke="#9ba3be" stroke-width="1.5"/>
+          <text x="60"  y="140" text-anchor="middle" font-size="10" fill="#9ba3be">0h</text>
+          <text x="200" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">12h</text>
+          <text x="340" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">24h</text>
+          <text x="480" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">36h</text>
+          <text x="620" y="140" text-anchor="middle" font-size="10" fill="#9ba3be">48h</text>
+          <line x1="60"  y1="120" x2="60"  y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="200" y1="120" x2="200" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="340" y1="120" x2="340" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="480" y1="120" x2="480" y2="128" stroke="#9ba3be" stroke-width="1"/>
+          <line x1="620" y1="120" x2="620" y2="128" stroke="#9ba3be" stroke-width="1"/>
+
+          <!-- Large dextrose exposure -->
+          <rect x="60" y="18" width="540" height="14" rx="3" fill="#5e9de8" opacity=".85"/>
+          <text x="55" y="29" text-anchor="end" font-size="11" fill="#9ba3be">Dextrose</text>
+          <text x="330" y="29" text-anchor="middle" font-size="10" fill="#fff">prolonged IV dextrose exposure</text>
+
+          <!-- Sparse labs -->
+          <circle cx="60"  cy="72" r="5" fill="#22a861"/>
+          <circle cx="480" cy="98" r="5" fill="#d14040"/>
+          <line x1="60" y1="72" x2="480" y2="98" stroke="#9ba3be" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <text x="55" y="74" text-anchor="end" font-size="11" fill="#9ba3be">Phos</text>
+          <text x="270" y="85" text-anchor="middle" font-size="9" fill="#c0c6d8">no labs in gap</text>
+
+          <!-- Missing creatinine -->
+          <circle cx="60" cy="110" r="4" fill="#22a861"/>
+          <text x="55" y="112" text-anchor="end" font-size="11" fill="#c0c6d8">Cr</text>
+          <text x="300" y="110" text-anchor="middle" font-size="9" fill="#c0c6d8">creatinine not re-checked</text>
+
+          <!-- EN -->
+          <line x1="580" y1="15" x2="580" y2="120" stroke="#0e7c6e" stroke-width="2" stroke-dasharray="5,3"/>
+          <text x="580" y="13" text-anchor="middle" font-size="10" fill="#0e7c6e">EN start</text>
+        </svg>
+      </div>
+      <p class="note">Synthetic timeline. Sparse lab frequency and missing creatinine re-check create an indeterminate evidence scenario.</p>
+
+      <div class="view-panel active" id="std-indeterminate">
+        <div class="interpretation-box standard">
+          <div class="ibox-label">Standard view: nutrition and electrolyte window</div>
+          <div class="signal-row">
+            <div class="signal-dot dot-red"></div>
+            <div class="signal-text"><strong>Electrolyte deficiency present:</strong> Hypophosphatemia identified on first post-EN lab draw.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-green"></div>
+            <div class="signal-text"><strong>Temporal proximity to nutrition:</strong> Deficiency appears within standard monitoring window after EN start.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-grey"></div>
+            <div class="signal-text"><strong>Interpretation:</strong> Electrolyte abnormality in the refeeding monitoring window; possible refeeding-associated disturbance.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-panel" id="rna-indeterminate">
+        <div class="interpretation-box renal">
+          <div class="ibox-label">Renal-aware integrated view</div>
+          <div class="signal-row">
+            <div class="signal-dot dot-blue"></div>
+            <div class="signal-text"><strong>Nutritional exposure timing:</strong> Prolonged IV dextrose throughout. Caloric anchor begins at admission, 36+ hours before EN.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-amber"></div>
+            <div class="signal-text"><strong>Electrolyte trajectory:</strong> Large laboratory gap between admission and first post-EN draw. Timing of phosphate decline relative to dextrose or EN initiation cannot be established from available data.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-grey"></div>
+            <div class="signal-text"><strong>Renal context:</strong> Creatinine not re-checked after admission baseline. Renal function at time of deficiency unknown; AKI cannot be excluded or confirmed.</div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-dot dot-amber"></div>
+            <div class="signal-text"><strong>Evidence insufficiency:</strong> Available structured data are insufficient to support confident attribution. Case should be flagged for clinical review rather than auto-classified.</div>
+          </div>
+          <div class="uncertainty-flag">
+            ⚠ Integrated assessment: Evidence is indeterminate. Sparse lab frequency and missing renal function data prevent attribution. System flags for clinician review.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="note mt20">
+      All cases are synthetic constructs for design illustration. They do not represent individual patients,
+      model outputs, or clinical recommendations.
+    </p>
+  </section>
+
+
+  <!-- SECTION 3: ARCHITECTURE -->
+  <section id="architecture">
+    <div class="sec-label">Section 3 &nbsp;·&nbsp; <span class="badge proposed" style="font-size:10px">Proposed method</span></div>
+    <h2><span class="sec-num">3</span>Candidate AI Architecture</h2>
+
+    <p>
+      The pilot would develop a modular, auditable evidence integration framework. The architecture
+      is conceptual: no functioning system exists. An interpretation layer could use rules,
+      machine learning, or a combination, subject to evaluation against an independent clinical
+      reference standard.
+    </p>
+
+    <!-- Input modules -->
+    <div class="arch-grid mt20">
+      <div class="arch-module">
+        <div class="arch-module-icon">🍽️</div>
+        <h3>Nutrition module</h3>
+        <p>IV dextrose exposure, timing, and quantity. EN/PN order type, timing, and rate. Caloric anchor assignment.</p>
+      </div>
+      <div class="arch-module">
+        <div class="arch-module-icon">📉</div>
+        <h3>Electrolyte module</h3>
+        <p>Serial phosphate, potassium, magnesium. Trajectory features: rate of decline, nadir, recovery pattern, lab frequency.</p>
+      </div>
+      <div class="arch-module">
+        <div class="arch-module-icon">🫘</div>
+        <h3>Renal context module</h3>
+        <p>Serial creatinine, AKI stage, CKD history, renal replacement therapy. Longitudinal trajectory, not point-in-time values.</p>
+      </div>
+    </div>
+
+    <div class="arch-arrow">↓</div>
+
+    <!-- Integration layer -->
+    <div class="integration-box">
+      <h3>AI-assisted evidence integration layer</h3>
+      <div class="integration-features">
+        <div class="int-feat">
+          <strong>Temporal alignment</strong>
+          Aligns evidence streams on a shared time axis anchored to clinical events.
+        </div>
+        <div class="int-feat">
+          <strong>Signal concordance</strong>
+          Identifies where nutrition, electrolyte, and renal evidence agree or conflict.
+        </div>
+        <div class="int-feat">
+          <strong>Competing explanations</strong>
+          Represents multiple plausible attributions; does not force a single classification.
+        </div>
+        <div class="int-feat">
+          <strong>Uncertainty flagging</strong>
+          Flags cases where evidence is insufficient for confident attribution.
+        </div>
+        <div class="int-feat">
+          <strong>Source provenance</strong>
+          Audit trail linking each output to the structured data points that support it.
+        </div>
+        <div class="int-feat">
+          <strong>Interpretability</strong>
+          Clinician-readable summary; no black-box scores without supporting evidence.
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-arrow">↓</div>
+
+    <!-- Output -->
+    <div class="card">
+      <h3>Output: patient-level evidence summary</h3>
+      <p class="mt8">
+        For each reviewed case: an auditable, time-aligned summary of nutritional exposure,
+        electrolyte trajectory, and renal context; a classification of evidence concordance
+        (concordant / conflicting / indeterminate); candidate explanations with supporting
+        evidence; and an uncertainty flag where applicable. Designed for comparison against
+        independent clinical adjudication, not for direct clinical use.
+      </p>
+    </div>
+
+    <!-- Baseline comparison -->
+    <h3 class="mt24">Comparison: rules-based baseline vs. learned integration</h3>
+    <p>The pilot will contrast two approaches to evidence integration.</p>
+    <div class="baseline-compare">
+      <div class="baseline-card">
+        <h3>Transparent rules baseline</h3>
+        <ul>
+          <li>Explicit if-then logic applied to each evidence stream</li>
+          <li>Predefined thresholds for electrolyte deficit, AKI stage, and timing windows</li>
+          <li>Fully auditable; requires no training data</li>
+          <li>May not capture complex interactions or trajectory patterns</li>
+        </ul>
+      </div>
+      <div class="baseline-card">
+        <h3>Learned integration (research option)</h3>
+        <ul>
+          <li>Model trained to predict clinical adjudicator agreement</li>
+          <li>Can learn trajectory patterns not captured by predefined rules</li>
+          <li>Requires labeled reference cases and rigorous validation</li>
+          <li>Interpretability depends on model choice and explainability tooling</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note mt12">
+      The choice between these approaches, and any combination thereof, is an open design question
+      subject to sample size, label availability, and collaborator input.
+    </p>
+  </section>
+
+
+  <!-- SECTION 4: EVIDENCE -->
+  <section id="evidence">
+    <div class="sec-label">Section 4 &nbsp;·&nbsp; <span class="badge evidence" style="font-size:10px">Established evidence</span></div>
+    <h2><span class="sec-num">4</span>Preliminary Evidence and Its Limits</h2>
+
+    <p>
+      The following results are from completed analyses of MIMIC-IV, a publicly available
+      critical care database. They support the feasibility and rationale of the proposed pilot.
+      They do not constitute external validation, clinical proof-of-concept, or evidence that
+      any described intervention improves patient outcomes.
+    </p>
+    <p>
+      All statistics should be verified against the final manuscript versions before
+      public posting or citation.
+    </p>
+
+    <!-- Stat tiles -->
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <div class="stat-num">38.4%</div>
+        <div class="stat-desc">
+          1,043 of 2,716 evaluable ICU patients with material IV dextrose exposure developed
+          their first qualifying incident electrolyte deficiency <em>before</em> formal EN or PN initiation.
+        </div>
+        <div class="stat-source">Paper 3 (Timing manuscript) · MIMIC-IV</div>
+        <div class="stat-limit">
+          <strong>Do not imply:</strong> That IV dextrose caused the abnormality or that every
+          event was clinically adjudicated as refeeding syndrome.
+        </div>
+      </div>
+
+      <div class="stat-tile teal">
+        <div class="stat-num">35.8h</div>
+        <div class="stat-desc">
+          Median interval from first observed electrolyte deficiency to EN/PN initiation,
+          among patients in the 38.4% group above.
+        </div>
+        <div class="stat-source">Paper 3 (Timing manuscript) · MIMIC-IV</div>
+        <div class="stat-limit">
+          <strong>Do not imply:</strong> That a 35.8-hour delay in nutrition was clinically appropriate
+          or inappropriate, or that earlier EN would have prevented the deficiency.
+        </div>
+      </div>
+
+      <div class="stat-tile amber">
+        <div class="stat-num">12.9h</div>
+        <div class="stat-desc">
+          Median interval from last known-normal electrolyte value to first observed low,
+          anchored to the dextrose exposure window.
+        </div>
+        <div class="stat-source">Paper 3 (Timing manuscript) · MIMIC-IV</div>
+        <div class="stat-limit">
+          <strong>Terminology matters:</strong> This is the last-known-normal to first-low interval,
+          not the deficiency-to-nutrition interval. These are distinct quantities.
+        </div>
+      </div>
+
+      <div class="stat-tile">
+        <div class="stat-num">0.723</div>
+        <div class="stat-desc">
+          AUC from an internally validated incident-deficiency prediction model (881 complete cases,
+          MIMIC-IV), compared to AUC 0.569 for a smaller reference model in the same cohort.
+        </div>
+        <div class="stat-source">Paper 4 · MIMIC-IV</div>
+        <div class="stat-limit">
+          <strong>Do not imply:</strong> External validation, bedside clinical benefit, or prediction
+          of a clinically adjudicated syndrome.
+        </div>
+      </div>
+
+      <div class="stat-tile red" style="grid-column: span 2;">
+        <div class="stat-num">74.3%</div>
+        <div class="stat-desc">
+          Approximately 74.3% of strict creatinine-defined AKI events in a distinct
+          MIMIC-IV surgical ICU cohort lacked a discharge-summary AKI mention, indicating
+          a substantial AKI documentation gap in structured records.
+        </div>
+        <div class="stat-source">Separate SICU cohort analysis · MIMIC-IV</div>
+        <div class="stat-limit">
+          <strong>Do not imply:</strong> That these events were necessarily missed by the treating
+          clinicians, or that the numerator and denominator share any overlap with the nutrition
+          timing cohort above.
+        </div>
+      </div>
+    </div>
+
+    <!-- Evidence table -->
+    <div style="overflow-x:auto">
+      <table class="evidence-table">
+        <thead>
+          <tr>
+            <th>Workstream</th>
+            <th>Evidence shown</th>
+            <th>Do not imply</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="workstream">Nutrition timing</td>
+            <td>38.4% pre-nutrition deficiency in evaluable material-dextrose subgroup; 35.8h first-low to EN/PN; 12.9h last-normal to first-low</td>
+            <td class="do-not">IV dextrose caused the abnormality; every lab event was confirmed clinical RFS</td>
+          </tr>
+          <tr>
+            <td class="workstream">Prediction</td>
+            <td>AUC 0.723 vs. 0.569 in 881 complete MIMIC-IV cases, internal validation only</td>
+            <td class="do-not">External validation, bedside benefit, or prediction of clinically adjudicated syndrome</td>
+          </tr>
+          <tr>
+            <td class="workstream">AKI documentation</td>
+            <td>74.3% creatinine-defined AKI events without discharge-summary mention, distinct SICU cohort</td>
+            <td class="do-not">Events were missed by clinicians; denominator shared with nutrition cohort</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- SECTION 5: DELIVERABLES -->
+  <section id="deliverables">
+    <div class="sec-label">Section 5 &nbsp;·&nbsp; <span class="badge proposed" style="font-size:10px">Proposed method</span> &nbsp;&nbsp; <span class="badge open" style="font-size:10px">Open design questions</span></div>
+    <h2><span class="sec-num">5</span>Pilot Deliverables and Open Decisions</h2>
+
+    <p>
+      The LOI maps to three coordinated aims. The primary vehicle for proof-of-concept is MIMIC-IV;
+      the institutional replication target is the Rutgers Clinical Research Data Warehouse (CRDW),
+      with feasibility assessment as an explicit Aim 1 deliverable. The pilot does not promise
+      clinical deployment.
+    </p>
+
+    <!-- Aim cards -->
+    <div class="aim-grid">
+      <div class="aim-card">
+        <div class="aim-num">1</div>
+        <div>
+          <h3>Incident electrolyte deficiency prediction model</h3>
+          <p>
+            Develop and validate a model using structured EHR features available at or before
+            nutrition order initiation. Building on MIMIC-IV feature engineering (6,843 admissions,
+            54.2% RFS prevalence). Prediction time point defined prospectively; CRDW data
+            completeness for IV dextrose, serial electrolytes, and renal function assessed
+            as an explicit feasibility deliverable.
+          </p>
+          <div class="aim-deliverable">Deliverable: Validated prediction model + CRDW feasibility assessment</div>
+        </div>
+      </div>
+
+      <div class="aim-card">
+        <div class="aim-num">2</div>
+        <div>
+          <h3>AKI surveillance and documentation gap characterization</h3>
+          <p>
+            Characterize AKI incidence, trajectory, and discharge-summary documentation concordance
+            in the nutrition surveillance cohort. Compare creatinine-defined AKI events against
+            coded diagnoses and clinical notes. Assess whether renal context, including AKI
+            predictors from the literature, adds incremental signal to the prediction model.
+          </p>
+          <div class="aim-deliverable">Deliverable: AKI documentation gap manuscript + model feature contribution analysis</div>
+        </div>
+      </div>
+
+      <div class="aim-card">
+        <div class="aim-num teal">3</div>
+        <div>
+          <h3>Renal-aware evidence convergence prototype</h3>
+          <p>
+            Integrate nutritional exposure timing, serial electrolyte trajectories, Aim 1 prediction
+            outputs, and longitudinal renal context into an auditable patient-level interpretation
+            framework. Compare integrated framework against conventional nutrition and
+            laboratory-based assessment using retrospectively reviewed MIMIC-IV cases.
+            Evaluate agreement, uncertainty recognition, and interpretability against
+            independent clinical adjudication. Deliverable is an offline proof of concept,
+            not a clinical tool.
+          </p>
+          <div class="aim-deliverable">Deliverable: Validated offline convergence prototype + R21-ready plan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Open decisions -->
+    <h3 class="mt32" style="margin-top:32px">Open collaborator decisions</h3>
+    <p>The following design questions require input from Laura and the full team before the protocol is finalized.</p>
+
+    <ul class="decision-list">
+      <li class="decision-item">
+        <div class="decision-q">?</div>
+        <div class="decision-text">
+          <strong>Primary clinical use case</strong>
+          Which clinical decision does Laura most want the prototype to support: active screening
+          (alert to early depletion), interpretation support (what explains this deficiency?),
+          escalation flagging (which patients need closer monitoring?), or discharge communication
+          (documentation of unrecognized events)?
+        </div>
+      </li>
+      <li class="decision-item">
+        <div class="decision-q">?</div>
+        <div class="decision-text">
+          <strong>Adjudicability criteria</strong>
+          Which evidence streams are mandatory for a case to be considered adjudicable
+          by the independent clinical reference? Which competing explanations must remain
+          separable (rather than co-attributed) in the framework output?
+        </div>
+      </li>
+      <li class="decision-item">
+        <div class="decision-q">?</div>
+        <div class="decision-text">
+          <strong>Primary validation outcome</strong>
+          What is the reference standard against which the prototype will be evaluated?
+          Options include structured chart review by a blinded adjudicator, nephrologist
+          review for the AKI component, or a consensus panel process. Agreement metric
+          and acceptable kappa threshold need to be pre-specified.
+        </div>
+      </li>
+      <li class="decision-item">
+        <div class="decision-q">?</div>
+        <div class="decision-text">
+          <strong>CRDW feasibility scope</strong>
+          Which CRDW elements can be feasibly extracted in the pilot period? Priority
+          candidates are IV dextrose administration records, EN/PN orders, serial electrolytes
+          with collection timestamps, and serial creatinine. Which will be tested first
+          and what constitutes an acceptable completeness threshold?
+        </div>
+      </li>
+      <li class="decision-item">
+        <div class="decision-q">?</div>
+        <div class="decision-text">
+          <strong>AI methods justified by sample size</strong>
+          Which machine learning or AI approaches are appropriate given the available
+          MIMIC-IV sample size, the label quality from retrospective adjudication,
+          and the staff resources available for this pilot? Rules-based, gradient boosted,
+          and sequence-based approaches each have different data and expertise requirements.
+        </div>
+      </li>
+    </ul>
+
+    <div class="callout-box mt20">
+      <div class="callout-label">R21 Path</div>
+      <p>
+        The pilot is designed to generate feasibility evidence for an R21 submission targeting
+        expanded prospective validation and, if warranted, clinical testing. The pilot deliverables
+        are a proof of concept and a feasibility assessment, not a deployable clinical tool.
+        Platform or deployment decisions are out of scope for this award.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    <strong>BMIHAI Pilot Research Concept</strong> &nbsp;·&nbsp; Working reference, November 2026<br>
+    Rutgers / BMIHAI &nbsp;·&nbsp; For scientific discussion only &nbsp;·&nbsp; Not a validated clinical tool
+  </p>
+  <p style="margin-top:8px">
+    This site uses synthetic cases only. No real patient data, no identifiable MIMIC-IV records,
+    and no invented model accuracies are depicted. Statistics are from preliminary MIMIC-IV
+    analyses and must be verified against final manuscript versions before public citation.
+  </p>
+</footer>
+
+<script>
+(function () {
+  /* ── Theme toggle ── */
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  let dark = false;
+  try { dark = localStorage.getItem('bmihai-theme') === 'dark'; } catch(e) {}
+  function applyTheme() {
+    root.dataset.theme = dark ? 'dark' : 'light';
+    btn.textContent = dark ? '☀ Light' : '◑ Theme';
+    try { localStorage.setItem('bmihai-theme', dark ? 'dark' : 'light'); } catch(e) {}
+  }
+  applyTheme();
+  btn.addEventListener('click', function() { dark = !dark; applyTheme(); });
+
+  /* ── Active nav link on scroll ── */
+  const sections = document.querySelectorAll('section[id], div.hero');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  function updateNav() {
+    let found = '';
+    sections.forEach(s => {
+      if (s.getBoundingClientRect().top <= 80) found = '#' + s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === found);
+    });
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  /* ── Case tabs ── */
+  const caseTabs = document.querySelectorAll('.case-tab');
+  caseTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      caseTabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      const target = this.dataset.case;
+      document.querySelectorAll('.case-panel').forEach(p => {
+        p.hidden = p.id !== 'case-' + target;
+      });
+      // After switching cases, reapply current view
+      const isRenal = document.getElementById('btnRenal').classList.contains('active');
+      syncView(target, isRenal);
+    });
+  });
+
+  function syncView(caseKey, isRenal) {
+    const prefix = isRenal ? 'rna-' : 'std-';
+    ['concordant', 'conflicting', 'indeterminate'].forEach(c => {
+      const std = document.getElementById('std-' + c);
+      const rna = document.getElementById('rna-' + c);
+      if (std) std.classList.toggle('active', !isRenal);
+      if (rna) rna.classList.toggle('active', isRenal);
+    });
+  }
+
+  /* ── View toggle ── */
+  const btnStd = document.getElementById('btnStandard');
+  const btnRna = document.getElementById('btnRenal');
+
+  function setView(isRenal) {
+    btnStd.classList.toggle('active', !isRenal);
+    btnRna.classList.toggle('active', isRenal);
+    const activeTab = document.querySelector('.case-tab.active');
+    const caseKey = activeTab ? activeTab.dataset.case : 'concordant';
+    syncView(caseKey, isRenal);
+  }
+
+  btnStd.addEventListener('click', function() { setView(false); });
+  btnRna.addEventListener('click', function() { setView(true); });
+
+  // Init
+  setView(false);
+})();
+</script>
