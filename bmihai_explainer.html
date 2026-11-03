@@ -849,18 +849,10 @@ footer {
 .anim-panel:first-child { border-left: none; }
 .anim-panel.active { display: flex; flex-direction: column; }
 .anim-panel.past {
-  opacity: 0.42;
+  opacity: 1;
 }
 .anim-panel.current {
   opacity: 1;
-}
-.anim-panel.current::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 0;
 }
 .anim-panel-heading {
   font-size: 11px;
@@ -1051,13 +1043,6 @@ footer {
         <!-- SVG drawn by JS into this -->
         <svg id="svgA" class="anim-svg" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" aria-label="Case A animated timeline"></svg>
       </div>
-      <div class="anim-controls">
-        <button class="anim-play-btn" id="playA" title="Play / Pause">▶</button>
-        <div class="anim-progress-wrap">
-          <div class="anim-progress-bar" id="progA"></div>
-        </div>
-        <div class="anim-phase-label" id="phaseA">Admission</div>
-      </div>
       <div class="anim-explanation">
         <div class="anim-phase-panels" id="panelsA">
           <div class="anim-panel active" data-phase="0">
@@ -1065,22 +1050,22 @@ footer {
             <div class="anim-panel-body">The patient is admitted to the ICU. Formal nutrition has not been ordered. IV dextrose infusion begins immediately and will continue for the first 36 hours. Phosphate is normal at admission. Standard surveillance has not yet opened its monitoring window.</div>
             <span class="anim-insight grey">Standard anchor: waiting for EN/PN order</span>
           </div>
-          <div class="anim-panel" data-phase="1">
+          <div class="anim-panel active" data-phase="1">
             <div class="anim-panel-heading">12h: Phosphate drops below normal</div>
             <div class="anim-panel-body">The first follow-up electrolyte draw shows hypophosphatemia. The patient's phosphate has crossed the deficiency threshold. The event is real and measurable in the data. Standard surveillance, anchored to EN/PN initiation, has not flagged anything. EN has not been ordered yet.</div>
             <span class="anim-insight grey">Standard window: still closed. Deficiency already present.</span>
           </div>
-          <div class="anim-panel" data-phase="2">
+          <div class="anim-panel active" data-phase="2">
             <div class="anim-panel-heading">36h: Dextrose stops. Deficiency persists.</div>
             <div class="anim-panel-body">Dextrose infusion ends. Phosphate has been low for 24 hours and remains depressed. EN is still not ordered. Standard surveillance has been open for zero of these 36 hours. The patient is 36 hours into a deficiency that the monitoring system cannot see.</div>
             <span class="anim-insight grey">Standard anchor still at 48h. Nothing flagged.</span>
           </div>
-          <div class="anim-panel" data-phase="3">
+          <div class="anim-panel active" data-phase="3">
             <div class="anim-panel-heading">48h: EN finally ordered. Window opens.</div>
             <div class="anim-panel-body">Enteral nutrition is initiated. Standard surveillance now opens its monitoring window. But the deficiency has been present for 36 hours already. The system will flag post-EN labs correctly, but the 36-hour pre-nutrition gap is invisible in the standard framework. In MIMIC-IV, 38.4% of eligible patients had exactly this pattern.</div>
             <span class="anim-insight grey">Standard view: first alert fires here. Deficiency was present 36h ago.</span>
           </div>
-          <div class="anim-panel" data-phase="4">
+          <div class="anim-panel active" data-phase="4">
             <div class="anim-panel-heading">Renal-aware view: caloric anchor at 0h</div>
             <div class="anim-panel-body">Switching to the proposed renal-aware framework: the anchor moves to IV dextrose initiation at 0h. The monitoring window opens at admission. The 12h phosphate drop falls squarely inside the proposed surveillance window. Creatinine is flat throughout, with no AKI signal, supporting a nutritional rather than renal explanation for the deficiency.</div>
             <span class="anim-insight teal">Caloric anchor active: dextrose 0h</span>
@@ -1096,13 +1081,6 @@ footer {
       <div class="anim-canvas-wrap">
         <svg id="svgB" class="anim-svg" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" aria-label="Case B animated timeline"></svg>
       </div>
-      <div class="anim-controls">
-        <button class="anim-play-btn" id="playB" title="Play / Pause">▶</button>
-        <div class="anim-progress-wrap">
-          <div class="anim-progress-bar" id="progB"></div>
-        </div>
-        <div class="anim-phase-label" id="phaseB">Admission</div>
-      </div>
       <div class="anim-explanation">
         <div class="anim-phase-panels" id="panelsB">
           <div class="anim-panel active" data-phase="0">
@@ -1110,22 +1088,22 @@ footer {
             <div class="anim-panel-body">The patient is admitted to the ICU. IV dextrose begins. Phosphate is normal at admission. From the standard view, this case is indistinguishable from Case A. The standard anchor is waiting for an EN order. No flags yet.</div>
             <span class="anim-insight grey">Standard view: same as Case A so far</span>
           </div>
-          <div class="anim-panel" data-phase="1">
+          <div class="anim-panel active" data-phase="1">
             <div class="anim-panel-heading">0–12h: Phosphate rises, then drops</div>
             <div class="anim-panel-body">Something unexpected: phosphate first rises slightly before falling. In Case A it declined smoothly from the start. This atypical trajectory, an initial rise before the decline, is inconsistent with isolated nutritional depletion. Standard surveillance cannot distinguish this from Case A. Both show phosphate below normal by 12h.</div>
             <span class="anim-insight grey">Standard view: cannot distinguish this trajectory from Case A</span>
           </div>
-          <div class="anim-panel" data-phase="2">
+          <div class="anim-panel active" data-phase="2">
             <div class="anim-panel-heading">Renal layer revealed: creatinine is rising</div>
             <div class="anim-panel-body">Now the critical difference: creatinine is rising in parallel with the phosphate fluctuation. This is an AKI signal. Impaired renal clearance can cause both phosphate retention (early) and redistribution (later), producing exactly this atypical trajectory. The same picture that looked like nutritional depletion now has a competing renal explanation.</div>
             <span class="anim-insight red">AKI signal: creatinine rising</span>
           </div>
-          <div class="anim-panel" data-phase="3">
+          <div class="anim-panel active" data-phase="3">
             <div class="anim-panel-heading">Reinterpreting the phosphate trajectory</div>
             <div class="anim-panel-body">With renal context visible, the phosphate picture changes meaning. The initial phosphate rise is consistent with AKI-driven retention. The subsequent fall is consistent with redistribution as AKI progresses. Nutritional depletion may still be contributing, but renal handling has reframed the trajectory entirely. Attribution is now uncertain.</div>
             <span class="anim-insight amber">Attribution uncertain: nutritional and renal contributions overlap</span>
           </div>
-          <div class="anim-panel" data-phase="4">
+          <div class="anim-panel active" data-phase="4">
             <div class="anim-panel-heading">Standard view cannot tell these cases apart</div>
             <div class="anim-panel-body">This is the problem Aim 3 is designed to solve. Two patients with nearly identical standard-view pictures require fundamentally different clinical responses, but only one surveillance framework can see the difference. The renal-aware system flags Case B for clinician review rather than forcing a nutritional label. Distinguishing them at scale, in real data, is the pilot's central contribution.</div>
             <span class="anim-insight red">Case B requires review. Standard surveillance would treat it as Case A.</span>
@@ -1563,8 +1541,6 @@ footer {
       const which = this.dataset.acase;
       document.getElementById('anim-case-A').hidden = (which !== 'A');
       document.getElementById('anim-case-B').hidden = (which !== 'B');
-      if (which === 'A') { animA.reset(); }
-      if (which === 'B') { animB.reset(); }
     });
   });
 
@@ -1805,14 +1781,8 @@ footer {
     },
   ];
 
-  const animA = makeAnimator(
-    document.getElementById('svgA'),
-    document.getElementById('playA'),
-    document.getElementById('progA'),
-    document.getElementById('phaseA'),
-    document.getElementById('panelsA'),
-    phasesA
-  );
+  const svgA = document.getElementById('svgA');
+  phasesA[phasesA.length - 1].draw(svgA, 1);
 
   /* ═══════════════════════════════════════════════════
      CASE B PHASES
@@ -1922,14 +1892,8 @@ footer {
     },
   ];
 
-  const animB = makeAnimator(
-    document.getElementById('svgB'),
-    document.getElementById('playB'),
-    document.getElementById('progB'),
-    document.getElementById('phaseB'),
-    document.getElementById('panelsB'),
-    phasesB
-  );
+  const svgB = document.getElementById('svgB');
+  phasesB[phasesB.length - 1].draw(svgB, 1);
 
 })();
 </script>
