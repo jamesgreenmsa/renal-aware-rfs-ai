@@ -1,11 +1,10 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Renal-Aware RFS Surveillance</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
 
 <style>
-/* ── Scroll ── */
 html { scroll-behavior: smooth; }
 
-/* ── Tokens ── */
 :root {
   --bg:       #f7f8fa;
   --surface:  #ffffff;
@@ -73,7 +72,6 @@ html { scroll-behavior: smooth; }
   color-scheme: dark;
 }
 
-/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: 'Inter', system-ui, sans-serif;
@@ -84,7 +82,6 @@ body {
   padding-inline: 16px;
 }
 
-/* ── Nav ── */
 nav {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
@@ -153,7 +150,6 @@ nav::-webkit-scrollbar { display: none; }
 }
 .theme-btn:hover { background: var(--surface2); }
 
-/* ── Layout ── */
 main { max-width: 860px; margin: 0 auto; }
 
 section {
@@ -163,7 +159,6 @@ section {
 }
 section:last-of-type { border-bottom: none; }
 
-/* ── Site header (above nav) ── */
 .site-hdr {
   background: #124090;
   color: #fff;
@@ -184,7 +179,6 @@ section:last-of-type { border-bottom: none; }
   color: rgba(255,255,255,.65);
 }
 
-/* ── Hero ── */
 .hero {
   padding-block: 36px 32px;
   border-bottom: 1px solid var(--border);
@@ -216,7 +210,6 @@ section:last-of-type { border-bottom: none; }
 .badge.proposed { background: var(--amber-lt); color: var(--amber); border-color: var(--amber); }
 .badge.open { background: var(--red-lt); color: var(--red); border-color: var(--red); }
 
-/* ── Section headings ── */
 .sec-label {
   font-size: 11px;
   font-weight: 600;
@@ -259,7 +252,6 @@ h3 {
 p { color: var(--text2); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 
-/* ── Cards ── */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -275,7 +267,6 @@ p:last-child { margin-bottom: 0; }
 }
 @media (max-width: 580px) { .card-row { grid-template-columns: 1fr; } }
 
-/* ── Clinical problem – flow diagram ── */
 .flow {
   display: flex;
   flex-direction: column;
@@ -337,7 +328,6 @@ p:last-child { margin-bottom: 0; }
 .callout-box.teal .callout-label { color: var(--teal); }
 .callout-box p { color: var(--text); font-size: 14px; margin: 0; }
 
-/* ── Toggle section ── */
 .toggle-bar {
   display: flex;
   gap: 0;
@@ -445,7 +435,6 @@ p:last-child { margin-bottom: 0; }
 .dot-blue  { background: var(--accent); }
 .dot-grey  { background: var(--text3); }
 
-/* ── Caloric anchor badge on renal-aware label ── */
 .anchor-badge {
   display: inline-block;
   margin-left: 8px;
@@ -474,7 +463,6 @@ p:last-child { margin-bottom: 0; }
   font-weight: 500;
 }
 
-/* ── Dot legend ── */
 .dot-legend {
   display: flex;
   flex-wrap: wrap;
@@ -500,7 +488,6 @@ p:last-child { margin-bottom: 0; }
   flex-shrink: 0;
 }
 
-/* ── Architecture ── */
 .arch-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -571,7 +558,6 @@ p:last-child { margin-bottom: 0; }
 .baseline-card ul { padding-left: 16px; font-size: 13px; color: var(--text2); }
 .baseline-card ul li { margin-bottom: 5px; }
 
-/* ── Evidence ── */
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -637,7 +623,6 @@ p:last-child { margin-bottom: 0; }
 .evidence-table .workstream { font-weight: 600; color: var(--text); font-size: 13px; }
 .do-not { color: var(--red); font-size: 12px; }
 
-/* ── Deliverables ── */
 .aim-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -704,7 +689,6 @@ p:last-child { margin-bottom: 0; }
 .decision-text { font-size: 14px; color: var(--text2); line-height: 1.5; }
 .decision-text strong { color: var(--text); display: block; margin-bottom: 2px; }
 
-/* ── Footer ── */
 footer {
   padding-block: 32px;
   text-align: center;
@@ -714,12 +698,12 @@ footer {
   border-top: 1px solid var(--border);
 }
 
-/* ── Utility ── */
 .mt8  { margin-top: 8px; }
 .mt12 { margin-top: 12px; }
 .mt16 { margin-top: 16px; }
 .mt20 { margin-top: 20px; }
 .mt24 { margin-top: 24px; }
+.mt32 { margin-top: 32px; }
 .note {
   font-size: 12px;
   color: var(--text3);
@@ -727,7 +711,6 @@ footer {
   margin-top: 8px;
 }
 
-/* ── Animated Case Explorer ── */
 .anim-case-tabs {
   display: flex;
   gap: 0;
@@ -848,12 +831,8 @@ footer {
 }
 .anim-panel:first-child { border-left: none; }
 .anim-panel.active { display: flex; flex-direction: column; }
-.anim-panel.past {
-  opacity: 1;
-}
-.anim-panel.current {
-  opacity: 1;
-}
+.anim-panel.past { opacity: 1; }
+.anim-panel.current { opacity: 1; }
 .anim-panel-heading {
   font-size: 11px;
   font-weight: 700;
@@ -886,6 +865,180 @@ footer {
   :root:not([data-theme="light"]) .anim-insight.green { background: #0a2e1a; }
 }
 :root[data-theme="dark"] .anim-insight.green { background: #0a2e1a; }
+
+/* ── AI Overview / Story Timeline Hero ── */
+#ai-overview {
+  padding-block: 44px 48px;
+}
+
+.story-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(16px, 2.6vw, 21px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  text-wrap: balance;
+  display: flex;
+  align-items: center;
+}
+
+.story-sub {
+  font-size: 14px;
+  color: var(--text2);
+  max-width: 620px;
+  margin-bottom: 24px;
+}
+
+/* timeline card */
+.story-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* pass indicator */
+.story-pass-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+.story-pass-tab {
+  flex: 1;
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: var(--surface2);
+  border: none;
+  cursor: default;
+  transition: background .2s, color .2s;
+  text-align: center;
+}
+.story-pass-tab + .story-pass-tab {
+  border-left: 1px solid var(--border);
+}
+.story-pass-tab.active {
+  background: var(--surface);
+  color: var(--accent);
+}
+.story-pass-tab.active.teal { color: var(--teal); }
+
+/* SVG timeline area */
+.story-svg-wrap {
+  overflow-x: auto;
+  padding: 20px 20px 0;
+  background: var(--surface);
+}
+.story-svg {
+  display: block;
+  min-width: 540px;
+  width: 100%;
+  height: auto;
+}
+
+/* narrative caption */
+.story-caption {
+  padding: 16px 20px 20px;
+  min-height: 80px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.story-caption-time {
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  white-space: nowrap;
+  padding-top: 2px;
+  min-width: 56px;
+}
+.story-caption-time.teal { color: var(--teal); }
+.story-caption-body {}
+.story-caption-heading {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.story-caption-text {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.55;
+  margin: 0;
+}
+.story-caption-badge {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.story-caption-badge.grey  { background: var(--surface2); color: var(--text3); border: 1px solid var(--border); }
+.story-caption-badge.red   { background: var(--red-lt);   color: var(--red);   border: 1px solid var(--red); }
+.story-caption-badge.amber { background: var(--amber-lt); color: var(--amber); border: 1px solid var(--amber); }
+.story-caption-badge.teal  { background: var(--teal-lt);  color: var(--teal);  border: 1px solid var(--teal); }
+.story-caption-badge.blue  { background: var(--accent-lt); color: var(--accent); border: 1px solid var(--accent); }
+
+/* progress / controls */
+.story-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+}
+.story-nav-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color .12s, color .12s;
+  user-select: none;
+  line-height: 1;
+  padding: 0;
+}
+.story-nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.story-nav-btn:disabled { opacity: 0.28; cursor: default; }
+.story-progress-wrap {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.story-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  width: 0%;
+  transition: width .25s ease;
+}
+.story-step-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--text3);
+  white-space: nowrap;
+  min-width: 60px;
+  text-align: right;
+}
 </style>
 
 <!-- SITE HEADER -->
@@ -898,33 +1051,70 @@ footer {
 <nav id="sitenav">
   <a class="nav-brand" href="#top">BMIHAI Pilot</a>
   <ul class="nav-links">
-    <li><a href="#clinical-problem">1. Clinical Problem</a></li>
-    <li><a href="#case-explorer">2. Case Explorer</a></li>
-    <li><a href="#architecture">3. Architecture</a></li>
-    <li><a href="#evidence">4. Evidence</a></li>
-    <li><a href="#deliverables">5. Deliverables</a></li>
+    <li><a href="#ai-overview">1. How It Works</a></li>
+    <li><a href="#clinical-problem">2. Clinical Problem</a></li>
+    <li><a href="#case-explorer">3. Case Explorer</a></li>
+    <li><a href="#architecture">4. AI Design</a></li>
+    <li><a href="#evidence">5. Evidence</a></li>
+    <li><a href="#deliverables">6. Deliverables</a></li>
   </ul>
   <div class="nav-right">
-    <button class="theme-btn" id="themeToggle">◑ Theme</button>
+    <button class="theme-btn" id="themeToggle">&#9680; Theme</button>
   </div>
 </nav>
 
 <main>
 
-  <!-- HERO -->
-  <div class="hero">
-    <p class="hero-sub">
-      An interactive working reference illustrating how nutrition timing, serial electrolyte trajectories,
-      and renal context might be evaluated together in the ICU. Uses synthetic cases only.
-      Each section is labeled by its evidence type.
+  <!-- SECTION 0: AI OVERVIEW / STORY TIMELINE HERO -->
+  <section id="ai-overview">
+    <div class="sec-label">How it works</div>
+    <p class="story-title"><span class="sec-num">1</span>One Patient. Two Stories.</p>
+    <p class="story-sub">
+      Follow an ICU patient through 28 hours. The first pass shows what standard surveillance sees.
+      The second shows what a renal-aware AI system would have known, and when.
+      The gap between those two stories is what this pilot is designed to close.
     </p>
-  </div>
+
+    <div class="story-card">
+      <!-- pass indicator tabs -->
+      <div class="story-pass-bar">
+        <div class="story-pass-tab active" id="passTab0">Pass 1 &mdash; What standard surveillance sees</div>
+        <div class="story-pass-tab teal" id="passTab1">Pass 2 &mdash; What the AI system would know</div>
+      </div>
+
+      <!-- SVG timeline -->
+      <div class="story-svg-wrap">
+        <svg id="storySvg" class="story-svg" viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg" aria-label="Patient story timeline"></svg>
+      </div>
+
+      <!-- narrative caption -->
+      <div class="story-caption" id="storyCaption">
+        <div class="story-caption-time" id="captionTime">0h</div>
+        <div class="story-caption-body">
+          <div class="story-caption-heading" id="captionHead">ICU admission</div>
+          <p class="story-caption-text" id="captionText">The patient arrives in the ICU. IV dextrose begins immediately. No formal nutrition order has been written. Standard surveillance has not yet opened its monitoring window.</p>
+          <span class="story-caption-badge grey" id="captionBadge">Standard window: closed</span>
+        </div>
+      </div>
+
+      <!-- controls -->
+      <div class="story-controls">
+        <button class="story-nav-btn" id="storyPrevBtn" title="Previous step" disabled>&#8592;</button>
+        <div class="story-progress-wrap" id="storyProgressWrap">
+          <div class="story-progress-bar" id="storyProgressBar"></div>
+        </div>
+        <button class="story-nav-btn" id="storyNextBtn" title="Next step">&#8594;</button>
+        <span class="story-step-label" id="storyStepLabel">1 / 8</span>
+      </div>
+    </div>
+    <p class="note mt12">Synthetic illustration only. No real patient data or model outputs are depicted. &nbsp;<a href="#architecture" style="color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid var(--accent-lt);">See how the AI system is designed &#8594;</a></p>
+  </section>
 
 
   <!-- SECTION 1: CLINICAL PROBLEM -->
   <section id="clinical-problem">
-    <div class="sec-label">Section 1</div>
-    <h2><span class="sec-num">1</span>The Clinical Problem</h2>
+    <div class="sec-label">Section 2</div>
+    <h2><span class="sec-num">2</span>The Clinical Problem</h2>
 
     <p>
       A patient admitted to the ICU arrives in crisis. The clinical team is managing airways,
@@ -958,7 +1148,7 @@ footer {
 
     <div class="flow mt24">
       <div class="flow-row">
-        <div class="flow-icon blue">🍽️</div>
+        <div class="flow-icon blue">&#127860;</div>
         <div class="flow-body">
           <h3>When does the caloric clock start?</h3>
           <p>
@@ -974,7 +1164,7 @@ footer {
       </div>
 
       <div class="flow-row">
-        <div class="flow-icon teal">⏱️</div>
+        <div class="flow-icon teal">&#9201;</div>
         <div class="flow-body">
           <h3>The timing gap</h3>
           <p>
@@ -989,7 +1179,7 @@ footer {
       </div>
 
       <div class="flow-row">
-        <div class="flow-icon amber">🫘</div>
+        <div class="flow-icon amber">&#129848;</div>
         <div class="flow-body">
           <h3>Kidney function changes the picture</h3>
           <p>
@@ -1006,13 +1196,13 @@ footer {
       </div>
 
       <div class="flow-row">
-        <div class="flow-icon red">📋</div>
+        <div class="flow-icon red">&#128203;</div>
         <div class="flow-body">
           <h3>Documentation gaps compound the problem</h3>
           <p>
             AKI is substantially under-documented in structured clinical records. In a
-            separate surgical ICU cohort, approximately 74.3% of patients meeting strict
-            creatinine-based AKI criteria had no mention of AKI in the discharge summary.
+            separate surgical ICU cohort, approximately 75.7% of AKI-coded encounters meeting
+            strict creatinine-based criteria had no mention of AKI in the discharge summary.
             This documents a discordance between laboratory trajectories and narrative records;
             it does not establish that treating clinicians failed to recognize AKI at the bedside.
             A surveillance system that relies on coded diagnoses or discharge summaries to
@@ -1028,7 +1218,7 @@ footer {
       <div class="callout-label">Why this matters, and why now</div>
       <p>
         Our preliminary data show that 38.4% of electrolyte deficiency events occur before
-        formal nutrition orders are placed, and that 74.3% of patients meeting AKI criteria
+        formal nutrition orders are placed, and that 75.7% of patients meeting AKI criteria
         have no mention of AKI in their discharge summary. These are not edge cases. They
         describe the routine ICU patient, and they describe a gap that existing surveillance
         systems were not built to close.
@@ -1047,8 +1237,8 @@ footer {
 
   <!-- SECTION 2: CASE EXPLORER -->
   <section id="case-explorer">
-    <div class="sec-label">Section 2 &nbsp;·&nbsp; <span class="badge demo" style="font-size:10px">Illustrative demonstration</span></div>
-    <h2><span class="sec-num">2</span>Synthetic Patient-Case Explorer</h2>
+    <div class="sec-label">Section 3 &nbsp;&#183;&nbsp; <span class="badge demo" style="font-size:10px">Illustrative demonstration</span></div>
+    <h2><span class="sec-num">3</span>Synthetic Patient-Case Explorer</h2>
 
     <p>
       In MIMIC-IV, 38.4% of ICU stays with incident electrolyte deficiency showed that deficiency
@@ -1062,16 +1252,38 @@ footer {
       decisions are depicted.
     </p>
 
-    <!-- Case selector -->
+    <div class="callout-box teal mt16" style="margin-bottom:20px">
+      <div class="callout-label">Why this matters: one patient, three moments</div>
+      <p>
+        <strong>8 AM:</strong> An ICU patient starts an IV dextrose infusion. No formal
+        nutrition order has been placed. The conventional monitoring window has not opened.
+      </p>
+      <p style="margin-top:8px">
+        <strong>8 PM:</strong> The patient's phosphate is low. The patient is also receiving
+        continuous renal replacement therapy (CRRT), which alters electrolyte handling.
+        The standard nutrition alert, anchored to a nutrition order that has not yet been
+        written, sees nothing. Is this a nutritional depletion? A renal effect? Both?
+        The clinical record does not distinguish.
+      </p>
+      <p style="margin-top:8px">
+        <strong>Next day:</strong> Enteral nutrition finally starts. The nutrition-order alert
+        now fires. But the electrolyte deficiency has been present for more than twelve hours,
+        and the concurrent CRRT was never entered into the clinical risk picture.
+      </p>
+      <p style="margin-top:10px; font-size:13px; color:var(--text3)">
+        This is the scenario the BMIHAI pilot is designed to characterize at scale. The
+        synthetic cases below illustrate the two patterns the pilot must learn to distinguish.
+      </p>
+    </div>
+
     <div class="anim-case-tabs mt16" id="animCaseTabs">
       <button class="anim-case-btn active" data-acase="A">Case A: Standard anchor misses it</button>
       <button class="anim-case-btn" data-acase="B">Case B: Same surface, different story</button>
     </div>
 
-    <!-- ===== ANIMATED CASE A ===== -->
+    <!-- ANIMATED CASE A -->
     <div id="anim-case-A" class="anim-stage">
       <div class="anim-canvas-wrap">
-        <!-- SVG drawn by JS into this -->
         <svg id="svgA" class="anim-svg" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" aria-label="Case A animated timeline"></svg>
       </div>
       <div class="anim-explanation">
@@ -1107,7 +1319,7 @@ footer {
       </div>
     </div>
 
-    <!-- ===== ANIMATED CASE B ===== -->
+    <!-- ANIMATED CASE B -->
     <div id="anim-case-B" class="anim-stage" hidden>
       <div class="anim-canvas-wrap">
         <svg id="svgB" class="anim-svg" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" aria-label="Case B animated timeline"></svg>
@@ -1120,7 +1332,7 @@ footer {
             <span class="anim-insight grey">Standard view: same as Case A so far</span>
           </div>
           <div class="anim-panel active" data-phase="1">
-            <div class="anim-panel-heading">0–12h: Phosphate rises, then drops</div>
+            <div class="anim-panel-heading">0-12h: Phosphate rises, then drops</div>
             <div class="anim-panel-body">Something unexpected: phosphate first rises slightly before falling. In Case A it declined smoothly from the start. This atypical trajectory, an initial rise before the decline, is inconsistent with isolated nutritional depletion. Standard surveillance cannot distinguish this from Case A. Both show phosphate below normal by 12h.</div>
             <span class="anim-insight grey">Standard view: cannot distinguish this trajectory from Case A</span>
           </div>
@@ -1149,15 +1361,49 @@ footer {
     </p>
 
     <div class="note" style="margin-top:24px; padding:16px 20px; background:var(--accent-lt); border-left:3px solid var(--accent); border-radius:var(--radius);">
-      The architecture proposed in this pilot is designed to make this reasoning explicit, auditable, and scalable — identifying the 38.4% before they become clinical events, flagging the ambiguous cases for clinician review rather than forcing attribution, and characterizing the data conditions under which confident interpretation is and is not possible.
+      The architecture proposed in this pilot is designed to make this reasoning explicit, auditable, and scalable, identifying the 38.4% before they become clinical events, flagging the ambiguous cases for clinician review rather than forcing attribution, and characterizing the data conditions under which confident interpretation is and is not possible.
     </div>
   </section>
 
 
   <!-- SECTION 3: ARCHITECTURE -->
   <section id="architecture">
-    <div class="sec-label">Section 3 &nbsp;·&nbsp; <span class="badge proposed" style="font-size:10px">Proposed method</span></div>
-    <h2><span class="sec-num">3</span>Candidate AI Architecture</h2>
+    <div class="sec-label">Section 4 &nbsp;&#183;&nbsp; <span class="badge proposed" style="font-size:10px">Proposed method</span></div>
+    <h2><span class="sec-num">4</span>AI Design: Two Uses, One Decisive Question</h2>
+
+    <p>
+      The pilot uses AI in two complementary ways, and then asks a single question that
+      determines which approach is worth pursuing further in a larger study.
+    </p>
+
+    <div class="baseline-compare" style="margin-bottom:24px">
+      <div class="baseline-card">
+        <h3>Use 1 &mdash; Predict early</h3>
+        <p style="margin:8px 0 0">
+          A prediction model fires at the moment a patient begins IV dextrose infusion,
+          before any formal nutrition orders are written. It estimates the likelihood of
+          a qualifying electrolyte deficiency in the upcoming window, so the team can
+          consider whether closer monitoring is warranted.
+        </p>
+        <p style="margin:8px 0 0; font-size:12px; color:var(--text3)">
+          Aligns with Aim 1. Requires only structured EHR features available at the
+          caloric-exposure landmark.
+        </p>
+      </div>
+      <div class="baseline-card">
+        <h3>Use 2 &mdash; Interpret afterward</h3>
+        <p style="margin:8px 0 0">
+          After an electrolyte deficiency is observed, a convergence framework integrates
+          nutritional timing, electrolyte trajectory, renal context, and prediction outputs
+          to assemble an auditable evidence summary: what was happening, what explains it,
+          and how certain we can be.
+        </p>
+        <p style="margin:8px 0 0; font-size:12px; color:var(--text3)">
+          Aligns with Aim 3. Outputs are for retrospective review and research adjudication,
+          not direct clinical use.
+        </p>
+      </div>
+    </div>
 
     <p>
       The pilot would develop a modular, auditable evidence integration framework. The architecture
@@ -1166,28 +1412,26 @@ footer {
       reference standard.
     </p>
 
-    <!-- Input modules -->
     <div class="arch-grid mt20">
       <div class="arch-module">
-        <div class="arch-module-icon">🍽️</div>
+        <div class="arch-module-icon">&#127860;</div>
         <h3>Nutrition module</h3>
         <p>IV dextrose exposure, timing, and quantity. EN/PN order type, timing, and rate. Caloric anchor assignment.</p>
       </div>
       <div class="arch-module">
-        <div class="arch-module-icon">📉</div>
+        <div class="arch-module-icon">&#128201;</div>
         <h3>Electrolyte module</h3>
         <p>Serial phosphate, potassium, magnesium. Trajectory features: rate of decline, nadir, recovery pattern, lab frequency.</p>
       </div>
       <div class="arch-module">
-        <div class="arch-module-icon">🫘</div>
+        <div class="arch-module-icon">&#129848;</div>
         <h3>Renal context module</h3>
         <p>Serial creatinine, AKI stage, CKD history, renal replacement therapy. Longitudinal trajectory, not point-in-time values.</p>
       </div>
     </div>
 
-    <div class="arch-arrow">↓</div>
+    <div class="arch-arrow">&#8595;</div>
 
-    <!-- Integration layer -->
     <div class="integration-box">
       <h3>AI-assisted evidence integration layer</h3>
       <div class="integration-features">
@@ -1218,9 +1462,8 @@ footer {
       </div>
     </div>
 
-    <div class="arch-arrow">↓</div>
+    <div class="arch-arrow">&#8595;</div>
 
-    <!-- Output -->
     <div class="card">
       <h3>Output: patient-level evidence summary</h3>
       <p class="mt8">
@@ -1232,40 +1475,57 @@ footer {
       </p>
     </div>
 
-    <!-- Baseline comparison -->
-    <h3 class="mt24">Comparison: rules-based baseline vs. learned integration</h3>
-    <p>The pilot will contrast two approaches to evidence integration.</p>
-    <div class="baseline-compare">
-      <div class="baseline-card">
-        <h3>Transparent rules baseline</h3>
-        <ul>
-          <li>Explicit if-then logic applied to each evidence stream</li>
-          <li>Predefined thresholds for electrolyte deficit, AKI stage, and timing windows</li>
-          <li>Fully auditable; requires no training data</li>
-          <li>May not capture complex interactions or trajectory patterns</li>
-        </ul>
+    <h3 class="mt24">The decisive comparison</h3>
+    <p>
+      The pilot will evaluate three approaches in sequence. The comparison is structured so that
+      the simplest approach that performs adequately is the right answer, not the most complex one.
+      If the learned model does not outperform the renal-aware rules, the rules are the better result.
+      A simpler, more explainable system that performs equally well is preferable to a complex
+      one that offers no benefit.
+    </p>
+    <div class="aim-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">
+      <div class="aim-card" style="padding:16px">
+        <div class="aim-num" style="width:28px;height:28px;font-size:13px">A</div>
+        <div>
+          <h3 style="font-size:14px;margin-bottom:6px">Conventional assessment</h3>
+          <p style="font-size:13px">Standard nutrition and laboratory evaluation without renal context or caloric-anchor adjustment. The current clinical baseline.</p>
+        </div>
       </div>
-      <div class="baseline-card">
-        <h3>Learned integration (research option)</h3>
-        <ul>
-          <li>Model trained to predict clinical adjudicator agreement</li>
-          <li>Can learn trajectory patterns not captured by predefined rules</li>
-          <li>Requires labeled reference cases and rigorous validation</li>
-          <li>Interpretability depends on model choice and explainability tooling</li>
-        </ul>
+      <div class="aim-card" style="padding:16px">
+        <div class="aim-num teal" style="width:28px;height:28px;font-size:13px">B</div>
+        <div>
+          <h3 style="font-size:14px;margin-bottom:6px">Renal-aware rules</h3>
+          <p style="font-size:13px">Explicit if-then logic incorporating renal context, AKI stage, and caloric-anchor timing. Fully auditable; requires no training data or labeled cases.</p>
+        </div>
+      </div>
+      <div class="aim-card" style="padding:16px">
+        <div class="aim-num" style="width:28px;height:28px;font-size:13px;background:var(--accent)">C</div>
+        <div>
+          <h3 style="font-size:14px;margin-bottom:6px">Learned ML model</h3>
+          <p style="font-size:13px">Model trained on retrospectively adjudicated cases to predict clinical expert agreement. Can learn trajectory patterns the rules may miss.</p>
+        </div>
       </div>
     </div>
+    <div class="callout-box mt16" style="background:var(--accent-lt);border-left-color:var(--accent)">
+      <div class="callout-label">The core question</div>
+      <p>
+        Does approach (C) outperform approach (B) against independent clinical adjudication?
+        If yes, the complexity of learned integration is justified. If no, the transparent
+        rules are the better tool for this problem, and the pilot has established that clearly.
+        Either outcome advances the science.
+      </p>
+    </div>
     <p class="note mt12">
-      The choice between these approaches, and any combination thereof, is an open design question
-      subject to sample size, label availability, and collaborator input.
+      The choice of model class for approach (C) is an open design question subject to
+      sample size, label availability, and AI Methods collaborator input.
     </p>
   </section>
 
 
   <!-- SECTION 4: EVIDENCE -->
   <section id="evidence">
-    <div class="sec-label">Section 4 &nbsp;·&nbsp; <span class="badge evidence" style="font-size:10px">Established evidence</span></div>
-    <h2><span class="sec-num">4</span>Preliminary Evidence and Its Limits</h2>
+    <div class="sec-label">Section 5 &nbsp;&#183;&nbsp; <span class="badge evidence" style="font-size:10px">Established evidence</span></div>
+    <h2><span class="sec-num">5</span>Preliminary Evidence and Its Limits</h2>
 
     <p>
       The following results are from completed analyses of MIMIC-IV, a publicly available
@@ -1278,7 +1538,6 @@ footer {
       public posting or citation.
     </p>
 
-    <!-- Stat tiles -->
     <div class="stat-grid">
       <div class="stat-tile">
         <div class="stat-num">38.4%</div>
@@ -1286,7 +1545,7 @@ footer {
           1,043 of 2,716 evaluable ICU patients with material IV dextrose exposure developed
           their first qualifying incident electrolyte deficiency <em>before</em> formal EN or PN initiation.
         </div>
-        <div class="stat-source">Paper 3 (Timing manuscript) · MIMIC-IV</div>
+        <div class="stat-source">Paper 3 (Timing manuscript) &#183; MIMIC-IV</div>
         <div class="stat-limit">
           <strong>Do not imply:</strong> That IV dextrose caused the abnormality or that every
           event was clinically adjudicated as refeeding syndrome.
@@ -1299,7 +1558,7 @@ footer {
           Median interval from first observed electrolyte deficiency to EN/PN initiation,
           among patients in the 38.4% group above.
         </div>
-        <div class="stat-source">Paper 3 (Timing manuscript) · MIMIC-IV</div>
+        <div class="stat-source">Paper 3 (Timing manuscript) &#183; MIMIC-IV</div>
         <div class="stat-limit">
           <strong>Do not imply:</strong> That a 35.8-hour delay in nutrition was clinically appropriate
           or inappropriate, or that earlier EN would have prevented the deficiency.
@@ -1312,7 +1571,7 @@ footer {
           Median interval from last known-normal electrolyte value to first observed low,
           anchored to the dextrose exposure window.
         </div>
-        <div class="stat-source">Paper 3 (Timing manuscript) · MIMIC-IV</div>
+        <div class="stat-source">Paper 3 (Timing manuscript) &#183; MIMIC-IV</div>
         <div class="stat-limit">
           <strong>Terminology matters:</strong> This is the last-known-normal to first-low interval,
           not the deficiency-to-nutrition interval. These are distinct quantities.
@@ -1327,7 +1586,7 @@ footer {
           in the same cohort. Note: the proposed pilot will predict a distinct outcome, first incident
           absolute electrolyte deficiency at a defined caloric-exposure landmark.
         </div>
-        <div class="stat-source">Paper 4 · MIMIC-IV · relative decline proxy endpoint</div>
+        <div class="stat-source">Paper 4 &#183; MIMIC-IV &#183; relative decline proxy endpoint</div>
         <div class="stat-limit">
           <strong>Do not imply:</strong> External validation, bedside clinical benefit, prediction
           of a clinically adjudicated syndrome, or equivalence with the absolute-deficiency
@@ -1336,13 +1595,13 @@ footer {
       </div>
 
       <div class="stat-tile red" style="grid-column: span 2;">
-        <div class="stat-num">74.3%</div>
+        <div class="stat-num">75.7%</div>
         <div class="stat-desc">
-          Approximately 74.3% of strict creatinine-defined AKI events in a distinct
-          MIMIC-IV surgical ICU cohort lacked a discharge-summary AKI mention, indicating
-          a substantial AKI documentation gap in structured records.
+          Approximately 75.7% of AKI-coded encounters meeting strict creatinine-based AKI
+          criteria in a distinct MIMIC-IV surgical ICU cohort lacked a discharge-summary AKI
+          mention, indicating a substantial AKI documentation gap in structured records.
         </div>
-        <div class="stat-source">Separate SICU cohort analysis · MIMIC-IV</div>
+        <div class="stat-source">Separate SICU cohort analysis &nbsp;&#183;&nbsp; MIMIC-IV &nbsp;&#183;&nbsp; Denominator: AKI-coded encounters</div>
         <div class="stat-limit">
           <strong>Do not imply:</strong> That these events were necessarily missed by the treating
           clinicians, or that the numerator and denominator share any overlap with the nutrition
@@ -1351,7 +1610,6 @@ footer {
       </div>
     </div>
 
-    <!-- Evidence table -->
     <div style="overflow-x:auto">
       <table class="evidence-table">
         <thead>
@@ -1374,7 +1632,7 @@ footer {
           </tr>
           <tr>
             <td class="workstream">AKI documentation</td>
-            <td>74.3% creatinine-defined AKI events without discharge-summary mention, distinct SICU cohort</td>
+            <td>75.7% of AKI-coded encounters with creatinine-defined AKI lacking discharge-summary mention, distinct SICU cohort; denominator is AKI-coded encounters</td>
             <td class="do-not">Events were missed by clinicians; denominator shared with nutrition cohort</td>
           </tr>
         </tbody>
@@ -1385,8 +1643,8 @@ footer {
 
   <!-- SECTION 5: DELIVERABLES -->
   <section id="deliverables">
-    <div class="sec-label">Section 5 &nbsp;·&nbsp; <span class="badge proposed" style="font-size:10px">Proposed method</span> &nbsp;&nbsp; <span class="badge open" style="font-size:10px">Open design questions</span></div>
-    <h2><span class="sec-num">5</span>Pilot Deliverables and Open Decisions</h2>
+    <div class="sec-label">Section 6 &nbsp;&#183;&nbsp; <span class="badge proposed" style="font-size:10px">Proposed method</span> &nbsp;&nbsp; <span class="badge open" style="font-size:10px">Open design questions</span></div>
+    <h2><span class="sec-num">6</span>Pilot Deliverables and Open Decisions</h2>
 
     <p>
       The LOI maps to three coordinated aims. The primary vehicle for proof-of-concept is MIMIC-IV;
@@ -1395,7 +1653,52 @@ footer {
       clinical deployment.
     </p>
 
-    <!-- Aim cards -->
+    <h3 class="mt24">Development path</h3>
+    <p>The pilot proceeds in three stages, each building on the last.</p>
+    <div class="flow mt16">
+      <div class="flow-row">
+        <div class="flow-icon blue" style="font-size:18px;font-weight:700">1</div>
+        <div class="flow-body">
+          <h3>Build a shared clinical timeline</h3>
+          <p>
+            Construct a unified, time-aligned record per patient integrating IV dextrose and
+            nutrition orders, serial electrolyte draws, and longitudinal renal function
+            (creatinine, AKI stage, renal replacement therapy). This shared timeline is the
+            foundation for all modeling and interpretation in stages 2 and 3. CRDW data
+            completeness and timestamp fidelity are assessed as an explicit Aim 1 deliverable
+            before modeling proceeds.
+          </p>
+        </div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-icon teal" style="font-size:18px;font-weight:700">2</div>
+        <div class="flow-body">
+          <h3>Develop and compare models</h3>
+          <p>
+            Build the prediction model (Aim 1) and the evidence convergence framework (Aim 3)
+            using MIMIC-IV. Evaluate the three-way comparison: conventional assessment (A),
+            renal-aware rules (B), and learned ML (C). The key question is whether (C) outperforms
+            (B). If not, (B) is the more defensible tool and the simpler result is the better one.
+          </p>
+        </div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-icon amber" style="font-size:18px;font-weight:700">3</div>
+        <div class="flow-body">
+          <h3>Evaluate with clinical experts</h3>
+          <p>
+            Compare framework output against independent clinical adjudication by blinded
+            reviewers. Measure agreement, uncertainty recognition, and interpretability.
+            Document where confident attribution is and is not possible. All outputs are
+            retrospective research; no clinical deployment occurs within this award.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mt32">Three coordinated aims</h3>
     <div class="aim-grid">
       <div class="aim-card">
         <div class="aim-num">1</div>
@@ -1451,7 +1754,6 @@ footer {
       </div>
     </div>
 
-    <!-- Open decisions -->
     <h3 class="mt32" style="margin-top:32px">Open collaborator decisions</h3>
     <p>The following design questions require input from Laura and the full team before the protocol is finalized.</p>
 
@@ -1522,8 +1824,8 @@ footer {
 
 <footer>
   <p>
-    <strong>BMIHAI Pilot Research Concept</strong> &nbsp;·&nbsp; Working reference, November 2026<br>
-    Rutgers / BMIHAI &nbsp;·&nbsp; For scientific discussion only &nbsp;·&nbsp; Not a validated clinical tool
+    <strong>BMIHAI Pilot Research Concept</strong> &nbsp;&#183;&nbsp; Working reference, November 2026<br>
+    Rutgers / BMIHAI &nbsp;&#183;&nbsp; For scientific discussion only &nbsp;&#183;&nbsp; Not a validated clinical tool
   </p>
   <p style="margin-top:8px">
     This site uses synthetic cases only. No real patient data, no identifiable MIMIC-IV records,
@@ -1535,10 +1837,9 @@ footer {
 <script>
 (function () {
 
-  /* ── Theme toggle ── */
-  const root = document.documentElement;
-  const themeBtn = document.getElementById('themeToggle');
-  let dark = false;
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeToggle');
+  var dark = false;
   try { dark = localStorage.getItem('bmihai-theme') === 'dark'; } catch(e) {}
   function applyTheme() {
     root.dataset.theme = dark ? 'dark' : 'light';
@@ -1548,88 +1849,466 @@ footer {
   applyTheme();
   themeBtn.addEventListener('click', function() { dark = !dark; applyTheme(); });
 
-  /* ── Active nav link on scroll ── */
-  const sections = document.querySelectorAll('section[id], div.hero');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  var sections = document.querySelectorAll('section[id], div.hero');
+  var navLinks = document.querySelectorAll('.nav-links a');
   function updateNav() {
-    let found = '';
-    sections.forEach(s => {
+    var found = '';
+    sections.forEach(function(s) {
       if (s.getBoundingClientRect().top <= 80) found = '#' + s.id;
     });
-    navLinks.forEach(a => {
+    navLinks.forEach(function(a) {
       a.classList.toggle('active', a.getAttribute('href') === found);
     });
   }
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
-  /* ── Case tab switcher ── */
-  const animTabs = document.querySelectorAll('.anim-case-btn');
-  animTabs.forEach(tab => {
+  var animTabs = document.querySelectorAll('.anim-case-btn');
+  animTabs.forEach(function(tab) {
     tab.addEventListener('click', function() {
-      animTabs.forEach(t => t.classList.remove('active'));
+      animTabs.forEach(function(t) { t.classList.remove('active'); });
       this.classList.add('active');
-      const which = this.dataset.acase;
+      var which = this.dataset.acase;
       document.getElementById('anim-case-A').hidden = (which !== 'A');
       document.getElementById('anim-case-B').hidden = (which !== 'B');
     });
   });
 
   /* ═══════════════════════════════════════════════════
+     STORY TIMELINE HERO
+  ═══════════════════════════════════════════════════ */
+  (function() {
+    var NS = 'http://www.w3.org/2000/svg';
+    function svgEl(tag, attrs) {
+      var e = document.createElementNS(NS, tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+    function svgTxt(content, attrs) {
+      var e = svgEl('text', attrs);
+      e.textContent = content;
+      return e;
+    }
+    function cssV(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+    var svg = document.getElementById('storySvg');
+    var prevBtn = document.getElementById('storyPrevBtn');
+    var nextBtn = document.getElementById('storyNextBtn');
+    var progBar = document.getElementById('storyProgressBar');
+    var stepLabel = document.getElementById('storyStepLabel');
+    var captionTime = document.getElementById('captionTime');
+    var captionHead = document.getElementById('captionHead');
+    var captionText = document.getElementById('captionText');
+    var captionBadge = document.getElementById('captionBadge');
+    var passTab0 = document.getElementById('passTab0');
+    var passTab1 = document.getElementById('passTab1');
+
+    /* ── Timeline layout ── */
+    /* viewBox 760 × 160; x0=50, x1=710; axis at y=90 */
+    var VW = 760, VH = 160;
+    var AX0 = 55, AX1 = 710, AY = 90;
+
+    /* Hour labels along axis: 0, 4, 8, 12, 16, 20, 24, 28 */
+    var HOURS = [0, 4, 8, 12, 16, 20, 24, 28];
+    function xOf(h) { return AX0 + (h / 28) * (AX1 - AX0); }
+
+    /* ── STEPS ── two passes, 4 steps each = 8 total */
+    /* pass 0 = what standard surveillance sees (grey/red) */
+    /* pass 1 = what AI knows (teal/accent) */
+    var STEPS = [
+      /* Pass 0 */
+      {
+        pass: 0,
+        hour: 0,
+        icon: '&#127860;',
+        color: 'axis',
+        label: '0h',
+        head: 'ICU admission: IV dextrose begins',
+        text: 'The patient arrives in the ICU. IV dextrose starts immediately — the first caloric exposure. No formal nutrition order exists yet. Standard surveillance is anchored to that order, so its monitoring window has not opened.',
+        badge: 'Standard window: closed',
+        badgeClass: 'grey',
+        timeColor: ''
+      },
+      {
+        pass: 0,
+        hour: 12,
+        icon: '&#128201;',
+        color: 'amber',
+        label: '12h',
+        head: '12h: Phosphate drops below normal',
+        text: 'The first follow-up electrolyte draw shows hypophosphatemia. The biochemical event is real and timestamped in the data. Standard surveillance, anchored to a nutrition order that has not been written, sees nothing. The monitoring window is still closed.',
+        badge: 'Standard window: still closed. Deficiency already present.',
+        badgeClass: 'grey',
+        timeColor: ''
+      },
+      {
+        pass: 0,
+        hour: 20,
+        icon: '&#129848;',
+        color: 'red',
+        label: '20h',
+        head: '20h: AKI worsens. CRRT starts.',
+        text: 'Creatinine is rising. The patient starts continuous renal replacement therapy. Renal impairment can alter electrolyte handling independently of nutrition. The overlap of a phosphate deficiency and active AKI creates interpretive ambiguity that standard surveillance has no framework to resolve — and that it still cannot see at all.',
+        badge: 'Standard window: still closed. AKI context: not visible.',
+        badgeClass: 'red',
+        timeColor: 'red'
+      },
+      {
+        pass: 0,
+        hour: 28,
+        icon: '&#127860;',
+        color: 'axis',
+        label: '28h',
+        head: '28h: Enteral nutrition ordered. Window opens.',
+        text: 'Enteral nutrition is finally initiated. Standard surveillance now opens its monitoring window and fires its first alert. But the phosphate deficiency has been present for 16 hours, CRRT has been running for 8 hours, and the question of attribution — nutritional versus renal — was never raised. In MIMIC-IV, 38.4% of eligible patients had a deficiency before EN or PN was initiated.',
+        badge: 'Standard view: first alert fires here. 16-hour gap invisible.',
+        badgeClass: 'amber',
+        timeColor: ''
+      },
+      /* Pass 1 */
+      {
+        pass: 1,
+        hour: 0,
+        icon: '&#128276;',
+        color: 'teal',
+        label: '0h',
+        head: 'AI anchor: caloric clock starts at dextrose',
+        text: 'The renal-aware system anchors its monitoring window to the first qualifying caloric exposure — IV dextrose, not the nutrition order. The window is open from admission. All subsequent events will be evaluated within this window.',
+        badge: 'AI window: open from admission',
+        badgeClass: 'teal',
+        timeColor: 'teal'
+      },
+      {
+        pass: 1,
+        hour: 12,
+        icon: '&#128201;',
+        color: 'amber',
+        label: '12h',
+        head: '12h: Phosphate drop detected inside the window',
+        text: 'The same phosphate deficiency is now inside the AI monitoring window. The system notes the trajectory: a smooth decline from baseline, consistent with the depletion pattern associated with caloric loading after restriction. It logs the event and begins integrating the electrolyte trajectory with renal context.',
+        badge: 'AI flag: incident deficiency detected, 12h post-anchor',
+        badgeClass: 'teal',
+        timeColor: 'teal'
+      },
+      {
+        pass: 1,
+        hour: 20,
+        icon: '&#129848;',
+        color: 'accent',
+        label: '20h',
+        head: '20h: Renal layer integrated. Attribution uncertain.',
+        text: 'Rising creatinine and CRRT initiation are now visible in the AI context layer. The system identifies a competing renal explanation for the electrolyte trajectory. Rather than forcing a nutritional classification, it flags the case as attribution-uncertain and assembles an evidence summary: electrolyte trajectory, renal trajectory, timing, and the degree of overlap between the two.',
+        badge: 'AI flag: competing renal explanation. Flagged for review.',
+        badgeClass: 'amber',
+        timeColor: 'teal'
+      },
+      {
+        pass: 1,
+        hour: 28,
+        icon: '&#128203;',
+        color: 'teal',
+        label: '28h',
+        head: '28h: Evidence summary available. 16 hours before standard view.',
+        text: 'By the time standard surveillance fires its first alert at EN initiation, the AI system has already assembled a time-stamped evidence summary covering the full 28-hour window. The summary includes the caloric-exposure anchor, the electrolyte deficiency trajectory, the concurrent AKI signal, and the attribution uncertainty. That summary — not a diagnosis, but a structured record — is what the pilot is designed to build and validate.',
+        badge: 'AI summary: 28-hour evidence record. Attribution: uncertain. For clinical review.',
+        badgeClass: 'blue',
+        timeColor: 'teal'
+      }
+    ];
+
+    var currentStep = 0;
+
+    function drawTimeline(stepIdx, progressWithinStep) {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      var border  = cssV('--border')   || '#dde1ea';
+      var text3   = cssV('--text3')    || '#737a94';
+      var text2   = cssV('--text2')    || '#4a5068';
+      var text_   = cssV('--text')     || '#1a1d26';
+      var accent  = cssV('--accent')   || '#1d5fa8';
+      var accentLt= cssV('--accent-lt')|| '#e8f0fb';
+      var teal    = cssV('--teal')     || '#0e7c6e';
+      var tealLt  = cssV('--teal-lt')  || '#e4f5f2';
+      var amber   = cssV('--amber')    || '#b06000';
+      var amberLt = cssV('--amber-lt') || '#fef3e2';
+      var red     = cssV('--red')      || '#a31515';
+      var redLt   = cssV('--red-lt')   || '#fceaea';
+      var surface2= cssV('--surface2') || '#f0f2f6';
+      var surface = cssV('--surface')  || '#fff';
+
+      function colorOf(name) {
+        if (name === 'teal')   return teal;
+        if (name === 'amber')  return amber;
+        if (name === 'red')    return red;
+        if (name === 'accent') return accent;
+        return border;
+      }
+      function ltOf(name) {
+        if (name === 'teal')   return tealLt;
+        if (name === 'amber')  return amberLt;
+        if (name === 'red')    return redLt;
+        if (name === 'accent') return accentLt;
+        return surface2;
+      }
+
+      var step = STEPS[stepIdx];
+      var pass = step.pass;
+
+      /* axis line */
+      svg.appendChild(svgEl('line', {x1: AX0, y1: AY, x2: AX1, y2: AY, stroke: border, 'stroke-width': 1.5}));
+
+      /* hour ticks + labels */
+      HOURS.forEach(function(h) {
+        var x = xOf(h);
+        svg.appendChild(svgEl('line', {x1: x, y1: AY, x2: x, y2: AY + 7, stroke: border, 'stroke-width': 1}));
+        svg.appendChild(svgTxt(h + 'h', {x: x, y: AY + 18, 'text-anchor': 'middle', 'font-size': '9', fill: text3, 'font-family': 'Inter, sans-serif'}));
+      });
+
+      /* "time →" label */
+      svg.appendChild(svgTxt('time →', {x: AX1 + 12, y: AY + 4, 'font-size': '9', fill: text3, 'font-family': 'Inter, sans-serif'}));
+
+      /* Dextrose bar: pass 0 all, pass 1 pulse */
+      var dexColor = pass === 0 ? (cssV('--accent') || '#1d5fa8') : teal;
+      var dexAlpha = pass === 0 ? '0.22' : '0.18';
+      svg.appendChild(svgEl('rect', {
+        x: xOf(0), y: AY - 32,
+        width: xOf(16) - xOf(0), height: 10,
+        rx: 3, fill: dexColor, opacity: dexAlpha
+      }));
+      svg.appendChild(svgTxt('🍽 Dextrose (0–16h)', {
+        x: xOf(0) + 2, y: AY - 24,
+        'font-size': '8', fill: text3, 'font-family': 'Inter, sans-serif'
+      }));
+
+      /* EN bar: only shown when stepIdx >= 3 (pass 0 step 4) or stepIdx >= 7 (pass 1 step 4) */
+      if ((pass === 0 && stepIdx >= 3) || (pass === 1 && stepIdx >= 7)) {
+        var enColor = pass === 0 ? text3 : teal;
+        svg.appendChild(svgEl('rect', {
+          x: xOf(28), y: AY - 32,
+          width: 18, height: 10,
+          rx: 3, fill: enColor, opacity: '0.5'
+        }));
+        svg.appendChild(svgTxt('🥣 EN', {
+          x: xOf(28) + 2, y: AY - 24,
+          'font-size': '8', fill: enColor, 'font-family': 'Inter, sans-serif'
+        }));
+      }
+
+      /* Pass 0: standard window (grey dashed box, only after step 3) */
+      if (pass === 0 && stepIdx >= 3) {
+        var wx = xOf(28);
+        svg.appendChild(svgEl('rect', {
+          x: wx - 2, y: AY - 48,
+          width: 70, height: 56,
+          rx: 4, fill: 'none', stroke: text3, 'stroke-dasharray': '4,3', 'stroke-width': 1.2
+        }));
+        svg.appendChild(svgTxt('Standard', {x: wx + 1, y: AY - 37, 'font-size': '8', fill: text3, 'font-family': 'Inter, sans-serif'}));
+        svg.appendChild(svgTxt('window', {x: wx + 1, y: AY - 27, 'font-size': '8', fill: text3, 'font-family': 'Inter, sans-serif'}));
+        svg.appendChild(svgTxt('opens here', {x: wx + 1, y: AY - 17, 'font-size': '8', fill: text3, 'font-family': 'Inter, sans-serif'}));
+      }
+
+      /* Pass 1: AI window bracket (teal, starts at 0) */
+      if (pass === 1) {
+        var awEnd = stepIdx >= 7 ? xOf(28) + 18 : xOf(step.hour) + 24;
+        svg.appendChild(svgEl('rect', {
+          x: xOf(0) - 2, y: AY - 48,
+          width: awEnd - xOf(0) + 4, height: 56,
+          rx: 4, fill: teal, opacity: '0.07', stroke: teal, 'stroke-width': 1
+        }));
+        svg.appendChild(svgTxt('AI window', {x: xOf(0) + 2, y: AY - 37, 'font-size': '8', fill: teal, 'font-family': 'Inter, sans-serif', 'font-weight': '700'}));
+      }
+
+      /* Draw past events for this pass up to but not including current step */
+      var passStart = pass === 0 ? 0 : 4;
+      for (var i = passStart; i < stepIdx; i++) {
+        var s = STEPS[i];
+        var ex = xOf(s.hour);
+        /* small dot */
+        svg.appendChild(svgEl('circle', {cx: ex, cy: AY, r: 5, fill: colorOf(s.color)}));
+        /* small label above */
+        svg.appendChild(svgTxt(s.label, {x: ex, y: AY - 10, 'text-anchor': 'middle', 'font-size': '8.5', fill: colorOf(s.color), 'font-family': 'Inter, sans-serif', 'font-weight': '600'}));
+      }
+
+      /* Current event (larger, pulsing via animated opacity on a ring) */
+      var cx = xOf(step.hour);
+      var cColor = colorOf(step.color);
+      var cLt = ltOf(step.color);
+
+      /* pulse ring (fades in) */
+      var ringR = 10 + progressWithinStep * 4;
+      var ringOp = 0.4 * (1 - progressWithinStep);
+      svg.appendChild(svgEl('circle', {cx: cx, cy: AY, r: ringR, fill: 'none', stroke: cColor, 'stroke-width': 1.5, opacity: ringOp}));
+
+      /* main dot */
+      svg.appendChild(svgEl('circle', {cx: cx, cy: AY, r: 8, fill: cColor}));
+
+      /* icon above */
+      var iconEl = svgEl('text', {x: cx, y: AY - 22, 'text-anchor': 'middle', 'font-size': '16', 'font-family': 'serif'});
+      iconEl.innerHTML = step.icon;
+      svg.appendChild(iconEl);
+
+      /* hour label */
+      svg.appendChild(svgTxt(step.label, {
+        x: cx, y: AY + 30,
+        'text-anchor': 'middle', 'font-size': '10', 'font-weight': '700',
+        fill: cColor, 'font-family': 'Inter, sans-serif'
+      }));
+
+      /* creatinine line for steps with AKI */
+      if ((pass === 0 && stepIdx >= 2) || (pass === 1 && stepIdx >= 6)) {
+        var crPts = [
+          [xOf(0), AY - 2],
+          [xOf(8), AY - 2],
+          [xOf(16), AY - 5],
+          [xOf(20), AY - 15],
+          [xOf(24), AY - 18],
+          [xOf(28), AY - 20]
+        ];
+        var maxCrStep = (pass === 0) ? (stepIdx === 2 ? 4 : 6) : 6;
+        var pts = crPts.slice(0, maxCrStep).map(function(p){ return p[0]+','+p[1]; }).join(' ');
+        svg.appendChild(svgEl('polyline', {
+          points: pts, fill: 'none',
+          stroke: red, 'stroke-width': 1.5, 'stroke-dasharray': '3,2', opacity: '0.7'
+        }));
+        svg.appendChild(svgTxt('Cr ↑', {
+          x: crPts[Math.min(maxCrStep-1, crPts.length-1)][0] + 5,
+          y: crPts[Math.min(maxCrStep-1, crPts.length-1)][1] - 3,
+          'font-size': '9', fill: red, 'font-weight': '700', 'font-family': 'Inter, sans-serif'
+        }));
+      }
+
+      /* phosphate dots */
+      var phosPts = [
+        {h:0, y: AY - 4, ok: true},
+        {h:8, y: AY - 2, ok: true},
+        {h:12, y: AY + 10, ok: false},
+        {h:20, y: AY + 13, ok: false},
+        {h:28, y: AY + 11, ok: false}
+      ];
+      var maxPhosStep;
+      if (pass === 0) {
+        maxPhosStep = stepIdx === 0 ? 2 : stepIdx === 1 ? 3 : stepIdx === 2 ? 4 : 5;
+      } else {
+        maxPhosStep = stepIdx === 4 ? 2 : stepIdx === 5 ? 3 : stepIdx >= 6 ? 5 : 2;
+      }
+      var visiblePhos = phosPts.slice(0, maxPhosStep);
+      if (visiblePhos.length >= 2) {
+        var pts2 = visiblePhos.map(function(p){ return xOf(p.h)+','+(p.y); }).join(' ');
+        svg.appendChild(svgEl('polyline', {
+          points: pts2, fill: 'none',
+          stroke: amber, 'stroke-width': 1.5, 'stroke-dasharray': '3,2'
+        }));
+      }
+      visiblePhos.forEach(function(p, i) {
+        svg.appendChild(svgEl('circle', {
+          cx: xOf(p.h), cy: p.y, r: 4,
+          fill: p.ok ? (cssV('--teal') || '#0e7c6e') : amber
+        }));
+      });
+
+      /* phosphate label */
+      if (maxPhosStep >= 2) {
+        svg.appendChild(svgTxt('Phos', {
+          x: AX0 - 4, y: AY - 2,
+          'text-anchor': 'end', 'font-size': '8.5', fill: amber, 'font-family': 'Inter, sans-serif'
+        }));
+      }
+    }
+
+    function renderCaption(stepIdx) {
+      var s = STEPS[stepIdx];
+      captionTime.textContent = s.label;
+      captionTime.className = 'story-caption-time' + (s.timeColor ? ' ' + s.timeColor : '');
+      captionHead.textContent = s.head;
+      captionText.textContent = s.text;
+      captionBadge.textContent = s.badge;
+      captionBadge.className = 'story-caption-badge ' + s.badgeClass;
+
+      passTab0.className = 'story-pass-tab' + (s.pass === 0 ? ' active' : '');
+      passTab1.className = 'story-pass-tab teal' + (s.pass === 1 ? ' active' : '');
+
+      var total = STEPS.length;
+      var pct = ((stepIdx + 1) / total) * 100;
+      progBar.style.width = pct + '%';
+      stepLabel.textContent = (stepIdx + 1) + ' / ' + total;
+    }
+
+    function showStep(idx) {
+      drawTimeline(idx, 1);
+      renderCaption(idx);
+      prevBtn.disabled = (idx === 0);
+      nextBtn.disabled = (idx === STEPS.length - 1);
+    }
+
+    prevBtn.addEventListener('click', function() {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    });
+
+    nextBtn.addEventListener('click', function() {
+      if (currentStep < STEPS.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+
+    /* click on progress bar to jump */
+    document.getElementById('storyProgressWrap').addEventListener('click', function(e) {
+      var rect = this.getBoundingClientRect();
+      var frac = (e.clientX - rect.left) / rect.width;
+      var idx = Math.round(frac * (STEPS.length - 1));
+      idx = Math.max(0, Math.min(STEPS.length - 1, idx));
+      currentStep = idx;
+      showStep(idx);
+    });
+
+    /* keyboard left/right when focus is inside the card */
+    document.getElementById('ai-overview').addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight' && currentStep < STEPS.length - 1) { currentStep++; showStep(currentStep); }
+      if (e.key === 'ArrowLeft'  && currentStep > 0)                 { currentStep--; showStep(currentStep); }
+    });
+
+    /* initial render */
+    showStep(0);
+  })();
+
+
+  /* ═══════════════════════════════════════════════════
      SVG HELPERS
   ═══════════════════════════════════════════════════ */
-  const NS = 'http://www.w3.org/2000/svg';
+  var NS = 'http://www.w3.org/2000/svg';
   function el(tag, attrs) {
-    const e = document.createElementNS(NS, tag);
-    for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v);
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
     return e;
   }
   function txt(content, attrs) {
-    const e = el('text', attrs);
+    var e = el('text', attrs);
     e.textContent = content;
     return e;
   }
   function lerp(a, b, t) { return a + (b - a) * t; }
 
-  /* ── Get computed CSS token colors ── */
   function cssVar(name) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   }
 
   /* ═══════════════════════════════════════════════════
      ANIMATION ENGINE
-     Phases: array of {label, draw, duration}
-     draw(svg, progress) renders svg for this phase's progress [0..1]
   ═══════════════════════════════════════════════════ */
   function makeAnimator(svgEl, playBtnEl, progBarEl, phaseLabelEl, panelsEl, phases) {
-    const PHASE_DUR = 2200;
-    let currentPhase = 0;
-    let startTime = null;
-    let rafId = null;
-    let playing = false;
-
-    function drawStatic(svg) {
-      while (svg.firstChild) svg.removeChild(svg.firstChild);
-      const W = 700, axisY = 158, x0 = 60, x48 = 620;
-      const step = (x48 - x0) / 4;
-
-      const C_AXIS = '#9ba3be';
-      const C_DEX  = '#5e9de8';
-
-      svg.appendChild(el('line', {x1:x0,y1:axisY,x2:x48+40,y2:axisY,stroke:C_AXIS,'stroke-width':1.5}));
-      [[0,'0h'],[1,'12h'],[2,'24h'],[3,'36h'],[4,'48h']].forEach(([i,label]) => {
-        const x = x0 + i*step;
-        svg.appendChild(el('line',{x1:x,y1:axisY,x2:x,y2:axisY+9,stroke:C_AXIS,'stroke-width':1}));
-        svg.appendChild(txt(label,{x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
-      });
-      svg.appendChild(txt('Phos',{x:x0-5,y:82,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
-      return {W, axisY, x0, x48, step, C_AXIS, C_DEX};
-    }
+    var PHASE_DUR = 2200;
+    var currentPhase = 0;
+    var startTime = null;
+    var rafId = null;
+    var playing = false;
 
     function setPhase(p) {
       currentPhase = p;
-      const panels = panelsEl.querySelectorAll('.anim-panel');
-      panels.forEach((panel, i) => {
+      var panels = panelsEl.querySelectorAll('.anim-panel');
+      panels.forEach(function(panel, i) {
         panel.classList.remove('active', 'past', 'current');
         if (i < p) {
           panel.classList.add('active', 'past');
@@ -1643,13 +2322,13 @@ footer {
 
     function tick(ts) {
       if (!startTime) startTime = ts;
-      const elapsed = ts - startTime;
-      const progress = Math.min(elapsed / PHASE_DUR, 1);
+      var elapsed = ts - startTime;
+      var progress = Math.min(elapsed / PHASE_DUR, 1);
       phases[currentPhase].draw(svgEl, progress);
       if (progress < 1) {
         rafId = requestAnimationFrame(tick);
       } else {
-        const next = currentPhase + 1;
+        var next = currentPhase + 1;
         if (next < phases.length) {
           setPhase(next);
           startTime = null;
@@ -1705,43 +2384,39 @@ footer {
     phases[0].draw(svgEl, 1);
     setPhase(0);
     progBarEl.style.width = ((1 / phases.length) * 100) + '%';
-    return { play, pause, reset };
+    return { play: play, pause: pause, reset: reset };
   }
 
   /* ═══════════════════════════════════════════════════
      CASE A PHASES
-     Story: dextrose starts → phos drops at 12h (standard misses) →
-            dextrose ends → EN starts at 48h (standard anchor fires) →
-            caloric anchor + stable creatinine reveal the better story
   ═══════════════════════════════════════════════════ */
-  const phaseLabelsA = ['Admission', '12h: Phos drops', '36h: Dextrose ends', '48h: EN starts', 'Renal-aware view'];
-
-  function drawBase(svg, progDex, progPhos, showEN, showCr, showCaloricAnchor, easing) {
+  function drawBase(svg, progDex, progPhos, showEN, showCr, showCaloricAnchor) {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    const x0=60, x48=620, axisY=158;
-    const step=(x48-x0)/4;
-    const C_AXIS='#9ba3be', C_DEX='#5e9de8', C_EN='#0e7c6e';
-    const C_GREEN='#22a861', C_RED='#d14040', C_CR='#9ba3be';
+    var x0=60, x48=620, axisY=158;
+    var step=(x48-x0)/4;
+    var C_AXIS='#9ba3be', C_DEX='#5e9de8', C_EN='#0e7c6e';
+    var C_GREEN='#22a861', C_RED='#d14040', C_CR='#9ba3be';
 
     svg.appendChild(el('line',{x1:x0,y1:axisY,x2:x48+40,y2:axisY,stroke:C_AXIS,'stroke-width':1.5}));
-    [[0,'0h'],[1,'12h'],[2,'24h'],[3,'36h'],[4,'48h']].forEach(([i,label]) => {
-      const x=x0+i*step;
+    [[0,'0h'],[1,'12h'],[2,'24h'],[3,'36h'],[4,'48h']].forEach(function(pair) {
+      var i=pair[0], label=pair[1];
+      var x=x0+i*step;
       svg.appendChild(el('line',{x1:x,y1:axisY,x2:x,y2:axisY+9,stroke:C_AXIS,'stroke-width':1}));
-      svg.appendChild(txt(label,{x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
+      svg.appendChild(txt(label,{x:x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
     });
 
-    const dexEnd = lerp(x0, x0+step*3, Math.min(progDex,1));
+    var dexEnd = lerp(x0, x0+step*3, Math.min(progDex,1));
     if (progDex > 0) {
       svg.appendChild(el('rect',{x:x0,y:14,width:dexEnd-x0,height:14,rx:3,fill:C_DEX,opacity:.85}));
       svg.appendChild(txt('Dextrose',{x:x0-5,y:25,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
       if (progDex >= 1) {
-        svg.appendChild(txt('IV dextrose (0–36h)',{x:x0+70,y:25,'text-anchor':'start','font-size':'10',fill:'#fff'}));
+        svg.appendChild(txt('IV dextrose (0-36h)',{x:x0+70,y:25,'text-anchor':'start','font-size':'10',fill:'#fff'}));
       }
     }
 
     svg.appendChild(txt('Phos',{x:x0-5,y:82,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
 
-    const phosPoints = [
+    var phosPoints = [
       [x0,    62, C_GREEN],
       [x0+step*0.8, 58, C_GREEN],
       [x0+step,  92, C_RED],
@@ -1750,105 +2425,102 @@ footer {
     ];
 
     if (progPhos > 0) {
-      const numPts = Math.max(2, Math.round(progPhos * phosPoints.length));
-      const visible = phosPoints.slice(0, numPts);
+      var numPts = Math.max(2, Math.round(progPhos * phosPoints.length));
+      var visible = phosPoints.slice(0, numPts);
       if (visible.length >= 2) {
-        const pts = visible.map(p=>p[0]+','+p[1]).join(' ');
+        var pts = visible.map(function(p){return p[0]+','+p[1];}).join(' ');
         svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:C_AXIS,'stroke-width':1.5,'stroke-dasharray':'4,2'}));
       }
-      visible.forEach(([cx,cy,col]) => {
-        svg.appendChild(el('circle',{cx,cy,r:5,fill:col}));
+      visible.forEach(function(pt) {
+        svg.appendChild(el('circle',{cx:pt[0],cy:pt[1],r:5,fill:pt[2]}));
       });
       if (progPhos >= 0.55) {
-        const fx=x0+step, fy=85;
+        var fx=x0+step, fy=85;
         svg.appendChild(el('line',{x1:fx,y1:92,x2:fx,y2:axisY,stroke:C_RED,'stroke-width':1,'stroke-dasharray':'3,3'}));
         svg.appendChild(txt('first low (12h)',{x:fx,y:fy,'text-anchor':'middle','font-size':'9',fill:C_RED}));
       }
     }
 
     if (showEN) {
-      const enX = x0+step*4;
+      var enX = x0+step*4;
       svg.appendChild(el('line',{x1:enX,y1:10,x2:enX,y2:axisY,stroke:C_EN,'stroke-width':2,'stroke-dasharray':'5,3'}));
       svg.appendChild(txt('EN start (48h)',{x:enX,y:8,'text-anchor':'middle','font-size':'10',fill:C_EN}));
     }
 
     if (showCaloricAnchor) {
-      const aX = x0;
-      svg.appendChild(el('line',{x1:aX,y1:10,x2:aX,y2:axisY,stroke:'#0e7c6e','stroke-width':2.5,'stroke-dasharray':'none'}));
+      var aX = x0;
+      svg.appendChild(el('line',{x1:aX,y1:10,x2:aX,y2:axisY,stroke:'#0e7c6e','stroke-width':2.5}));
       svg.appendChild(txt('Caloric anchor (0h)',{x:aX+4,y:8,'text-anchor':'start','font-size':'10',fill:'#0e7c6e','font-weight':'700'}));
     }
 
     if (showCr) {
-      const crY = 128;
+      var crY = 128;
       svg.appendChild(txt('Cr',{x:x0-5,y:crY+2,'text-anchor':'end','font-size':'11',fill:C_CR}));
-      const crPts = [[x0,crY],[x0+step,crY],[x0+step*2,crY],[x0+step*3,crY],[x0+step*4,crY]];
-      const cpts = crPts.map(p=>p[0]+','+p[1]).join(' ');
+      var crPts = [[x0,crY],[x0+step,crY],[x0+step*2,crY],[x0+step*3,crY],[x0+step*4,crY]];
+      var cpts = crPts.map(function(p){return p[0]+','+p[1];}).join(' ');
       svg.appendChild(el('polyline',{points:cpts,fill:'none',stroke:C_CR,'stroke-width':1.5,'stroke-dasharray':'4,2',opacity:.7}));
-      crPts.forEach(([cx,cy]) => svg.appendChild(el('circle',{cx,cy,r:4,fill:C_GREEN})));
+      crPts.forEach(function(pt) { svg.appendChild(el('circle',{cx:pt[0],cy:pt[1],r:4,fill:C_GREEN})); });
       svg.appendChild(txt('stable (no AKI)',{x:x0+step*2,y:crY-8,'text-anchor':'middle','font-size':'9',fill:C_GREEN}));
     }
   }
 
-  const phasesA = [
+  var phasesA = [
     {
       label: 'Admission',
-      draw(svg, t) { drawBase(svg, t*0.05, t*0.15, false, false, false, t); }
+      draw: function(svg, t) { drawBase(svg, t*0.05, t*0.15, false, false, false); }
     },
     {
       label: '12h: Phos drops',
-      draw(svg, t) { drawBase(svg, 0.05+t*0.25, 0.15+t*0.45, false, false, false, t); }
+      draw: function(svg, t) { drawBase(svg, 0.05+t*0.25, 0.15+t*0.45, false, false, false); }
     },
     {
       label: '36h: Dextrose ends',
-      draw(svg, t) { drawBase(svg, 0.3+t*0.7, 0.6+t*0.2, false, false, false, t); }
+      draw: function(svg, t) { drawBase(svg, 0.3+t*0.7, 0.6+t*0.2, false, false, false); }
     },
     {
       label: '48h: EN starts',
-      draw(svg, t) { drawBase(svg, 1, 0.8+t*0.2, t >= 0.6, false, false, t); }
+      draw: function(svg, t) { drawBase(svg, 1, 0.8+t*0.2, t >= 0.6, false, false); }
     },
     {
       label: 'Renal-aware view',
-      draw(svg, t) { drawBase(svg, 1, 1, true, t >= 0.3, t >= 0.3, t); }
+      draw: function(svg, t) { drawBase(svg, 1, 1, true, t >= 0.3, t >= 0.3); }
     },
   ];
 
-  const svgA = document.getElementById('svgA');
+  var svgA = document.getElementById('svgA');
   phasesA[phasesA.length - 1].draw(svgA, 1);
 
   /* ═══════════════════════════════════════════════════
      CASE B PHASES
-     Story: same opening → atypical phos trajectory →
-            renal layer revealed (Cr rising = AKI) →
-            phos reinterpreted → standard view cannot tell cases apart
   ═══════════════════════════════════════════════════ */
-
   function drawBaseB(svg, progDex, progPhos, showCr, showCrLabel, showAtypLabel, showStdNote) {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    const x0=60, x48=620, axisY=158;
-    const step=(x48-x0)/4;
-    const C_AXIS='#9ba3be', C_DEX='#5e9de8', C_EN='#0e7c6e';
-    const C_GREEN='#22a861', C_RED='#d14040', C_AMB='#e5a43a';
-    const C_CR='#e5a43a';
+    var x0=60, x48=620, axisY=158;
+    var step=(x48-x0)/4;
+    var C_AXIS='#9ba3be', C_DEX='#5e9de8';
+    var C_GREEN='#22a861', C_RED='#d14040', C_AMB='#e5a43a';
+    var C_CR='#e5a43a';
 
     svg.appendChild(el('line',{x1:x0,y1:axisY,x2:x48+40,y2:axisY,stroke:C_AXIS,'stroke-width':1.5}));
-    [[0,'0h'],[1,'12h'],[2,'24h'],[3,'36h'],[4,'48h']].forEach(([i,label]) => {
-      const x=x0+i*step;
+    [[0,'0h'],[1,'12h'],[2,'24h'],[3,'36h'],[4,'48h']].forEach(function(pair) {
+      var i=pair[0], label=pair[1];
+      var x=x0+i*step;
       svg.appendChild(el('line',{x1:x,y1:axisY,x2:x,y2:axisY+9,stroke:C_AXIS,'stroke-width':1}));
-      svg.appendChild(txt(label,{x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
+      svg.appendChild(txt(label,{x:x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
     });
 
     if (progDex > 0) {
-      const dexEnd = lerp(x0, x0+step, Math.min(progDex,1));
+      var dexEnd = lerp(x0, x0+step, Math.min(progDex,1));
       svg.appendChild(el('rect',{x:x0,y:14,width:dexEnd-x0,height:14,rx:3,fill:C_DEX,opacity:.85}));
       svg.appendChild(txt('Dextrose',{x:x0-5,y:25,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
       if (progDex >= 1) {
-        svg.appendChild(txt('IV dextrose (0–12h)',{x:x0+5,y:25,'text-anchor':'start','font-size':'10',fill:'#fff'}));
+        svg.appendChild(txt('IV dextrose (0-12h)',{x:x0+5,y:25,'text-anchor':'start','font-size':'10',fill:'#fff'}));
       }
     }
 
     svg.appendChild(txt('Phos',{x:x0-5,y:82,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
 
-    const phosPoints = [
+    var phosPoints = [
       [x0,    78, C_GREEN],
       [x0+step*0.6, 58, C_AMB],
       [x0+step,  62, C_RED],
@@ -1857,14 +2529,14 @@ footer {
     ];
 
     if (progPhos > 0) {
-      const numPts = Math.max(2, Math.round(progPhos * phosPoints.length));
-      const visible = phosPoints.slice(0, numPts);
+      var numPts = Math.max(2, Math.round(progPhos * phosPoints.length));
+      var visible = phosPoints.slice(0, numPts);
       if (visible.length >= 2) {
-        const pts = visible.map(p=>p[0]+','+p[1]).join(' ');
+        var pts = visible.map(function(p){return p[0]+','+p[1];}).join(' ');
         svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:C_AXIS,'stroke-width':1.5,'stroke-dasharray':'4,2'}));
       }
-      visible.forEach(([cx,cy,col]) => {
-        svg.appendChild(el('circle',{cx,cy,r:5,fill:col}));
+      visible.forEach(function(pt) {
+        svg.appendChild(el('circle',{cx:pt[0],cy:pt[1],r:5,fill:pt[2]}));
       });
     }
 
@@ -1873,58 +2545,58 @@ footer {
     }
 
     if (showCr) {
-      const crPts = [
+      var crPts = [
         [x0,        128],
         [x0+step,   118],
         [x0+step*2, 102],
         [x0+step*3, 107],
       ];
       svg.appendChild(txt('Cr',{x:x0-5,y:130,'text-anchor':'end','font-size':'11',fill:showCrLabel?C_CR:C_AXIS}));
-      if (crPts.length >= 2) {
-        const pts = crPts.map(p=>p[0]+','+p[1]).join(' ');
-        svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:C_CR,'stroke-width':1.8,'stroke-dasharray':'3,2'}));
-      }
-      const crCols = [C_GREEN, C_AMB, C_RED, C_RED];
-      crPts.forEach(([cx,cy],i) => svg.appendChild(el('circle',{cx,cy,r:4,fill:crCols[i]})));
+      var pts = crPts.map(function(p){return p[0]+','+p[1];}).join(' ');
+      svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:C_CR,'stroke-width':1.8,'stroke-dasharray':'3,2'}));
+      var crCols = [C_GREEN, C_AMB, C_RED, C_RED];
+      crPts.forEach(function(pt, i) { svg.appendChild(el('circle',{cx:pt[0],cy:pt[1],r:4,fill:crCols[i]})); });
       if (showCrLabel) {
         svg.appendChild(txt('↑ AKI signal',{x:x0+step*2.3,y:98,'text-anchor':'middle','font-size':'9.5',fill:C_RED,'font-weight':'700'}));
       }
     }
 
     if (showStdNote) {
-      const noteY = 30;
-      const rx=x0+step*2.5;
-      const rectW = 230;
+      var noteY = 30;
+      var rx=x0+step*2.5;
+      var rectW = 230;
       svg.appendChild(el('rect',{x:rx,y:noteY,width:rectW,height:24,rx:4,fill:'none',stroke:'#737a94','stroke-dasharray':'3,3'}));
       svg.appendChild(txt('Standard view: identical to Case A',{x:rx+rectW/2,y:noteY+15,'text-anchor':'middle','font-size':'10',fill:'#737a94'}));
     }
   }
 
-  const phasesB = [
+  var phasesB = [
     {
       label: 'Admission',
-      draw(svg, t) { drawBaseB(svg, t*0.2, t*0.2, false, false, false, false); }
+      draw: function(svg, t) { drawBaseB(svg, t*0.2, t*0.2, false, false, false, false); }
     },
     {
       label: '12h: Atypical phos',
-      draw(svg, t) { drawBaseB(svg, 0.2+t*0.8, 0.2+t*0.8, false, false, t>=0.5, false); }
+      draw: function(svg, t) { drawBaseB(svg, 0.2+t*0.8, 0.2+t*0.8, false, false, t>=0.5, false); }
     },
     {
       label: 'Cr rising: AKI',
-      draw(svg, t) { drawBaseB(svg, 1, 1, t>=0.1, t>=0.4, true, false); }
+      draw: function(svg, t) { drawBaseB(svg, 1, 1, t>=0.1, t>=0.4, true, false); }
     },
     {
       label: 'Reinterpret phos',
-      draw(svg, t) { drawBaseB(svg, 1, 1, true, true, true, false); }
+      draw: function(svg, t) { drawBaseB(svg, 1, 1, true, true, true, false); }
     },
     {
       label: 'vs. Standard view',
-      draw(svg, t) { drawBaseB(svg, 1, 1, true, true, true, t>=0.35); }
+      draw: function(svg, t) { drawBaseB(svg, 1, 1, true, true, true, t>=0.35); }
     },
   ];
 
-  const svgB = document.getElementById('svgB');
+  var svgB = document.getElementById('svgB');
   phasesB[phasesB.length - 1].draw(svgB, 1);
 
 })();
 </script>
+
+</body></html>
