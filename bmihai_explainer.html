@@ -913,10 +913,11 @@ footer {
   color: var(--text3);
   background: var(--surface2);
   border: none;
-  cursor: default;
   transition: background .2s, color .2s;
   text-align: center;
+  cursor: pointer;
 }
+.story-pass-tab:not(.active):hover { background: var(--surface); }
 .story-pass-tab + .story-pass-tab {
   border-left: 1px solid var(--border);
 }
@@ -942,7 +943,7 @@ footer {
 /* narrative caption */
 .story-caption {
   padding: 16px 20px 20px;
-  min-height: 80px;
+  min-height: 100px;
   border-top: 1px solid var(--border);
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1067,12 +1068,32 @@ footer {
 
   <!-- SECTION 0: AI OVERVIEW / STORY TIMELINE HERO -->
   <section id="ai-overview">
-    <div class="sec-label">How it works</div>
-    <p class="story-title"><span class="sec-num">1</span>One Patient. Two Stories.</p>
+    <div class="sec-label">The problem</div>
+    <p class="story-title"><span class="sec-num">1</span>In the first 28 hours, the picture is never complete.</p>
     <p class="story-sub">
-      Follow an ICU patient through 28 hours. The first pass shows what standard surveillance sees.
-      The second shows what a renal-aware AI system would have known, and when.
-      The gap between those two stories is what this pilot is designed to close.
+      A critically ill patient arrives in the ICU. She is one of several. Her airways need to be
+      managed, her hemodynamics stabilized, the source of her infection found. While that is
+      happening, her kidneys are struggling and her electrolytes are drifting, and no single
+      monitoring system is built to hold all of it together.
+    </p>
+    <p class="story-sub">
+      Identifying refeeding syndrome and acute kidney injury in that window, piecing together
+      a coherent clinical timeline from orders, labs, and infusion records across multiple
+      concurrent problems, and acting on that evidence in real time, is genuinely difficult.
+      When it fails, it can be devastating. Our
+      <a href="#evidence" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-lt)">preliminary data</a>
+      show that in 38.4% of cases the electrolyte trajectory that precedes refeeding has already
+      begun before formal nutrition monitoring opens, and that AKI is undocumented in the
+      discharge summary in 75.7% of patients who meet strict creatinine criteria, with a
+      31.2-to-1 ratio of coding-only to summary-only representation. These are not edge cases.
+      They are the baseline.
+    </p>
+    <p class="story-sub">
+      This pilot proposes to close that gap with an AI system capable of integrating the full
+      evidence record as it accumulates, flagging attribution-uncertain cases at the moment
+      they need attention, and compressing hours of manual reconstruction into a structured
+      summary delivered in real time. The two passes below show what that difference looks
+      like for one synthetic patient.
     </p>
 
     <div class="story-card">
@@ -1240,41 +1261,39 @@ footer {
     <div class="sec-label">Section 3 &nbsp;&#183;&nbsp; <span class="badge demo" style="font-size:10px">Illustrative demonstration</span></div>
     <h2><span class="sec-num">3</span>Synthetic Patient-Case Explorer</h2>
 
-    <p>
-      In MIMIC-IV, 38.4% of ICU stays with incident electrolyte deficiency showed that deficiency
-      before EN or PN was initiated, with a median gap of 35.8 hours. Standard surveillance,
-      anchored to EN/PN orders, would miss every one of these patients. The two synthetic cases
-      below show why anchor choice and renal context together determine what a surveillance system
-      can know, and what it will miss. Watch the timeline unfold.
-    </p>
-    <p class="note" style="margin-top:8px">
+    <div class="callout-box teal mt0" style="margin-bottom:24px">
+      <div class="callout-label">A patient arrives</div>
+      <p>
+        A 58-year-old with septic shock is admitted to the surgical ICU. She has not eaten
+        meaningfully in four days. On arrival, she is intubated, vasopressors are running,
+        and her kidneys are struggling: creatinine is elevated and rising. The clinical team's
+        immediate priorities are her airway, her blood pressure, and the source of her infection.
+        Nutritional replenishment matters, but it is not what gets written in the first hours.
+        What does get written is an order for IV dextrose to maintain glucose, and that infusion
+        begins within the first hour of admission.
+      </p>
+      <p style="margin-top:10px">
+        By midnight, her phosphate is low. By the following morning, she is on continuous renal
+        replacement therapy for worsening AKI. When enteral nutrition is finally ordered that
+        afternoon, the standard nutrition-monitoring alert fires for the first time. But the
+        phosphate deficiency has been present for more than twelve hours, CRRT has been running
+        for six, and no one has asked the question the system was never built to ask: is this
+        a nutritional problem, a renal problem, or both, and how does the answer change what
+        we do next?
+      </p>
+      <p style="margin-top:10px">
+        This is not a rare or unusual case. In MIMIC-IV, 38.4% of ICU patients with an
+        incident electrolyte deficiency developed that deficiency before formal nutrition was
+        ever initiated. Among those patients, the median interval from first low value to
+        EN or PN start was 35.8 hours. Conventional surveillance, anchored to the nutrition
+        order, was open for zero of those hours. The two synthetic cases below show the two
+        patterns the pilot is designed to distinguish.
+      </p>
+    </div>
+    <p class="note" style="margin-top:0; margin-bottom:16px">
       All cases are entirely synthetic. No real patient data, model predictions, or clinical
       decisions are depicted.
     </p>
-
-    <div class="callout-box teal mt16" style="margin-bottom:20px">
-      <div class="callout-label">Why this matters: one patient, three moments</div>
-      <p>
-        <strong>8 AM:</strong> An ICU patient starts an IV dextrose infusion. No formal
-        nutrition order has been placed. The conventional monitoring window has not opened.
-      </p>
-      <p style="margin-top:8px">
-        <strong>8 PM:</strong> The patient's phosphate is low. The patient is also receiving
-        continuous renal replacement therapy (CRRT), which alters electrolyte handling.
-        The standard nutrition alert, anchored to a nutrition order that has not yet been
-        written, sees nothing. Is this a nutritional depletion? A renal effect? Both?
-        The clinical record does not distinguish.
-      </p>
-      <p style="margin-top:8px">
-        <strong>Next day:</strong> Enteral nutrition finally starts. The nutrition-order alert
-        now fires. But the electrolyte deficiency has been present for more than twelve hours,
-        and the concurrent CRRT was never entered into the clinical risk picture.
-      </p>
-      <p style="margin-top:10px; font-size:13px; color:var(--text3)">
-        This is the scenario the BMIHAI pilot is designed to characterize at scale. The
-        synthetic cases below illustrate the two patterns the pilot must learn to distinguish.
-      </p>
-    </div>
 
     <div class="anim-case-tabs mt16" id="animCaseTabs">
       <button class="anim-case-btn active" data-acase="A">Case A: Standard anchor misses it</button>
@@ -1997,7 +2016,7 @@ footer {
         color: 'accent',
         label: '20h',
         head: '20h: Renal layer integrated. Attribution uncertain.',
-        text: 'Rising creatinine and CRRT initiation are now visible in the AI context layer. The system identifies a competing renal explanation for the electrolyte trajectory. Rather than forcing a nutritional classification, it flags the case as attribution-uncertain and assembles an evidence summary: electrolyte trajectory, renal trajectory, timing, and the degree of overlap between the two.',
+        text: 'Rising creatinine and CRRT initiation are now visible in the AI context layer. The system identifies a competing renal explanation for the electrolyte trajectory and flags the case as attribution-uncertain, assembling the full evidence summary without forcing a nutritional classification.\n\nWithout this system, a clinician arriving at this moment would need to do this manually: pull the medication administration record to establish when calories started, retrieve serial creatinine values to characterize the renal trajectory, locate the CRRT order to confirm timing, and cross-reference the electrolyte trend against all of it — then reason about attribution under time pressure, for one patient among many on a busy shift. The system compresses that workload into a structured summary delivered at the moment it is needed.',
         badge: 'AI flag: competing renal explanation. Flagged for review.',
         badgeClass: 'amber',
         timeColor: 'teal'
@@ -2220,7 +2239,9 @@ footer {
       captionTime.textContent = s.label;
       captionTime.className = 'story-caption-time' + (s.timeColor ? ' ' + s.timeColor : '');
       captionHead.textContent = s.head;
-      captionText.textContent = s.text;
+      /* split on \n\n so multi-paragraph captions render correctly */
+      var parts = s.text.split('\n\n');
+      captionText.innerHTML = parts.map(function(p) { return '<p style="margin:0 0 8px">' + p + '</p>'; }).join('');
       captionBadge.textContent = s.badge;
       captionBadge.className = 'story-caption-badge ' + s.badgeClass;
 
@@ -2268,6 +2289,16 @@ footer {
     document.getElementById('ai-overview').addEventListener('keydown', function(e) {
       if (e.key === 'ArrowRight' && currentStep < STEPS.length - 1) { currentStep++; showStep(currentStep); }
       if (e.key === 'ArrowLeft'  && currentStep > 0)                 { currentStep--; showStep(currentStep); }
+    });
+
+    /* pass tab clicks — jump to the first step of that pass */
+    passTab0.addEventListener('click', function() {
+      currentStep = 0;
+      showStep(currentStep);
+    });
+    passTab1.addEventListener('click', function() {
+      currentStep = 4;
+      showStep(currentStep);
     });
 
     /* initial render */
