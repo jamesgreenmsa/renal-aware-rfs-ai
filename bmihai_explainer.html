@@ -89,8 +89,6 @@ nav {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   height: var(--nav-h);
-  overflow-x: auto;
-  scrollbar-width: none;
 }
 .nav-inner {
   max-width: 860px;
@@ -100,8 +98,12 @@ nav {
   align-items: center;
   gap: 0;
   padding-inline: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
 }
-nav::-webkit-scrollbar { display: none; }
+.nav-inner::-webkit-scrollbar { display: none; }
+
 
 .nav-brand {
   font-family: 'Source Serif 4', Georgia, serif;
@@ -1050,23 +1052,27 @@ footer {
 
 <!-- SITE HEADER -->
 <header class="site-hdr" id="top">
-  <h1>Renal-Aware Health AI for Critical Care Nutrition Surveillance</h1>
-  <p>BMIHAI Pilot Research Concept &nbsp;·&nbsp; November 2026</p>
+  <div class="site-hdr-inner">
+    <h1>Renal-Aware Health AI for Critical Care Nutrition Surveillance</h1>
+    <p>BMIHAI Pilot Research Concept &nbsp;·&nbsp; November 2026</p>
+  </div>
 </header>
 
 <!-- NAV -->
 <nav id="sitenav">
-  <a class="nav-brand" href="#top">BMIHAI Pilot</a>
-  <ul class="nav-links">
-    <li><a href="#ai-overview">1. How It Works</a></li>
-    <li><a href="#clinical-problem">2. Clinical Problem</a></li>
-    <li><a href="#case-explorer">3. Case Explorer</a></li>
-    <li><a href="#architecture">4. AI Design</a></li>
-    <li><a href="#evidence">5. Evidence</a></li>
-    <li><a href="#deliverables">6. Deliverables</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="theme-btn" id="themeToggle">&#9680; Theme</button>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">BMIHAI Pilot</a>
+    <ul class="nav-links">
+      <li><a href="#ai-overview">1. How It Works</a></li>
+      <li><a href="#clinical-problem">2. Clinical Problem</a></li>
+      <li><a href="#case-explorer">3. Case Explorer</a></li>
+      <li><a href="#architecture">4. AI Design</a></li>
+      <li><a href="#evidence">5. Evidence</a></li>
+      <li><a href="#deliverables">6. Deliverables</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-btn" id="themeToggle">&#9680; Theme</button>
+    </div>
   </div>
 </nav>
 
