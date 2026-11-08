@@ -1467,7 +1467,7 @@ footer {
     <!-- ANIMATED CASE A -->
     <div id="anim-case-A" class="anim-stage">
       <div class="anim-canvas-wrap">
-        <svg id="svgA" class="anim-svg" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" aria-label="Case A animated timeline"></svg>
+        <svg id="svgA" class="anim-svg" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" aria-label="Case A animated timeline"></svg>
       </div>
       <div class="anim-explanation">
         <div class="anim-phase-panels" id="panelsA">
@@ -1505,7 +1505,7 @@ footer {
     <!-- ANIMATED CASE B -->
     <div id="anim-case-B" class="anim-stage" hidden>
       <div class="anim-canvas-wrap">
-        <svg id="svgB" class="anim-svg" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" aria-label="Case B animated timeline"></svg>
+        <svg id="svgB" class="anim-svg" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" aria-label="Case B animated timeline"></svg>
       </div>
       <div class="anim-explanation">
         <div class="anim-phase-panels" id="panelsB">
@@ -2656,7 +2656,7 @@ footer {
   ═══════════════════════════════════════════════════ */
   function drawBase(svg, progDex, progPhos, showEN, showCr, showCaloricAnchor) {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var x0=60, x48=620, axisY=158;
+    var x0=60, x48=620, axisY=178;
     var step=(x48-x0)/4;
     var C_AXIS='#9ba3be', C_DEX='#5e9de8', C_EN='#0e7c6e';
     var C_GREEN='#22a861', C_RED='#d14040', C_CR='#9ba3be';
@@ -2669,26 +2669,32 @@ footer {
       svg.appendChild(txt(label,{x:x,y:axisY+20,'text-anchor':'middle','font-size':'10',fill:C_AXIS}));
     });
 
+    /* caloric anchor drawn first so dex bar renders on top */
+    if (showCaloricAnchor) {
+      var aX = x0;
+      svg.appendChild(el('line',{x1:aX,y1:6,x2:aX,y2:axisY,stroke:'#0e7c6e','stroke-width':2.5}));
+      svg.appendChild(txt('Caloric anchor (0h)',{x:aX+6,y:14,'text-anchor':'start','font-size':'10',fill:'#0e7c6e','font-weight':'700'}));
+    }
+
     var dexEnd = lerp(x0, x0+step*3, Math.min(progDex,1));
     if (progDex > 0) {
-      svg.appendChild(el('rect',{x:x0,y:14,width:dexEnd-x0,height:14,rx:3,fill:C_DEX,opacity:.85}));
-      svg.appendChild(txt('Dextrose',{x:x0-5,y:25,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+      svg.appendChild(el('rect',{x:x0,y:22,width:dexEnd-x0,height:14,rx:3,fill:C_DEX,opacity:.85}));
+      svg.appendChild(txt('Dextrose',{x:4,y:33,'text-anchor':'start','font-size':'11',fill:C_AXIS}));
       if (progDex >= 1) {
-        svg.appendChild(txt('IV dextrose (0-36h)',{x:x0+70,y:25,'text-anchor':'start','font-size':'10',fill:'#fff'}));
+        svg.appendChild(txt('IV dextrose (0-36h)',{x:x0+70,y:33,'text-anchor':'start','font-size':'10',fill:'#fff'}));
         var x20gA = x0 + step * (8/12);
-        svg.appendChild(el('line',{x1:x20gA,y1:8,x2:x20gA,y2:30,stroke:C_DEX,'stroke-width':1.8,opacity:'.8','stroke-dasharray':'3,2'}));
-        svg.appendChild(txt('20g',{x:x20gA,y:7,'text-anchor':'middle','font-size':'9',fill:C_DEX,'font-weight':'700'}));
+        svg.appendChild(el('line',{x1:x20gA,y1:20,x2:x20gA,y2:38,stroke:C_DEX,'stroke-width':1.8,opacity:'.8','stroke-dasharray':'3,2'}));
       }
     }
 
-    svg.appendChild(txt('Phos',{x:x0-5,y:82,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+    svg.appendChild(txt('Phos',{x:4,y:98,'text-anchor':'start','font-size':'11',fill:C_AXIS}));
 
     var phosPoints = [
-      [x0,    62, C_GREEN],
-      [x0+step*0.8, 58, C_GREEN],
-      [x0+step,  92, C_RED],
-      [x0+step*2, 99, C_RED],
-      [x0+step*3, 97, C_RED],
+      [x0,    78, C_GREEN],
+      [x0+step*0.8, 74, C_GREEN],
+      [x0+step,  108, C_RED],
+      [x0+step*2, 115, C_RED],
+      [x0+step*3, 113, C_RED],
     ];
 
     if (progPhos > 0) {
@@ -2702,27 +2708,21 @@ footer {
         svg.appendChild(el('circle',{cx:pt[0],cy:pt[1],r:5,fill:pt[2]}));
       });
       if (progPhos >= 0.55) {
-        var fx=x0+step, fy=85;
-        svg.appendChild(el('line',{x1:fx,y1:92,x2:fx,y2:axisY,stroke:C_RED,'stroke-width':1,'stroke-dasharray':'3,3'}));
+        var fx=x0+step, fy=100;
+        svg.appendChild(el('line',{x1:fx,y1:108,x2:fx,y2:axisY,stroke:C_RED,'stroke-width':1,'stroke-dasharray':'3,3'}));
         svg.appendChild(txt('first low (12h)',{x:fx,y:fy,'text-anchor':'middle','font-size':'9',fill:C_RED}));
       }
     }
 
     if (showEN) {
       var enX = x0+step*4;
-      svg.appendChild(el('line',{x1:enX,y1:10,x2:enX,y2:axisY,stroke:C_EN,'stroke-width':2,'stroke-dasharray':'5,3'}));
-      svg.appendChild(txt('EN start (48h)',{x:enX,y:8,'text-anchor':'middle','font-size':'10',fill:C_EN}));
-    }
-
-    if (showCaloricAnchor) {
-      var aX = x0;
-      svg.appendChild(el('line',{x1:aX,y1:10,x2:aX,y2:axisY,stroke:'#0e7c6e','stroke-width':2.5}));
-      svg.appendChild(txt('Caloric anchor (0h)',{x:aX+4,y:8,'text-anchor':'start','font-size':'10',fill:'#0e7c6e','font-weight':'700'}));
+      svg.appendChild(el('line',{x1:enX,y1:6,x2:enX,y2:axisY,stroke:C_EN,'stroke-width':2,'stroke-dasharray':'5,3'}));
+      svg.appendChild(txt('EN start (48h)',{x:enX+4,y:14,'text-anchor':'start','font-size':'10',fill:C_EN}));
     }
 
     if (showCr) {
-      var crY = 128;
-      svg.appendChild(txt('Cr',{x:x0-5,y:crY+2,'text-anchor':'end','font-size':'11',fill:C_CR}));
+      var crY = 148;
+      svg.appendChild(txt('Cr',{x:4,y:crY+2,'text-anchor':'start','font-size':'11',fill:C_CR}));
       var crPts = [[x0,crY],[x0+step,crY],[x0+step*2,crY],[x0+step*3,crY],[x0+step*4,crY]];
       var cpts = crPts.map(function(p){return p[0]+','+p[1];}).join(' ');
       svg.appendChild(el('polyline',{points:cpts,fill:'none',stroke:C_CR,'stroke-width':1.5,'stroke-dasharray':'4,2',opacity:.7}));
@@ -2762,7 +2762,7 @@ footer {
   ═══════════════════════════════════════════════════ */
   function drawBaseB(svg, progDex, progPhos, showCr, showCrLabel, showAtypLabel, showStdNote) {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var x0=60, x48=620, axisY=158;
+    var x0=60, x48=620, axisY=178;
     var step=(x48-x0)/4;
     var C_AXIS='#9ba3be', C_DEX='#5e9de8';
     var C_GREEN='#22a861', C_RED='#d14040', C_AMB='#e5a43a';
@@ -2778,21 +2778,21 @@ footer {
 
     if (progDex > 0) {
       var dexEnd = lerp(x0, x0+step, Math.min(progDex,1));
-      svg.appendChild(el('rect',{x:x0,y:14,width:dexEnd-x0,height:14,rx:3,fill:C_DEX,opacity:.85}));
-      svg.appendChild(txt('Dextrose',{x:x0-5,y:25,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+      svg.appendChild(el('rect',{x:x0,y:22,width:dexEnd-x0,height:14,rx:3,fill:C_DEX,opacity:.85}));
+      svg.appendChild(txt('Dextrose',{x:4,y:33,'text-anchor':'start','font-size':'11',fill:C_AXIS}));
       if (progDex >= 1) {
-        svg.appendChild(txt('IV dextrose (0-12h)',{x:x0+5,y:25,'text-anchor':'start','font-size':'10',fill:'#fff'}));
+        svg.appendChild(txt('IV dextrose (0-12h)',{x:x0+5,y:33,'text-anchor':'start','font-size':'10',fill:'#fff'}));
       }
     }
 
-    svg.appendChild(txt('Phos',{x:x0-5,y:82,'text-anchor':'end','font-size':'11',fill:C_AXIS}));
+    svg.appendChild(txt('Phos',{x:4,y:100,'text-anchor':'start','font-size':'11',fill:C_AXIS}));
 
     var phosPoints = [
-      [x0,    78, C_GREEN],
-      [x0+step*0.6, 58, C_AMB],
-      [x0+step,  62, C_RED],
-      [x0+step*1.6, 82, C_AMB],
-      [x0+step*2.5, 92, C_GREEN],
+      [x0,    98, C_GREEN],
+      [x0+step*0.6, 78, C_AMB],
+      [x0+step,  82, C_RED],
+      [x0+step*1.6, 102, C_AMB],
+      [x0+step*2.5, 112, C_GREEN],
     ];
 
     if (progPhos > 0) {
@@ -2808,28 +2808,28 @@ footer {
     }
 
     if (showAtypLabel) {
-      svg.appendChild(txt('atypical: rises then falls',{x:x0+step*1.2,y:45,'text-anchor':'middle','font-size':'9',fill:C_AMB,'font-weight':'600'}));
+      svg.appendChild(txt('atypical: rises then falls',{x:x0+step*1.2,y:65,'text-anchor':'middle','font-size':'9',fill:C_AMB,'font-weight':'600'}));
     }
 
     if (showCr) {
       var crPts = [
-        [x0,        128],
-        [x0+step,   118],
-        [x0+step*2, 102],
-        [x0+step*3, 107],
+        [x0,        148],
+        [x0+step,   138],
+        [x0+step*2, 122],
+        [x0+step*3, 127],
       ];
-      svg.appendChild(txt('Cr',{x:x0-5,y:130,'text-anchor':'end','font-size':'11',fill:showCrLabel?C_CR:C_AXIS}));
+      svg.appendChild(txt('Cr',{x:4,y:150,'text-anchor':'start','font-size':'11',fill:showCrLabel?C_CR:C_AXIS}));
       var pts = crPts.map(function(p){return p[0]+','+p[1];}).join(' ');
       svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:C_CR,'stroke-width':1.8,'stroke-dasharray':'3,2'}));
       var crCols = [C_GREEN, C_AMB, C_RED, C_RED];
       crPts.forEach(function(pt, i) { svg.appendChild(el('circle',{cx:pt[0],cy:pt[1],r:4,fill:crCols[i]})); });
       if (showCrLabel) {
-        svg.appendChild(txt('↑ AKI signal',{x:x0+step*2.3,y:98,'text-anchor':'middle','font-size':'9.5',fill:C_RED,'font-weight':'700'}));
+        svg.appendChild(txt('↑ AKI signal',{x:x0+step*2.3+8,y:108,'text-anchor':'start','font-size':'9.5',fill:C_RED,'font-weight':'700'}));
       }
     }
 
     if (showStdNote) {
-      var noteY = 30;
+      var noteY = 40;
       var rx=x0+step*2.5;
       var rectW = 230;
       svg.appendChild(el('rect',{x:rx,y:noteY,width:rectW,height:24,rx:4,fill:'none',stroke:'#737a94','stroke-dasharray':'3,3'}));
